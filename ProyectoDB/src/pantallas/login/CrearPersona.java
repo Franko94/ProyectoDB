@@ -5,6 +5,11 @@
  */
 package pantallas.login;
 
+import backend.AdministracionPersona;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
@@ -59,6 +64,11 @@ public class CrearPersona extends javax.swing.JFrame {
         jLabel7.setText("Sexo");
 
         jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setText("jTextField2");
 
@@ -146,8 +156,17 @@ public class CrearPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            AdministracionPersona.insertarPersona(jTextField1.getText(), jTextField2.getText(),
+                    jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
