@@ -11,9 +11,9 @@ package accesosBD;
  */
 public class Configuracion {
     
-    public static final String USUARIO_DB  = "postgres";
-    public static final String PASSWORD_DB  = "120894";
-    public static final String URL_DB  = "jdbc:postgresql://192.168.56.102:5432/test";
+    private static final String USUARIO_DB  = "USUARIO-PC\\Usuario";
+    private static final String PASSWORD_DB  = "120894";
+    private static final String URL_DB  = "jdbc:sqlserver://localhost:1433;DatabaseName=proyectoFinal";
     
     public static String getUsuario(){
         return USUARIO_DB;
