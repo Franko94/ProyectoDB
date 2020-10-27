@@ -23,11 +23,11 @@ public class AdministracionPersona {
         Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());     
         String sql = PersonaRW.INSERTAR_PERSONA;
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, nombre);
-        stmt.setString(2, apellido);
-        stmt.setString(3, documento);
-        stmt.setString(4, email);
-        stmt.setString(5, fechaNacimiento);
+        stmt.setInt(1, Integer.valueOf(documento));
+        stmt.setString(2, nombre);
+        stmt.setString(3, apellido);
+        stmt.setString(4, fechaNacimiento);
+        stmt.setString(5, email);
         stmt.setString(6, sexo);
         stmt.executeUpdate();
     }
