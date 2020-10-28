@@ -159,7 +159,7 @@ public class CrearPersona extends javax.swing.JFrame {
         try {
             AdministracionPersona.insertarPersona(jTextField1.getText(), jTextField2.getText(),
                     jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText());
-        } catch (SQLException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

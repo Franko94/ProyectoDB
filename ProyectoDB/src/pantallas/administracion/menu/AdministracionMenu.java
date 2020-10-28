@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package pantallas.administracion.menu;
-import pantallas.adminsitracion.roles.*;
-import pantallas.adminsitracion.aplicacion.*;
+import pantallas.login.MenuPrincipal;
 
 /**
  *

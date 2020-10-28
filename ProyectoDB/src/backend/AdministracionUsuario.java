@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class AdministracionUsuario {
     
-    public static boolean usuarioExiste(String usuario, String password) throws SQLException{
+    public static boolean usuarioExiste(String usuario, String password) throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.GET_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);

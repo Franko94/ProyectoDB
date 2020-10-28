@@ -7,12 +7,8 @@ package pantallas.login;
 
 import backend.AdministracionUsuario;
 import java.sql.SQLException;
-
-import java.util.Arrays;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 
 /**
@@ -147,13 +143,15 @@ public class Login extends javax.swing.JFrame {
 
             if(AdministracionUsuario.usuarioExiste(jTextField1.getText(), String.valueOf(jPasswordField1.getPassword()))){
 
-               JOptionPane.showMessageDialog(rootPane, "Usuario encontrado");
+                MenuPrincipal mp = new MenuPrincipal();
+                mp.setVisible(true);
+                this.setVisible(false);
             }
             else{
                 JOptionPane.showMessageDialog(rootPane, "Usuario NO existe");
             }
             
-        } catch (SQLException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
