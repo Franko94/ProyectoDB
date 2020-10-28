@@ -9,9 +9,8 @@ package accesosBD;
  *
  * @author Usuario
  */
-public class PersonaRW {
+public class UsuarioRW {
     
-    public static final String INSERTAR_PERSONA = "INSERT INTO persona values (?,?,?,?,?,?)";
-    
+    public static final String GET_USUARIO = "SELECT * FROM usuario where id_usuario = ? and contrasena = ?";
     
 }
