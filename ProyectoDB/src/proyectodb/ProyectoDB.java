@@ -5,6 +5,8 @@
  */
 package proyectodb;
 
+import pantallas.login.Login;
+
 /**
  *
  * @author Usuario
@@ -15,7 +17,8 @@ public class ProyectoDB {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Login lg = new Login();
+        lg.setVisible(true);
     }
     
 }

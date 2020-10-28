@@ -7,6 +7,9 @@ package pantallas.login;
 
 import backend.AdministracionUsuario;
 import java.sql.SQLException;
+
+import java.util.Arrays;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
@@ -141,7 +144,9 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            if(AdministracionUsuario.usuarioExiste(jTextField1.getText(), jTextField2.getText())){
+
+            if(AdministracionUsuario.usuarioExiste(jTextField1.getText(), String.valueOf(jPasswordField1.getPassword()))){
+
                JOptionPane.showMessageDialog(rootPane, "Usuario encontrado");
             }
             else{
