@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.adminsitracion.aplicacion;
+package pantallas.login;
+import pantallas.adminsitracion.aplicacion.Aplicaciones;
 import pantallas.adminsitracion.roles.*;
 import pantallas.adminsitracion.solicitudes.*;
 

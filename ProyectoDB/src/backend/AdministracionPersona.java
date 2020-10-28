@@ -18,7 +18,7 @@ import java.sql.SQLException;
 public class AdministracionPersona {
     
     public static void insertarPersona(String nombre, String apellido,String documento,
-                            String email,String fechaNacimiento, String sexo) throws SQLException{
+                            String email,String fechaNacimiento, String sexo) throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
         String sql = PersonaRW.INSERTAR_PERSONA;
         PreparedStatement stmt = con.prepareStatement(sql);

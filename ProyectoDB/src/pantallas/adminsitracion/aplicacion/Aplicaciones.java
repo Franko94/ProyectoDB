@@ -5,6 +5,8 @@
  */
 package pantallas.adminsitracion.aplicacion;
 
+import pantallas.login.MenuPrincipal;
+
 /**
  *
  * @author Meki
