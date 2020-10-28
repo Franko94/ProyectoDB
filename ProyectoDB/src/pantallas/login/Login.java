@@ -5,6 +5,13 @@
  */
 package pantallas.login;
 
+import backend.AdministracionUsuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -49,6 +56,11 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Contraseña");
 
         jButton1.setText("Aceptar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Registrarse");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +138,20 @@ public class Login extends javax.swing.JFrame {
           CrearPersona cp = new CrearPersona();
           cp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            if(AdministracionUsuario.usuarioExiste(jTextField1.getText(), jTextField2.getText())){
+               JOptionPane.showMessageDialog(rootPane, "Usuario encontrado");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Usuario NO existe");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
