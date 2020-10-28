@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package pantallas.adminsitracion.aplicacion;
+import pantallas.adminsitracion.roles.*;
+import pantallas.adminsitracion.solicitudes.*;
 
 /**
  *
@@ -44,12 +46,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setText("MENU PRINCIPAL");
 
         jButton2.setText("Aplicaciones");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Roles");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Menus");
 
         jButton5.setText("Usuarios");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Metodos");
 
@@ -101,6 +118,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    Aplicaciones app = new Aplicaciones();
+    app.setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+      AdministracionRoles adminRol = new AdministracionRoles();
+      adminRol.setVisible(true);
+      this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        AdministracionUsuarios adminUsu = new AdministracionUsuarios();
+        adminUsu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
