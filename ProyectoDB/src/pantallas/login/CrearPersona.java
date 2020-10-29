@@ -49,6 +49,10 @@ public class CrearPersona extends javax.swing.JFrame {
         jLabelAplicacion = new javax.swing.JLabel();
         jComboBoxAplicaciones = new javax.swing.JComboBox<>();
         jComboBoxSexo = new javax.swing.JComboBox<>();
+        jLabelnombreusuario = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jTextFieldcontraseña = new javax.swing.JTextField();
+        jTextFieldnombreusuario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +98,14 @@ public class CrearPersona extends javax.swing.JFrame {
 
         jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabelnombreusuario.setText("Nombre de usuario");
+
+        jLabel8.setText("Contraseña");
+
+        jTextFieldcontraseña.setText("jTextField1");
+
+        jTextFieldnombreusuario.setText("jTextField1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,15 +125,23 @@ public class CrearPersona extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6)
-                                    .addComponent(jLabelAplicacion))
-                                .addGap(113, 113, 113)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldfechanac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBoxAplicaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabelAplicacion)
+                                    .addComponent(jLabelnombreusuario)
+                                    .addComponent(jLabel8))
+                                .addGap(75, 75, 75)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldfechanac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldci, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBoxAplicaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextFieldnombreusuario, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldcontraseña))
+                                        .addGap(3, 3, 3))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,7 +184,15 @@ public class CrearPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelAplicacion)
                     .addComponent(jComboBoxAplicaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelnombreusuario)
+                    .addComponent(jTextFieldnombreusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextFieldcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(32, 32, 32))
         );
@@ -173,13 +201,24 @@ public class CrearPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        //primero crear persona
+        //luego crear usuario
+        //luego en paralelo se crea la solicitud de habilitado
         try {
-            AdministracionPersona.insertarPersona(jTextFieldnombre.getText(), jTextFieldapellido.getText(),
+            //si la persona no existe, se crea
+            if(!AdministracionPersona.personaExiste(jTextFieldci.getText())){
+                AdministracionPersona.insertarPersona(jTextFieldnombre.getText(), jTextFieldapellido.getText(),
                     jTextFieldci.getText(), jTextFieldmail.getText(), jTextFieldfechanac.getText(), jComboBoxSexo.getSelectedItem().toString());
+            }
+            //si existe la persona, no se hacen cambios
         } catch (SQLException | ClassNotFoundException ex) {
             
             Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //verificamos que el usuario exista
+        // una persona puede tener varios usuarios. eso lo maneja el administrador de la aplicacion
         try {
             if(AdministracionPersona.personaExiste(jTextFieldci.getText())){
                 String aplicacionSolicitada = jComboBoxAplicaciones.getSelectedItem().toString();
@@ -243,11 +282,15 @@ public class CrearPersona extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelAplicacion;
+    private javax.swing.JLabel jLabelnombreusuario;
     private javax.swing.JTextField jTextFieldapellido;
     private javax.swing.JTextField jTextFieldci;
+    private javax.swing.JTextField jTextFieldcontraseña;
     private javax.swing.JTextField jTextFieldfechanac;
     private javax.swing.JTextField jTextFieldmail;
     private javax.swing.JTextField jTextFieldnombre;
+    private javax.swing.JTextField jTextFieldnombreusuario;
     // End of variables declaration//GEN-END:variables
 }

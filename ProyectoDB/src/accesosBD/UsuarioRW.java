@@ -11,6 +11,7 @@ package accesosBD;
  */
 public class UsuarioRW {
     
-    public static final String GET_USUARIO = "SELECT * FROM usuario where id_usuario = ? and contrasena = ?";
+    public static final String GET_USUARIOYCONTRASENA = "SELECT * FROM usuario where id_usuario = ? and contrasena = ?";
     
+    public static final String GET_USUARIO = "SELECT * FROM usuario where id_usuario = ?";
 }

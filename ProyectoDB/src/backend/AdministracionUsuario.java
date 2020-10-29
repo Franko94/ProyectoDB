@@ -19,9 +19,9 @@ import java.sql.SQLException;
  */
 public class AdministracionUsuario {
     
-    public static boolean usuarioExiste(String usuario, String password) throws SQLException, ClassNotFoundException{
+    public static boolean usuarioYContraseñaExisten(String usuario, String password) throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
-        String sql = UsuarioRW.GET_USUARIO;
+        String sql = UsuarioRW.GET_USUARIOYCONTRASENA;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, usuario);
         stmt.setString(2, password);
@@ -29,4 +29,12 @@ public class AdministracionUsuario {
         return rs.next();
     }
     
+    public static boolean usuarioExiste(String usuario) throws SQLException, ClassNotFoundException{
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.GET_USUARIO;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, usuario);
+        ResultSet rs = stmt.executeQuery();
+        return rs.next();
+    }
 }
