@@ -34,7 +34,7 @@ public class Configuracion {
     }
     
     public static Connection getConnection() throws SQLException, ClassNotFoundException{
-       //Class.forName("com.mysql.jdbc.Driver"); //esto solo para franco quitar el resto
+       Class.forName("com.mysql.jdbc.Driver"); //esto solo para franco quitar el resto
        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());  
        return con;
     }
