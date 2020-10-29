@@ -40,18 +40,6 @@ public class AdministracionPersona {
         stmt.setString(6, sexo);
         stmt.executeUpdate();
     }
-//    public static void insertarSolicitudUsuario(String nombre, String apellido,String documento,
-//                            String email,String fechaNacimiento, String sexo) throws SQLException, ClassNotFoundException{
-//        Connection con = Configuracion.getConnection();
-//        String sql = PersonaRW.INSERTAR_PERSONA;
-//        PreparedStatement stmt = con.prepareStatement(sql);
-//        stmt.setInt(1, Integer.valueOf(documento));
-//        stmt.setString(2, nombre);
-//        stmt.setString(3, apellido);
-//        stmt.setString(4, fechaNacimiento);
-//        stmt.setString(5, email);
-//        stmt.setString(6, sexo);
-//        stmt.executeUpdate();
-//    }
+
     
 }
