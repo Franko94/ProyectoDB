@@ -7,11 +7,12 @@ package accesosBD;
 
 /**
  *
- * @author Usuario
+ * @author Meki
  */
 public class RolRW {
     
     public static String INSERTAR_ROL = "INSERT INTO rol values (?,?,?)";
+    public static final String GET_ROL = "SELECT * FROM rol ";
     
     
 }
