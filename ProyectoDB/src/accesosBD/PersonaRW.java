@@ -11,7 +11,7 @@ package accesosBD;
  */
 public class PersonaRW {
     
-    public static String INSERTAR_PERSONA = "INSERT INTO persona values (?,?,?,?,?,?)";
+    public static final String INSERTAR_PERSONA = "INSERT INTO persona values (?,?,?,?,?,?)";
     
     
 }

@@ -7,12 +7,10 @@ package accesosBD;
 
 /**
  *
- * @author Meki
+ * @author Usuario
  */
-public class RolRW {
+public class UsuarioRW {
     
-    public static String INSERTAR_ROL = "INSERT INTO rol values (?,?,?)";
-    public static final String GET_ROL = "SELECT * FROM rol ";
-    
+    public static final String GET_USUARIO = "SELECT * FROM usuario where id_usuario = ? and contrasena = ?";
     
 }

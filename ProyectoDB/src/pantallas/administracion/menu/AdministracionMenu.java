@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.adminsitracion.roles;
-import pantallas.adminsitracion.aplicacion.*;
+package pantallas.administracion.menu;
 import pantallas.login.MenuPrincipal;
 
 /**
  *
  * @author Usuario
  */
-public class AdministracionRoles extends javax.swing.JFrame {
+public class AdministracionMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form test
      */
-    public AdministracionRoles() {
+    public AdministracionMenu() {
         initComponents();
     }
 
@@ -40,7 +39,7 @@ public class AdministracionRoles extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Administracion de Roles");
+        jLabel1.setText("Administracion de Menu");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -50,7 +49,7 @@ public class AdministracionRoles extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Id", "Rol"
+                "Id", "Menu"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -125,13 +124,13 @@ public class AdministracionRoles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       AgregarRol agregar = new AgregarRol();
+       AgregarMenu agregar = new AgregarMenu();
        agregar.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        EditarRol edit = new EditarRol();
+        EditarMenu edit = new EditarMenu();
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -159,21 +158,27 @@ public class AdministracionRoles extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministracionMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministracionMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministracionMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministracionMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministracionRoles().setVisible(true);
+                new AdministracionMenu().setVisible(true);
             }
         });
     }
