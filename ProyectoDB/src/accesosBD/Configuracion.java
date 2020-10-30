@@ -17,9 +17,15 @@ import java.sql.SQLException;
  */
 public class Configuracion {
     
-    private static final String USUARIO_DB  = "root";
+    //CONFIG DE FRAN
+    /*private static final String USUARIO_DB  = "root";
     private static final String PASSWORD_DB  = "120894";
-    private static final String URL_DB  = "jdbc:mysql://localhost:3306/proyectofinal?characterEncoding=latin1&useConfigs=maxPerformance";
+    private static final String URL_DB  = "jdbc:mysql://localhost:3306/proyectofinal?characterEncoding=latin1&useConfigs=maxPerformance";*/
+    
+    //CONFIG DE MEKI
+    private static final String USUARIO_DB  = "postgres";
+    private static final String PASSWORD_DB  = "1ncr31bl3";
+    private static final String URL_DB  = "jdbc:postgresql://192.168.56.101:5432/proyectoFinal";
 
     public static String getUsuario(){
         return USUARIO_DB;
@@ -34,7 +40,7 @@ public class Configuracion {
     }
     
     public static Connection getConnection() throws SQLException, ClassNotFoundException{
-       Class.forName("com.mysql.jdbc.Driver"); //esto solo para franco quitar el resto
+       //Class.forName("com.mysql.jdbc.Driver"); //esto solo para franco quitar el resto
        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());  
        return con;
     }

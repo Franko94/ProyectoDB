@@ -86,8 +86,6 @@ public class Aplicaciones extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("jTextField1");
-
         jButton4.setText("Volver al Inicio");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,16 +93,12 @@ public class Aplicaciones extends javax.swing.JFrame {
             }
         });
 
-        jTextField3.setText("jTextField3");
-
         jButton5.setText("Buscar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-
-        jTextField2.setText("jTextField2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -11,8 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import jdk.nashorn.internal.runtime.ListAdapter;
 
 /**
  *
@@ -69,6 +71,36 @@ public class AdministracionAplicacion {
                 fila[i] = rs.getObject(i+1);
             modelo.addRow(fila);
         }
+    }
+    
+    public static ArrayList<String> llenar_combo() throws SQLException, ClassNotFoundException{
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.NOMBRE_APLICACIONES);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()){
+               resultado.add(rs.getString("nombre"));
+            }
+            return resultado;
+        }
+  
+        
+    }
+    
+    public static int getIdAplicacion(String nombre) throws SQLException, ClassNotFoundException{
+        int idApp = 0;
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.ID_APLICACIONES);
+            stmt.setString(1, nombre);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()){
+               idApp = rs.getInt("id_aplicacion");
+            }
+            return idApp;
+        }
+        
     }
 
 }
