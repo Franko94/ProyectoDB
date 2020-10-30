@@ -5,12 +5,11 @@
  */
 package pantallas.adminsitracion.aplicacion;
 
-import accesosBD.Configuracion;
 import backend.AdministracionAplicacion;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pantallas.login.MenuPrincipal;
 
 /**
@@ -173,10 +172,17 @@ public class Aplicaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String id = getSelectedRowId();
+        if(!id.equals("")){
+            EditarApp edit = new EditarApp(id);
+            edit.setVisible(true);
+            this.setVisible(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
+        }
         
-        EditarApp edit = new EditarApp();
-        edit.setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -203,18 +209,25 @@ public class Aplicaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int fila = jTable1.getSelectedRow();
-        if(fila != -1){
-            String id = jTable1.getValueAt(fila, 0).toString();
+    
+            String id = getSelectedRowId();
             try {
                 AdministracionAplicacion.eliminarAplicacion(id, jTable1);
                 AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
+    private String getSelectedRowId(){
+        int fila = jTable1.getSelectedRow();
+        if(fila != -1){
+            return jTable1.getValueAt(fila, 0).toString();
+        }
+        else return "";
+    }
+    
     /**
      * @param args the command line arguments
      */

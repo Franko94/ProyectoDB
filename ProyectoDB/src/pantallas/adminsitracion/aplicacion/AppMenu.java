@@ -14,7 +14,9 @@ public class AppMenu extends javax.swing.JFrame {
     /**
      * Creates new form AppRol
      */
-    public AppMenu() {
+    private static String id;
+    public AppMenu(String id) {
+        this.id = id;
         initComponents();
     }
 
@@ -130,7 +132,7 @@ public class AppMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EditarApp edit = new EditarApp();
+        EditarApp edit = new EditarApp(id);
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -166,7 +168,7 @@ public class AppMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppMenu().setVisible(true);
+                new AppMenu(id).setVisible(true);
             }
         });
     }
