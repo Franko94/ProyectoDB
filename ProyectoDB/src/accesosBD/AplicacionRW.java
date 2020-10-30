@@ -9,9 +9,9 @@ package accesosBD;
  *
  * @author Usuario
  */
-public class AdministracionAplicacionesRW {
+public class AplicacionRW {
     
-    public static String INSERTAR_APLICACION = "INSERT INTO rol values (?,?)";
-    
+    public static String INSERTAR_APLICACION = "insert into aplicacion (nombre) values (?)";
+    public static String OBTENER_APLICACIONES = "SELECT * from aplicacion";
     
 }

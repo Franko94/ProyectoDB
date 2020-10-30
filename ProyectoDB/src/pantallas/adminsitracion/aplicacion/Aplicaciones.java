@@ -5,6 +5,12 @@
  */
 package pantallas.adminsitracion.aplicacion;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAplicacion;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pantallas.login.MenuPrincipal;
 
 /**
@@ -16,8 +22,9 @@ public class Aplicaciones extends javax.swing.JFrame {
     /**
      * Creates new form Aplicaciones
      */
-    public Aplicaciones() {
+    public Aplicaciones() throws SQLException, ClassNotFoundException {
         initComponents();
+        AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
     }
 
     /**
@@ -59,6 +66,11 @@ public class Aplicaciones extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Agregar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +175,15 @@ public class Aplicaciones extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            AdministracionAplicacion.insertarAplicacion(jTextField2.getText());
+            AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -193,7 +214,11 @@ public class Aplicaciones extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Aplicaciones().setVisible(true);
+                try {
+                    new Aplicaciones().setVisible(true);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -6,11 +6,13 @@
 package backend;
 
 import accesosBD.Configuracion;
-import accesosBD.AdministracionAplicacionesRW;
+import accesosBD.AplicacionRW;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,14 +20,31 @@ import java.sql.SQLException;
  */
 public class AdministracionAplicacion {
     
-    public static void insertarAplicacion(int idApp, String nombre)throws SQLException{
-        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());     
-        String sql = AdministracionAplicacionesRW.INSERTAR_APLICACION;
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setInt(1, idApp);
-        stmt.setString(2, nombre);
-
+    public static void insertarAplicacion(String nombre)throws SQLException, ClassNotFoundException{
+        Connection con = Configuracion.getConnection();
+        PreparedStatement stmt = con.prepareStatement(AplicacionRW.INSERTAR_APLICACION);
+        stmt.setString(1, nombre);
         stmt.executeUpdate();
     }
     
+    public static void cargarTablaAplicaciones(JTable tabla) throws SQLException, ClassNotFoundException{
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        tabla.setModel(modelo);
+        
+        modelo.addColumn("id");
+        modelo.addColumn("nombre");
+        
+        Connection con = Configuracion.getConnection();
+        PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_APLICACIONES);
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()){
+            Object [] fila = new Object[2];
+            for (int i=0;i<2;i++)
+                fila[i] = rs.getObject(i+1);
+            modelo.addRow(fila);
+        }
+    }
+
 }
