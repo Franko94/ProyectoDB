@@ -21,24 +21,48 @@ import javax.swing.table.DefaultTableModel;
 public class AdministracionAplicacion {
     
     public static void insertarAplicacion(String nombre)throws SQLException, ClassNotFoundException{
-        Connection con = Configuracion.getConnection();
-        PreparedStatement stmt = con.prepareStatement(AplicacionRW.INSERTAR_APLICACION);
-        stmt.setString(1, nombre);
-        stmt.executeUpdate();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.INSERTAR_APLICACION);
+            stmt.setString(1, nombre);
+            stmt.executeUpdate();
+        }
+    }
+    
+    public static void buscarAplicacion(String id, String nombre,JTable tabla) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.FILTRAR_APLICACIONES);
+            stmt.setString(1, id);
+            stmt.setString(2, nombre);
+            ResultSet rs = stmt.executeQuery();
+            
+            insertarDatos(tabla, rs);
+        }
     }
     
     public static void cargarTablaAplicaciones(JTable tabla) throws SQLException, ClassNotFoundException{
-        
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_APLICACIONES);
+            ResultSet rs = stmt.executeQuery();
+            
+            insertarDatos(tabla, rs);
+        }
+    }
+    
+    public static void eliminarAplicacion(String id, JTable tabla) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.ELIMINAR_APLICACION);
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+        }
+    }
+    
+    private static void insertarDatos(JTable tabla,ResultSet rs) throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
         tabla.setModel(modelo);
         
         modelo.addColumn("id");
         modelo.addColumn("nombre");
-        
-        Connection con = Configuracion.getConnection();
-        PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_APLICACIONES);
-        ResultSet rs = stmt.executeQuery();
-        
+         
         while (rs.next()){
             Object [] fila = new Object[2];
             for (int i=0;i<2;i++)

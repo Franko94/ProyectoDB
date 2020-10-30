@@ -11,7 +11,8 @@ package accesosBD;
  */
 public class AplicacionRW {
     
-    public static String INSERTAR_APLICACION = "insert into aplicacion (nombre) values (?)";
-    public static String OBTENER_APLICACIONES = "SELECT * from aplicacion";
-    
+    public static String INSERTAR_APLICACION = "INSERT into aplicacion (nombre) values (?)";
+    public static String OBTENER_APLICACIONES = "SELECT * FROM aplicacion";
+    public static String FILTRAR_APLICACIONES = "SELECT * FROM proyectofinal.aplicacion where id_aplicacion = ? or nombre = ?";
+    public static String ELIMINAR_APLICACION = "DELETE FROM aplicacion where id_aplicacion = ?";
 }

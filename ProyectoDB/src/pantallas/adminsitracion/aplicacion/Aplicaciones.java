@@ -80,6 +80,11 @@ public class Aplicaciones extends javax.swing.JFrame {
         });
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("jTextField1");
 
@@ -93,6 +98,11 @@ public class Aplicaciones extends javax.swing.JFrame {
         jTextField3.setText("jTextField3");
 
         jButton5.setText("Buscar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setText("jTextField2");
 
@@ -183,6 +193,27 @@ public class Aplicaciones extends javax.swing.JFrame {
             Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            AdministracionAplicacion.buscarAplicacion(jTextField1.getText(), jTextField3.getText(), jTable1);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int fila = jTable1.getSelectedRow();
+        if(fila != -1){
+            String id = jTable1.getValueAt(fila, 0).toString();
+            try {
+                AdministracionAplicacion.eliminarAplicacion(id, jTable1);
+                AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
