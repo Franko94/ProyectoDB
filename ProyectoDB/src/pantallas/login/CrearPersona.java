@@ -7,6 +7,7 @@ package pantallas.login;
 
 import backend.AdministracionPersona;
 import backend.AdministracionSolicitud;
+import backend.AdministracionUsuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -220,9 +221,16 @@ public class CrearPersona extends javax.swing.JFrame {
         //verificamos que el usuario exista
         // una persona puede tener varios usuarios. eso lo maneja el administrador de la aplicacion
         try {
-            if(AdministracionPersona.personaExiste(jTextFieldci.getText())){
+            //si no existe
+            if(!AdministracionUsuario.usuarioExiste(jTextFieldnombreusuario.getText())){
+                
                 String aplicacionSolicitada = jComboBoxAplicaciones.getSelectedItem().toString();
+                AdministracionUsuario.insertarUsuario(jTextFieldnombreusuario.getText(), jTextFieldcontraseña.getText()
+                        , jTextFieldci.getText());
                 //AdministracionSolicitud.insertarSolicitud(jTextFieldci.getText(),aplicacionSolicitada);
+            }
+            else{
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
