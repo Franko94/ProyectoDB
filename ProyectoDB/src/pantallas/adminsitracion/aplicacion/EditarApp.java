@@ -5,6 +5,7 @@
  */
 package pantallas.adminsitracion.aplicacion;
 
+import backend.AdministracionAplicacion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,7 +145,13 @@ public class EditarApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(!jTextField1.getText().equals("")){
+            try {
+                AdministracionAplicacion.modificarNombreAplicacion(jTextField1.getText(), id);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -56,6 +56,15 @@ public class AdministracionAplicacion {
         }
     }
     
+    public static void modificarNombreAplicacion(String nombre, String id) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.MODIFICAR_NOMBRE);
+            stmt.setString(1, nombre);
+            stmt.setString(2, id);
+            stmt.executeUpdate();
+        }
+    }
+    
     private static void insertarDatos(JTable tabla,ResultSet rs) throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
         tabla.setModel(modelo);
