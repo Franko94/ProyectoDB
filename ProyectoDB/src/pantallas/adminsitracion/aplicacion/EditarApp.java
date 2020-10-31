@@ -5,6 +5,11 @@
  */
 package pantallas.adminsitracion.aplicacion;
 
+import backend.AdministracionAplicacion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Meki
@@ -14,7 +19,10 @@ public class EditarApp extends javax.swing.JFrame {
     /**
      * Creates new form EditarApp
      */
-    public EditarApp() {
+    private static String id;
+    
+    public EditarApp(String id) {
+        this.id = id;
         initComponents();
     }
 
@@ -41,6 +49,11 @@ public class EditarApp extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Roles");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,23 +121,54 @@ public class EditarApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AppRol roles = new AppRol();
-        roles.setVisible(true);
-        this.setVisible(false);
+        AppRol roles;
+        try {
+            roles = new AppRol(id);
+            roles.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       AppMenu menus = new AppMenu();
-       menus.setVisible(true);
-       this.setVisible(false);
+       AppMenu menus;
+        try {
+            menus = new AppMenu(id);
+             menus.setVisible(true);
+             this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Aplicaciones app = new Aplicaciones();
-        app.setVisible(true);
-        this.setVisible(false);
+        Aplicaciones app;
+        try {
+            app = new Aplicaciones();
+            app.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(!jTextField1.getText().equals("")){
+            try {
+                AdministracionAplicacion.modificarNombreAplicacion(jTextField1.getText(), id);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,7 +200,7 @@ public class EditarApp extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarApp().setVisible(true);
+                new EditarApp(id).setVisible(true);
             }
         });
     }

@@ -5,6 +5,11 @@
  */
 package pantallas.adminsitracion.aplicacion;
 
+import backend.AdministracionAplicacion;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Meki
@@ -14,8 +19,13 @@ public class AppRol extends javax.swing.JFrame {
     /**
      * Creates new form AppRol
      */
-    public AppRol() {
+    
+    private static String id;
+    
+    public AppRol(String id) throws SQLException, ClassNotFoundException {
+        this.id = id;
         initComponents();
+      
     }
 
     /**
@@ -128,7 +138,7 @@ public class AppRol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EditarApp edit = new EditarApp();
+        EditarApp edit = new EditarApp(id);
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -163,7 +173,11 @@ public class AppRol extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppRol().setVisible(true);
+                try {
+                    new AppRol(id).setVisible(true);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(AppRol.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
