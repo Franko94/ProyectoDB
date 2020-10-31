@@ -121,15 +121,31 @@ public class EditarApp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AppRol roles = new AppRol(id);
-        roles.setVisible(true);
-        this.setVisible(false);
+        AppRol roles;
+        try {
+            roles = new AppRol(id);
+            roles.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       AppMenu menus = new AppMenu(id);
-       menus.setVisible(true);
-       this.setVisible(false);
+       AppMenu menus;
+        try {
+            menus = new AppMenu(id);
+             menus.setVisible(true);
+             this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
        
     }//GEN-LAST:event_jButton3ActionPerformed
 
