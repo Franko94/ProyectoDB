@@ -172,13 +172,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         try {
             app = new Aplicaciones();
             app.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+            this.setVisible(false);
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    this.setVisible(false);
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
