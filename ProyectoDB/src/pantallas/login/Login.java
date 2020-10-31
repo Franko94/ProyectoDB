@@ -134,14 +134,15 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarseActionPerformed
-          CrearPersona cp = new CrearPersona();
+          ComprobarPersona cp = new ComprobarPersona();
           cp.setVisible(true);
     }//GEN-LAST:event_jButton_RegistrarseActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         try {
 
-            if(AdministracionUsuario.usuarioYContraseñaExisten(jTextField_Usuario.getText(), String.valueOf(jPasswordField_Contrasena.getPassword()))){
+            if(AdministracionUsuario.usuarioYContraseñaExisten(jTextField_Usuario.getText(), 
+                    String.valueOf(jPasswordField_Contrasena.getPassword()))){
 
                 MenuPrincipal mp = new MenuPrincipal();
                 mp.setVisible(true);

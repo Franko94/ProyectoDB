@@ -8,9 +8,12 @@ package backend;
 import accesosBD.Configuracion;
 import accesosBD.UsuarioRW;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;    
 
 
@@ -19,7 +22,7 @@ import java.time.LocalDate;
  * @author Usuario
  */
 public class AdministracionUsuario {
-    
+       
     public static boolean usuarioYContraseñaExisten(String usuario, String password) throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.GET_USUARIOYCONTRASENA;
@@ -38,21 +41,21 @@ public class AdministracionUsuario {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
-    
-    public static void insertarUsuario(String idUsuario, String contrasena, String ci) throws SQLException, ClassNotFoundException{
+    //no funciona
+    public static void insertarUsuario(String idUsuario, String contrasena, String ci) 
+            throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
         String fechaCreacion = java.time.LocalDate.now().toString();
-        String idRol = "null";
-               
+           
         String sql = UsuarioRW.INSERTAR_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setInt(1, Integer.valueOf(idUsuario));
+        stmt.setString(1, idUsuario);
         stmt.setString(2, contrasena);
-        stmt.setString(3, fechaCreacion);
-        stmt.setString(4, idRol);
-        stmt.setString(5, ci);
-        stmt.setString(6, intentosFallidos);
-        stmt.setString(6, habilitado);
+        stmt.setDate(3,java.sql.Date.valueOf(java.time.LocalDate.now()) );
+        stmt.setNull(4, 0);
+        stmt.setInt(5, Integer.parseInt(ci));
+        stmt.setInt(6, 0);
+        stmt.setBoolean(7, false);
         stmt.executeUpdate();
     }
 }

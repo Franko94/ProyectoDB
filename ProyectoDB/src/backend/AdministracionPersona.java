@@ -23,7 +23,7 @@ public class AdministracionPersona {
         Connection con = Configuracion.getConnection();
         String sql = PersonaRW.GET_PERSONA;
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, ci);
+        stmt.setInt(1, Integer.parseInt(ci));
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
