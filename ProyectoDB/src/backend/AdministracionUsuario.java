@@ -41,11 +41,10 @@ public class AdministracionUsuario {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
-    //no funciona
+
     public static void insertarUsuario(String idUsuario, String contrasena, String ci) 
             throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
-        String fechaCreacion = java.time.LocalDate.now().toString();
            
         String sql = UsuarioRW.INSERTAR_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);
