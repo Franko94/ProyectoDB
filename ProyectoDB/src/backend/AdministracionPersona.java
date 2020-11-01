@@ -7,8 +7,10 @@ package backend;
 
 import accesosBD.Configuracion;
 import accesosBD.PersonaRW;
+import accesosBD.UsuarioRW;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -17,6 +19,14 @@ import java.sql.SQLException;
  */
 public class AdministracionPersona {
     
+     public static boolean personaExiste(String ci) throws SQLException, ClassNotFoundException{
+        Connection con = Configuracion.getConnection();
+        String sql = PersonaRW.GET_PERSONA;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, Integer.parseInt(ci));
+        ResultSet rs = stmt.executeQuery();
+        return rs.next();
+    }
     public static void insertarPersona(String nombre, String apellido,String documento,
                             String email,String fechaNacimiento, String sexo) throws SQLException, ClassNotFoundException{
         Connection con = Configuracion.getConnection();
@@ -30,5 +40,6 @@ public class AdministracionPersona {
         stmt.setString(6, sexo);
         stmt.executeUpdate();
     }
+
     
 }
