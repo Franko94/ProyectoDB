@@ -59,6 +59,23 @@ public class AdministracionAplicacion {
         }
     }
     
+    public static void cargarListaRolesAsociados(String id, JTable tabla) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.ROLES_EN_APLICACION);
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+            insertarDatos(tabla, rs);
+        }
+    }
+    
+    public static void cargarListaRolesNoAsociados(String id, JTable tabla) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.ROLES_SIN_APLICACION);
+            ResultSet rs = stmt.executeQuery();
+            insertarDatos(tabla, rs);
+        }
+    }
+    
     public static void cargarListaMenusNoAsociados(String id, JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_MENUS_NO_ASOCIADOS);
@@ -90,6 +107,22 @@ public class AdministracionAplicacion {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.ELIMINAR_MENU_ASOCIADO);
             stmt.setString(1, idApp);
             stmt.setString(2, idMenu);
+            stmt.executeUpdate();
+        }
+    }
+    
+     public static void eliminarRol(String idRol) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.QUITAR_ROL);
+            stmt.setString(1, idRol);
+            stmt.executeUpdate();
+        }
+    }
+     public static void agregarRol(String idApp, String idRol) throws SQLException, ClassNotFoundException{
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.AGREGAR_ROL);
+            stmt.setString(1, idApp);
+            stmt.setString(2, idRol);
             stmt.executeUpdate();
         }
     }
