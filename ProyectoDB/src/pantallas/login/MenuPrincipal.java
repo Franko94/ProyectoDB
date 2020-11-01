@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pantallas.adminsitracion.aplicacion.*;
+import pantallas.adminsitracion.aplicacion.Aplicaciones;
 import pantallas.adminsitracion.roles.*;
 import pantallas.adminsitracion.solicitudes.*;
 import pantallas.administracion.Auditoria.*;
@@ -178,6 +179,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     this.setVisible(false);
+            app.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
