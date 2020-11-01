@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package pantallas.login;
+import pantallas.adminsitracion.usuario.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pantallas.adminsitracion.aplicacion.Aplicaciones;
 import pantallas.adminsitracion.roles.*;
-import pantallas.adminsitracion.solicitudes.*;
 import pantallas.administracion.Auditoria.*;
 import pantallas.administracion.menu.*;
 import pantallas.administracion.metodos.*;
