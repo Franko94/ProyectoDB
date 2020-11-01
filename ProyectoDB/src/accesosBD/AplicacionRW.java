@@ -20,4 +20,8 @@ public class AplicacionRW {
     public static String ELIMINAR_MENU_ASOCIADO = "DELETE FROM   proyectofinal.menu_aplicacion  where id_aplicacion = ? and id_menu = ?";
     public static String OBTENER_MENUS_NO_ASOCIADOS = " select * FROM   menu m where id_menu not in (select id_menu from proyectofinal.menu_aplicacion where id_aplicacion = ?)";
     public static String AGREGAR_MENU = "INSERT into menu_aplicacion values (?,?)";
+    public static String ROLES_EN_APLICACION = "SELECT * FROM rol_en_aplicacion where id_aplicacion = ?";
+    public static String ROLES_SIN_APLICACION = "SELECT * FROM proyectofinal.rol where id_aplicacion is null";
+    public static String QUITAR_ROL = "update rol set id_aplicacion = null where id_rol = ?";
+    public static String AGREGAR_ROL = "update rol set id_aplicacion = ? where id_rol = ?";
 }
