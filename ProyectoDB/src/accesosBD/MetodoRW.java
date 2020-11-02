@@ -24,7 +24,6 @@ public class MetodoRW {
 //        }
 //        return "SELECT * FROM metodo"+where;
 //    }
-    ///hola
 
     public static String INSERTAR_METODO = "INSERT into metodo (descripcion) values (?)";
     public static String OBTENER_METODOS = "SELECT * FROM metodo";
