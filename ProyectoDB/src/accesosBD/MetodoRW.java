@@ -7,7 +7,6 @@ package accesosBD;
 
 /**
  *
-
  * @author Agustin
  */
 public class MetodoRW {
@@ -30,8 +29,6 @@ public class MetodoRW {
     public static String FILTRAR_METODOS = "SELECT * FROM metodo where id_metodo = ? or descripcion = ?";
     public static String ELIMINAR_METODO = "DELETE FROM metodo where id_metodo = ?";
     public static String MODIFICAR_DESCRIPCION = "update metodo set descripcion = ? where id_metodo = ?";
-    public static String LISTAR_METODOS_NO_RELACIONADOS = "SELECT * FROM metodo WHERE id_metodo NOT IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
-    public static String LISTAR_METODOS_RELACIONADOS = "SELECT * FROM metodo WHERE id_metodo IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
 
     public static String filtrarMetodos(String id, String descripcion) {
         String where = "";
@@ -54,5 +51,4 @@ public class MetodoRW {
 //    public static String ELIMINAR_MENU_ASOCIADO = "DELETE FROM   proyectoFinal.menu_aplicacion  where id_aplicacion = ? and id_menu = ?";
 //    public static String OBTENER_MENUS_NO_ASOCIADOS = " select * FROM   menu m where id_menu not in (select id_menu from proyectoFinal.menu_aplicacion where id_aplicacion = ?)";
 //    public static String AGREGAR_MENU = "INSERT into menu_aplicacion values (?,?)";
-
 }

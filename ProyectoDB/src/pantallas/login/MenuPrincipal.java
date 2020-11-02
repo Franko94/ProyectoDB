@@ -8,7 +8,6 @@ import pantallas.adminsitracion.usuario.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pantallas.adminsitracion.aplicacion.*;
 import pantallas.adminsitracion.aplicacion.Aplicaciones;
 import pantallas.adminsitracion.roles.*;
 import pantallas.administracion.Auditoria.*;
@@ -169,11 +168,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Aplicaciones app;
+    Aplicaciones app;
         try {
             app = new Aplicaciones();
-            app.setVisible(true);
-            this.setVisible(false);
             app.setVisible(true);
             this.setVisible(false);
         } catch (SQLException | ClassNotFoundException ex) {
@@ -183,17 +180,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      AdminRoles adminRol;
-        try {
-            adminRol = new AdminRoles();
-                  adminRol.setVisible(true);
-      
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.setVisible(false);
+      AdministracionRoles adminRol = new AdministracionRoles();
+      adminRol.setVisible(true);
+      this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
