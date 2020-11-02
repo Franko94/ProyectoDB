@@ -193,7 +193,7 @@ public class RolMetodo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//prueba
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         EditarRol edit = new EditarRol(id, descripcion);
         edit.setVisible(true);
