@@ -5,15 +5,29 @@
  */
 package accesosBD;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+
+
 /**
  *
  * @author Usuario
  */
 public class Configuracion {
     
-    public static final String USUARIO_DB  = "postgres";
-    public static final String PASSWORD_DB  = "120894";
-    public static final String URL_DB  = "jdbc:postgresql://192.168.56.102:5432/test";
+    //para franco
+    
+    //private static final String USUARIO_DB  = "root";
+    //private static final String PASSWORD_DB  = "120894";
+    //private static final String URL_DB  = "jdbc:mysql://localhost:3306/proyectofinal?characterEncoding=latin1&useConfigs=maxPerformance";
+   
+    
+    //para agustin
+    private static final String USUARIO_DB  = "postgres";
+    private static final String PASSWORD_DB  = "passwd";
+    private static final String URL_DB = "jdbc:postgresql://192.168.132.128:5432/proyectoFinal";
     
     public static String getUsuario(){
         return USUARIO_DB;
@@ -27,4 +41,10 @@ public class Configuracion {
         return URL_DB;
     }
     
+    public static Connection getConnection() throws SQLException, ClassNotFoundException{
+       //Class.forName("com.mysql.jdbc.Driver"); //esto solo para franco quitar el resto
+       Class.forName("org.postgresql.Driver");//esto es para agustin y el resto de los mortales
+       Connection con = (Connection)DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword()); 
+       return con;
+    }
 }
