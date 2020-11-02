@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/login/CrearPersona.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/login/MenuPrincipal.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/login/Login.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/UsuarioRW.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionPersona.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionUsuario.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionSolicitud.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/PersonaRW.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionRoles.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/AdminRoles.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/EditarRol.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionAplicacion.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/pantallas/login/CrearPersona.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/RolMetodo.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/RolRW.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/MetodoRW.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/pantallas/login/Login.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/AgregarRol.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionMetodos.java</file>
+            <file>file:/M:/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/AplicacionRW.java</file>
         </group>
     </open-files>
 </project-private>

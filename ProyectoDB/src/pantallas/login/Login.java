@@ -23,7 +23,13 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        seteoForm();
+        
     }
+    
+    private void seteoForm(){
+        this.setLocationRelativeTo(null);
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
