@@ -10,13 +10,6 @@ import accesosBD.MetodoRW;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import jdk.nashorn.internal.runtime.ListAdapter;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -29,40 +22,6 @@ import javax.swing.table.DefaultTableModel;
  * @author Agustin
  */
 public class AdministracionMetodos {
-	
-	
-	public static ArrayList<String> traerMetodosNoRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
-        ArrayList<String> resultado = new ArrayList<>();
-        try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_NO_RELACIONADOS);
-            stmt.setInt(1, id_metodo);
-            ResultSet rs = stmt.executeQuery();
-            
-            while (rs.next()){
-                String valor= rs.getString("id_metodo")+"-"+rs.getString("descripcion");
-               resultado.add(valor);
-            }
-            return resultado;
-        }
-  
-        
-    }
-     public static ArrayList<String> traerMetodosRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
-        ArrayList<String> resultado = new ArrayList<>();
-        try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_RELACIONADOS);
-            stmt.setInt(1, id_metodo);
-            ResultSet rs = stmt.executeQuery();
-            
-            while (rs.next()){
-                String valor= rs.getString("id_metodo")+"-"+rs.getString("descripcion");
-               resultado.add(valor);
-            }
-            return resultado;
-        }
-  
-        
-    }
 
 //    public static void insertarMetodo(String descripcion) {
 //        try (Connection con = Configuracion.getConnection()) {
@@ -209,5 +168,4 @@ public class AdministracionMetodos {
             modelo.addRow(fila);
         }
     }
-
 }
