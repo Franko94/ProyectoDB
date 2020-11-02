@@ -33,8 +33,8 @@ public class AdministracionAplicacion {
     
     public static void buscarAplicacion(String id, String nombre,JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(AplicacionRW.FILTRAR_APLICACIONES);
-            stmt.setString(1, id);
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.filtrarAplicaciones(id, nombre));
+            stmt.setInt(1, Integer.parseInt(id));
             stmt.setString(2, nombre);
             ResultSet rs = stmt.executeQuery();
             
@@ -42,11 +42,10 @@ public class AdministracionAplicacion {
         }
     }
     
-    public static void cargarTablaAplicaciones(JTable tabla) throws SQLException, ClassNotFoundException{
+    public static void cargarTablaAplicaciones(String id, String nombre,JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_APLICACIONES);
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.filtrarAplicaciones(id, nombre));
             ResultSet rs = stmt.executeQuery();
-            
             insertarDatos(tabla, rs);
         }
     }
@@ -89,7 +88,7 @@ public class AdministracionAplicacion {
     public static void eliminarAplicacion(String id, JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.ELIMINAR_APLICACION);
-            stmt.setString(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             stmt.executeUpdate();
         }
     }
@@ -98,7 +97,7 @@ public class AdministracionAplicacion {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.MODIFICAR_NOMBRE);
             stmt.setString(1, nombre);
-            stmt.setString(2, id);
+            stmt.setInt(2, Integer.parseInt(id));
             stmt.executeUpdate();
         }
     }
