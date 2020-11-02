@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.login;
+package pantallas.adminsitracion.usuario;
 
 import backend.AdministracionUsuario;
 import java.sql.SQLException;

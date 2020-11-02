@@ -5,6 +5,7 @@
  */
 package pantallas.login;
 
+import pantallas.adminsitracion.usuario.SolicitudCrearUsuario;
 import backend.AdministracionPersona;
 import java.sql.SQLException;
 import java.util.logging.Level;
