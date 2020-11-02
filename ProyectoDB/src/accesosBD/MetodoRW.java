@@ -30,8 +30,8 @@ public class MetodoRW {
     public static String FILTRAR_METODOS = "SELECT * FROM metodo where id_metodo = ? or descripcion = ?";
     public static String ELIMINAR_METODO = "DELETE FROM metodo where id_metodo = ?";
     public static String MODIFICAR_DESCRIPCION = "update metodo set descripcion = ? where id_metodo = ?";
-	public static String LISTAR_METODOS_NO_RELACIONADOS = "SELECT * FROM metodo WHERE id_metodo NOT IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
-	public static String LISTAR_METODOS_RELACIONADOS = "SELECT * FROM metodo WHERE id_metodo IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
+    public static String LISTAR_METODOS_NO_RELACIONADOS = "SELECT * FROM metodo WHERE id_metodo NOT IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
+    public static String LISTAR_METODOS_RELACIONADOS = "SELECT * FROM metodo WHERE id_metodo IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
 
     public static String filtrarMetodos(String id, String descripcion) {
         String where = "";

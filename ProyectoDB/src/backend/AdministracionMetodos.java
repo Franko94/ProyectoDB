@@ -31,10 +31,11 @@ import javax.swing.table.DefaultTableModel;
 public class AdministracionMetodos {
 	
 	
-	     public static ArrayList<String> traerMetodosNoRelacionados() throws SQLException, ClassNotFoundException{
+	public static ArrayList<String> traerMetodosNoRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
         ArrayList<String> resultado = new ArrayList<>();
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_NO_RELACIONADOS);
+            stmt.setInt(1, id_metodo);
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()){
@@ -46,10 +47,11 @@ public class AdministracionMetodos {
   
         
     }
-     public static ArrayList<String> traerMetodosRelacionados() throws SQLException, ClassNotFoundException{
+     public static ArrayList<String> traerMetodosRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
         ArrayList<String> resultado = new ArrayList<>();
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_RELACIONADOS);
+            stmt.setInt(1, id_metodo);
             ResultSet rs = stmt.executeQuery();
             
             while (rs.next()){

@@ -119,11 +119,19 @@ public class EditarRol extends javax.swing.JFrame {
         
             try {
                 AdministracionRoles.editarRol(Integer.parseInt(lblId.getText()), nuevoNombre.getText());
+
+                JOptionPane.showMessageDialog(null, "Rol editado con exito", "Exito", 1);
                 
-                JOptionPane.showMessageDialog(null, "Rol editado con exito", "Exito",1);
+                lbldescripcion.setText(nuevoNombre.getText());
                 limpiar();
             } catch (SQLException ex) {
-                Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+                if (ex.getMessage().contains("duplicate key value")) {
+                    JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
+                } else {
+
+                    Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -149,9 +157,17 @@ public class EditarRol extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        RolMetodo rolmetodo = new RolMetodo(id,descripcion);
-        rolmetodo.setVisible(true);
-        this.setVisible(false);
+        RolMetodo rolmetodo;
+        try {
+            rolmetodo = new RolMetodo(Integer.parseInt(lblId.getText()), lbldescripcion.getText());
+            rolmetodo.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

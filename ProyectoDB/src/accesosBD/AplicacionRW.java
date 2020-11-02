@@ -22,7 +22,6 @@ public class AplicacionRW {
 
     public static String NOMBRE_APLICACIONES = "SELECT nombre FROM aplicacion";
     public static String ID_APLICACIONES = "SELECT id_aplicacion FROM aplicacion where nombre= ?";
-
     public static String MODIFICAR_NOMBRE = "update aplicacion set nombre = ? where id_aplicacion = ?";
     public static String OBTENER_MENUS_ASOCIADOS = "SELECT * FROM proyectoFinal.menus_en_aplicacion WHERE id_aplicacion = ?";
     public static String ELIMINAR_MENU_ASOCIADO = "DELETE FROM   proyectoFinal.menu_aplicacion  where id_aplicacion = ? and id_menu = ?";

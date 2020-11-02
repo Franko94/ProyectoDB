@@ -148,16 +148,23 @@ public class AgregarRol extends javax.swing.JFrame {
             try {
                 int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
                 AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
-                JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito",1);
+                JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
                 limpiar();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex.getMessage().contains("duplicate key value")) {
+                JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
+            } else {
+
+                Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

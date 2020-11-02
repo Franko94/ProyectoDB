@@ -31,6 +31,16 @@ public class AdministracionRoles {
         stmt.executeUpdate();
     }
 
+    public static void insertarRolMetodo(int idRol, int idMetodo) throws SQLException {
+        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
+        String sql = RolRW.INSERTAR_ROL_METODO;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, idRol);
+        stmt.setInt(2, idMetodo);
+
+        stmt.executeUpdate();
+    }
+
     public static void buscarRol(int id, String descripcion, JTable tabla) throws SQLException, ClassNotFoundException {
 
         
@@ -43,7 +53,7 @@ public class AdministracionRoles {
             } else if (id == -1) {
 
                 PreparedStatement stmt = con.prepareStatement(RolRW.FILTRAR_ROL_DESCRIPCION);
-                stmt.setString(1, descripcion);
+                stmt.setString(1, '%'+descripcion+'%');
                 ResultSet rs = stmt.executeQuery();
                 insertarDatos(tabla, rs);
 
@@ -70,6 +80,15 @@ public class AdministracionRoles {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(RolRW.ELIMINAR_ROL);
             stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
+    
+    public static void eliminarRolMetodo(int idRol, int idMetodo) throws SQLException, ClassNotFoundException {
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(RolRW.ELIMINAR_ROL_METODO);
+            stmt.setInt(1, idRol);
+            stmt.setInt(2, idMetodo);
             stmt.executeUpdate();
         }
     }

@@ -5,11 +5,13 @@
  */
 package pantallas.adminsitracion.roles;
 
-import backend.AdministracionAplicacion;
+import backend.AdministracionMetodos;
+import backend.AdministracionRoles;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,30 +25,33 @@ public class RolMetodo extends javax.swing.JFrame {
     /**
      * Creates new form RolMetodo
      */
-    public RolMetodo(int idRol, String desc) {
+    public RolMetodo(int idRol, String desc) throws SQLException, ClassNotFoundException {
         initComponents();
         id = idRol;
         descripcion = desc;
         rolname.setText(desc);
+        recargaMetodosAgregar();
     }
 
-    private void recargaMetodosAgregar() {
+    private void recargaMetodosAgregar() throws SQLException, ClassNotFoundException {
 
-        /*ArrayList<String> lista = new ArrayList<>();
-        try {
-            lista = AdministracionAplicacion.llenar_lista();
-        } catch (SQLException ex) {
-            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        ArrayList<String> listaNoRelacionados = new ArrayList<>();
+        listaNoRelacionados = AdministracionMetodos.traerMetodosNoRelacionados(id);
+        listaNoRelacion.setListData(convertir(listaNoRelacionados));
+        ArrayList<String> listaRelacionados = new ArrayList<>();
+        listaRelacionados = AdministracionMetodos.traerMetodosRelacionados(id);
+        listaRelacion.setListData(convertir(listaRelacionados));
+
+    }
+    
+     private String[] convertir(ArrayList<String> t) {
+        int cantTemas = t.size();
+        String[] retorno = new String[cantTemas];
+
+        for (int i = 0; i < cantTemas; i++) {
+            retorno[i] = t.get(i);
         }
-        for (int i = 0; i < lista.size(); i++) {
-
-            jComboBox1.addItem(lista.get(i));
-        }*/
-
-   
-
+        return retorno;
     }
 
     /**
@@ -60,11 +65,11 @@ public class RolMetodo extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listaRelacion = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        listaNoRelacion = new javax.swing.JList<>();
+        agregar = new javax.swing.JButton();
+        quitar = new javax.swing.JButton();
         atras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -75,23 +80,33 @@ public class RolMetodo extends javax.swing.JFrame {
 
         jLabel1.setText("Rol - Metodos");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        listaRelacion.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listaRelacion);
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        listaNoRelacion.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listaNoRelacion);
 
-        jButton1.setText("<-- Agregar");
+        agregar.setText("<-- Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Quitar -->");
+        quitar.setText("Quitar -->");
+        quitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitarActionPerformed(evt);
+            }
+        });
 
         atras.setText("Atras");
         atras.addActionListener(new java.awt.event.ActionListener() {
@@ -123,8 +138,8 @@ public class RolMetodo extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(agregar)
+                                    .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -163,9 +178,9 @@ public class RolMetodo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jButton1)
+                        .addComponent(agregar)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                        .addComponent(quitar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +199,34 @@ public class RolMetodo extends javax.swing.JFrame {
         edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasActionPerformed
+
+    private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+       String met = (String) listaRelacion.getSelectedValue();
+        int metodoId = Integer.parseInt(met.split("-")[0]);
+        try {
+            AdministracionRoles.eliminarRolMetodo(id, metodoId);
+             recargaMetodosAgregar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_quitarActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+         
+        String met = (String) listaNoRelacion.getSelectedValue();
+        int metodoId = Integer.parseInt(met.split("-")[0]);
+        try {
+            AdministracionRoles.insertarRolMetodo(id, metodoId);
+             recargaMetodosAgregar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_agregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,23 +258,29 @@ public class RolMetodo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RolMetodo(id, descripcion).setVisible(true);
+                try {
+                    new RolMetodo(id, descripcion).setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregar;
     private javax.swing.JButton atras;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listaNoRelacion;
+    private javax.swing.JList<String> listaRelacion;
+    private javax.swing.JButton quitar;
     private javax.swing.JLabel rolname;
     // End of variables declaration//GEN-END:variables
 }
