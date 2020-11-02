@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package pantallas.login;
+import pantallas.adminsitracion.usuario.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pantallas.adminsitracion.aplicacion.*;
 import pantallas.adminsitracion.aplicacion.Aplicaciones;
 import pantallas.adminsitracion.roles.*;
-import pantallas.adminsitracion.solicitudes.*;
 import pantallas.administracion.Auditoria.*;
 import pantallas.administracion.menu.*;
 import pantallas.administracion.metodos.*;
@@ -215,9 +215,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        Metodos metodos = new Metodos();
-        metodos.setVisible(true);
+        Metodos metodos;
+        try {
+            metodos = new Metodos();
+            metodos.setVisible(true);
         this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

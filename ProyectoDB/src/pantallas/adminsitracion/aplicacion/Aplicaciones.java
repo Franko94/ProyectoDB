@@ -23,7 +23,7 @@ public class Aplicaciones extends javax.swing.JFrame {
      */
     public Aplicaciones() throws SQLException, ClassNotFoundException {
         initComponents();
-        AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
+        AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
     }
 
     /**
@@ -38,12 +38,12 @@ public class Aplicaciones extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jButton_Agregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jTextField_FiltroId = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        jTextField_FiltroNombre = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
 
@@ -64,10 +64,10 @@ public class Aplicaciones extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Agregar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Agregar.setText("Agregar");
+        jButton_Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton_AgregarActionPerformed(evt);
             }
         });
 
@@ -114,9 +114,9 @@ public class Aplicaciones extends javax.swing.JFrame {
                             .addComponent(jButton4)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField_FiltroId, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jTextField_FiltroNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -125,7 +125,7 @@ public class Aplicaciones extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -146,14 +146,14 @@ public class Aplicaciones extends javax.swing.JFrame {
                                 .addGap(137, 137, 137)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1))
+                                    .addComponent(jButton_Agregar))
                                 .addGap(38, 38, 38)
                                 .addComponent(jButton2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField_FiltroId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField_FiltroNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -185,18 +185,18 @@ public class Aplicaciones extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
         try {
             AdministracionAplicacion.insertarAplicacion(jTextField2.getText());
-            AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
+            AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton_AgregarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         try {
-            AdministracionAplicacion.buscarAplicacion(jTextField1.getText(), jTextField3.getText(), jTable1);
+            AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -207,7 +207,7 @@ public class Aplicaciones extends javax.swing.JFrame {
             String id = getSelectedRowId();
             try {
                 AdministracionAplicacion.eliminarAplicacion(id, jTable1);
-                AdministracionAplicacion.cargarTablaAplicaciones(jTable1);
+                AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -262,16 +262,16 @@ public class Aplicaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton_Agregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField_FiltroId;
+    private javax.swing.JTextField jTextField_FiltroNombre;
     // End of variables declaration//GEN-END:variables
 }
