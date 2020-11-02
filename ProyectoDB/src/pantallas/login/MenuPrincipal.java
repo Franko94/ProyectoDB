@@ -169,16 +169,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    Aplicaciones app;
+        Aplicaciones app;
         try {
             app = new Aplicaciones();
-                app.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    this.setVisible(false);
+            app.setVisible(true);
+            this.setVisible(false);
             app.setVisible(true);
             this.setVisible(false);
         } catch (SQLException | ClassNotFoundException ex) {

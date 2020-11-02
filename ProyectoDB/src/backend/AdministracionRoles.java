@@ -5,7 +5,6 @@
  */
 package backend;
 
-
 import accesosBD.Configuracion;
 import accesosBD.RolRW;
 import java.sql.Connection;
@@ -21,65 +20,82 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class AdministracionRoles {
-    
-    public static void insertarRol(String descripcion,int idAplicacion)throws SQLException{
-        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());     
+
+    public static void insertarRol(String descripcion, int idAplicacion) throws SQLException {
+        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
         String sql = RolRW.INSERTAR_ROL;
-        PreparedStatement stmt = con.prepareStatement(sql);    
+        PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, descripcion);
         stmt.setInt(2, idAplicacion);
 
         stmt.executeUpdate();
     }
-    
-    
-    
-        public static void buscarRol(int id, String descripcion,JTable tabla) throws SQLException, ClassNotFoundException{
+
+    public static void buscarRol(int id, String descripcion, JTable tabla) throws SQLException, ClassNotFoundException {
+
+        
         try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(RolRW.FILTRAR_ROL);
-            stmt.setInt(1, id);
-            stmt.setString(2, descripcion);
-            ResultSet rs = stmt.executeQuery();
-            
-            insertarDatos(tabla, rs);
+            if (descripcion == null) {
+                PreparedStatement stmt = con.prepareStatement(RolRW.FILTRAR_ROL_ID);
+                stmt.setInt(1, id);
+                ResultSet rs = stmt.executeQuery();
+                insertarDatos(tabla, rs);
+            } else if (id == -1) {
+
+                PreparedStatement stmt = con.prepareStatement(RolRW.FILTRAR_ROL_DESCRIPCION);
+                stmt.setString(1, descripcion);
+                ResultSet rs = stmt.executeQuery();
+                insertarDatos(tabla, rs);
+
+            } else {
+                PreparedStatement stmt = con.prepareStatement(RolRW.FILTRAR_ROL);
+                stmt.setInt(1, id);
+                stmt.setString(2, descripcion);
+                ResultSet rs = stmt.executeQuery();
+                insertarDatos(tabla, rs);
+            }
         }
     }
-    
-    public static void cargarRoles(JTable tabla) throws SQLException, ClassNotFoundException{
+
+    public static void cargarRoles(JTable tabla) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(RolRW.GET_ROL);
             ResultSet rs = stmt.executeQuery();
-            
+
             insertarDatos(tabla, rs);
         }
     }
-    
-    public static void eliminarRol(int id, JTable tabla) throws SQLException, ClassNotFoundException{
+
+    public static void eliminarRol(int id, JTable tabla) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(RolRW.ELIMINAR_ROL);
             stmt.setInt(1, id);
             stmt.executeUpdate();
         }
     }
-    
-    private static void insertarDatos(JTable tabla,ResultSet rs) throws SQLException{
+    public static void editarRol(int id, String desc) throws SQLException, ClassNotFoundException {
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(RolRW.EDITAR_ROL);
+            stmt.setString(1, desc);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+    }
+
+    private static void insertarDatos(JTable tabla, ResultSet rs) throws SQLException {
         DefaultTableModel modelo = new DefaultTableModel();
         tabla.setModel(modelo);
-        
+
         modelo.addColumn("ID");
         modelo.addColumn("DESCRIPCION");
-         
-        while (rs.next()){
-            Object [] fila = new Object[2];
-            for (int i=0;i<2;i++)
-                fila[i] = rs.getObject(i+1);
+
+        while (rs.next()) {
+            Object[] fila = new Object[2];
+            for (int i = 0; i < 2; i++) {
+                fila[i] = rs.getObject(i + 1);
+            }
             modelo.addRow(fila);
         }
     }
-    
-    
-    
-    
-    
-    
+
 }

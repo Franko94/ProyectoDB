@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,22 +25,25 @@ public class AgregarRol extends javax.swing.JFrame {
     public AgregarRol() {
         initComponents();
         
-        
-        
         jComboBox1.removeAllItems();
-      ArrayList<String> lista = new ArrayList<>();
+        ArrayList<String> lista = new ArrayList<>();
         try {
-            lista= AdministracionAplicacion.llenar_combo();
+            lista = AdministracionAplicacion.llenar_combo();
         } catch (SQLException ex) {
             Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (int i = 0; i <lista.size(); i++) {
-            
+        for (int i = 0; i < lista.size(); i++) {
+
             jComboBox1.addItem(lista.get(i));
         }
-        
+
+    }
+
+    public void limpiar() {
+        Descripcion.setText("");
+   
     }
 
     /**
@@ -53,7 +57,7 @@ public class AgregarRol extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Descripcion = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -104,7 +108,7 @@ public class AgregarRol extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                    .addComponent(Descripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel2))
@@ -122,7 +126,7 @@ public class AgregarRol extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
@@ -143,13 +147,16 @@ public class AgregarRol extends javax.swing.JFrame {
         try {
             try {
                 int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
-                AdministracionRoles.insertarRol(jTextField1.getText(), idAppRol);
+                AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
+                JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito",1);
+                limpiar();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -209,12 +216,12 @@ public class AgregarRol extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Descripcion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
