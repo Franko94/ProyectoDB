@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.login;
+package pantallas.administracion.persona;
 
 import pantallas.adminsitracion.usuario.SolicitudCrearUsuario;
-import backend.AdministracionPersona;
+import backend.AdministracionPersonas;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,12 +15,12 @@ import java.util.logging.Logger;
  *
  * @author Usuario
  */
-public class CrearPersona extends javax.swing.JFrame {
+public class EditarPersona extends javax.swing.JFrame {
 String ci;
     /**
      * Creates new form CrearPersona
      */
-    public CrearPersona(String cedula) {
+    public EditarPersona(String cedula) {
         initComponents();
         this.ci=cedula;
     }
@@ -46,10 +46,11 @@ String ci;
         jTextField_Fecha = new javax.swing.JTextField();
         jButton_Aceptar = new javax.swing.JButton();
         jComboBox_Sexo = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Crear Persona");
+        jLabel1.setText("Editar Persona");
 
         jLabel2.setText("Nombre");
 
@@ -76,6 +77,8 @@ String ci;
 
         jComboBox_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
 
+        jLabel4.setText("aaaa-mm-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +96,9 @@ String ci;
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7))
-                        .addGap(113, 113, 113)
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel4)
+                        .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField_Fecha)
                             .addComponent(jTextField_Email)
@@ -129,7 +134,9 @@ String ci;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -144,14 +151,11 @@ String ci;
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         try {
-            AdministracionPersona.insertarPersona(jTextField_Nombre.getText(), jTextField_Apellido.getText(),
-                   ci, jTextField_Email.getText(), jTextField_Fecha.getText(), jComboBox_Sexo.getSelectedItem().toString());
-            
-            
-            SolicitudCrearUsuario solicitudCrearUsuario = new SolicitudCrearUsuario(ci);
-                solicitudCrearUsuario.setVisible(true);
+            AdministracionPersonas.editarPersona(jTextField_Nombre.getText(), jTextField_Apellido.getText()
+                 , jTextField_Email.getText(), jTextField_Fecha.getText(), jComboBox_Sexo.getSelectedItem().toString(),ci);
+            this.dispose();
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditarPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
@@ -200,6 +204,7 @@ String ci;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

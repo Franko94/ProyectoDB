@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import pantallas.login.Login;
 
 /**
  *
@@ -102,6 +103,8 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
                 AdministracionUsuario.insertarUsuario(jTextField_Nombre.getText(), 
                         jPasswordField_Contrasena.getPassword().toString(), ci);
                 JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
+                Login login = new Login();
+                this.dispose();
             }
             //si existe levanto error
             else{

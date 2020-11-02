@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.login;
+package pantallas.administracion.persona;
 import pantallas.adminsitracion.usuario.SolicitudCrearUsuario;
-import backend.AdministracionPersona;
+import backend.AdministracionPersonas;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,7 +84,7 @@ public class ComprobarPersona extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //si la persona exite, se la manda a crear un usuario
-            if(!AdministracionPersona.personaExiste(jTextField_CI.getText())){
+            if(!AdministracionPersonas.personaExiste(jTextField_CI.getText())){
                 CrearPersona crearPersona = new CrearPersona(jTextField_CI.getText());
                 crearPersona.setVisible(true);
                 this.dispose();
