@@ -5,6 +5,13 @@
  */
 package pantallas.adminsitracion.roles;
 
+import backend.AdministracionAplicacion;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -16,6 +23,25 @@ public class AgregarRol extends javax.swing.JFrame {
      */
     public AgregarRol() {
         initComponents();
+        /*jComboBox1.removeAllItems();
+        ArrayList<String> lista = new ArrayList<>();
+        try {
+            lista = AdministracionAplicacion.llenar_combo();
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < lista.size(); i++) {
+
+            jComboBox1.addItem(lista.get(i));
+        }*/
+
+    }
+
+    public void limpiar() {
+        //Descripcion.setText("");
+
     }
 
     /**
@@ -102,12 +128,38 @@ public class AgregarRol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        /*try {
+            try {
+                //int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
+                AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
+                JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
+                limpiar();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            } catch (SQLException ex) {
+            if (ex.getMessage().contains("duplicate key value")) {
+                JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
+            } else {
+
+                Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AdministracionRoles admin = new AdministracionRoles();
-        admin.setVisible(true);
+        AdminRoles admin;
+        try {
+            admin = new AdminRoles();
+            admin.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 

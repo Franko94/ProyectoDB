@@ -4,20 +4,27 @@
  * and open the template in the editor.
  */
 package pantallas.adminsitracion.roles;
-import pantallas.adminsitracion.aplicacion.*;
+import backend.AdministracionRoles;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pantallas.login.MenuPrincipal;
+
 
 /**
  *
  * @author Usuario
  */
-public class AdministracionRoles extends javax.swing.JFrame {
+public class AdminRoles extends javax.swing.JFrame {
 
     /**
      * Creates new form test
      */
-    public AdministracionRoles() {
+    public AdminRoles() throws SQLException, ClassNotFoundException {
         initComponents();
+        AdministracionRoles.cargarRoles(jTable1);
+
     }
 
     /**
@@ -33,7 +40,7 @@ public class AdministracionRoles extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
@@ -62,10 +69,10 @@ public class AdministracionRoles extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Editar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                editarActionPerformed(evt);
             }
         });
 
@@ -95,7 +102,7 @@ public class AdministracionRoles extends javax.swing.JFrame {
                 .addGap(155, 155, 155)
                 .addComponent(jButton1)
                 .addGap(59, 59, 59)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -112,7 +119,7 @@ public class AdministracionRoles extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(editar)
                     .addComponent(jButton5))
                 .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -130,11 +137,11 @@ public class AdministracionRoles extends javax.swing.JFrame {
        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         EditarRol edit = new EditarRol();
         edit.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_editarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
       MenuPrincipal menu = new MenuPrincipal();
@@ -142,6 +149,39 @@ public class AdministracionRoles extends javax.swing.JFrame {
       this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    //String rol = rolname.getText();
+    int idBuscar = -1;
+    /*if (!"".equals(id.getText())){
+          idBuscar = Integer.parseInt(id.getText());
+    }
+       try {
+
+            if("".equals(id.getText()) && "".equals(rolname.getText())){
+            AdministracionRoles.cargarRoles(jTable1);
+        }else{
+                 AdministracionRoles.buscarRol(idBuscar, rol, jTable1);
+             }
+    
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+
+        int row = jTable1.getSelectedRow();
+        int valor = (int)jTable1.getValueAt(row, 0);
+             try {
+            AdministracionRoles.eliminarRol(valor, jTable1);
+                 JOptionPane.showMessageDialog(null, "Rol eliminado correctamente","Eliminacion",1);
+            AdministracionRoles.cargarRoles(jTable1);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -159,28 +199,40 @@ public class AdministracionRoles extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministracionRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminRoles.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-
+        //</editor-fold>
+        //</editor-fold>
+        
+        
+        
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdministracionRoles().setVisible(true);
+                try {
+                    new AdminRoles().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
