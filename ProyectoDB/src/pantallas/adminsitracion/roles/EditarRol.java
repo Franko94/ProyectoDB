@@ -5,6 +5,10 @@
  */
 package pantallas.adminsitracion.roles;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Usuario
@@ -14,10 +18,23 @@ public class EditarRol extends javax.swing.JFrame {
     /**
      * Creates new form AgregarRol
      */
-    public EditarRol() {
+    private static int id =0;
+    private static String descripcion ="";
+    public EditarRol(int idRol, String desc) {
         initComponents();
+        id = idRol;
+        descripcion = desc;
+       //lblId.setText(String.valueOf(id));
+       //lbldescripcion.setText(desc);
     }
 
+    EditarRol() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public void limpiar() {
+        //nuevoNombre.setText("");
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,7 +130,14 @@ public class EditarRol extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AdministracionRoles admin = new AdministracionRoles();
+        AdminRoles admin = null;
+        try {
+            admin = new AdminRoles();
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
         admin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -121,6 +145,35 @@ public class EditarRol extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+
+        /*if(!"".equals(nuevoNombre.getText())){
+
+            try {
+                AdministracionRoles.editarRol(Integer.parseInt(lblId.getText()), nuevoNombre.getText());
+
+                JOptionPane.showMessageDialog(null, "Rol editado con exito", "Exito", 1);
+
+                lbldescripcion.setText(nuevoNombre.getText());
+                limpiar();
+            } catch (SQLException ex) {
+                if (ex.getMessage().contains("duplicate key value")) {
+                    JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
+                } else {
+
+                    Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+             JOptionPane.showMessageDialog(null, "Debe escribir un nombre de rol","Error",0);
+        }*/
+    }//GEN-LAST:event_guardarActionPerformed
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

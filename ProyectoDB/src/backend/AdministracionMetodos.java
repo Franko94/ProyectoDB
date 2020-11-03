@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
@@ -29,6 +30,38 @@ public class AdministracionMetodos {
             stmt.setString(1, nombre);
             stmt.executeUpdate();
         }
+    }
+    public static ArrayList<String> traerMetodosNoRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_NO_RELACIONADOS);
+            stmt.setInt(1, id_metodo);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                String valor= rs.getString("id_metodo")+"-"+rs.getString("descripcion");
+               resultado.add(valor);
+            }
+            return resultado;
+        }
+
+
+    }
+     public static ArrayList<String> traerMetodosRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_RELACIONADOS);
+            stmt.setInt(1, id_metodo);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+                String valor= rs.getString("id_metodo")+"-"+rs.getString("descripcion");
+               resultado.add(valor);
+            }
+            return resultado;
+        }
+
+
     }
 
     public static void buscarMetodo(String id, String descripcion, JTable tabla) throws SQLException, ClassNotFoundException {
