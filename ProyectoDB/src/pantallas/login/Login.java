@@ -6,7 +6,7 @@
 package pantallas.login;
 
 import pantallas.administracion.persona.ComprobarPersona;
-import backend.AdministracionUsuario;
+import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -142,7 +142,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         try {
 
-            if(AdministracionUsuario.usuarioYContraseñaExisten(jTextField_Usuario.getText(), 
+            if(AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(), 
                     String.valueOf(jPasswordField_Contrasena.getPassword()))){
 
                 MenuPrincipal mp = new MenuPrincipal();
