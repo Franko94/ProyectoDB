@@ -147,7 +147,7 @@ public class Login extends javax.swing.JFrame {
 
                 MenuPrincipal mp = new MenuPrincipal();
                 mp.setVisible(true);
-                this.setVisible(false);
+                this.dispose();
             }
             else{
                 JOptionPane.showMessageDialog(rootPane, "Usuario NO existe");
