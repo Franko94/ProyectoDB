@@ -61,13 +61,12 @@ public class AdministracionUsuarios {
         //armo la solicitud para ser aprobada y que el usuario quede habilitado 
         AdministracionSolicitud.insertarSolicitudHabilitarUsuario(ci, date);
     }
-    public static void editarUsuario(String id_usuario, String id_rol) throws SQLException, ClassNotFoundException {
+    public static void editarUsuario(String id_usuario, String id_usuario_nuevo) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.EDITAR_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, id_usuario);
-        stmt.setString(2, id_rol);
-        stmt.setString(3, id_usuario);
+        stmt.setString(2, id_usuario_nuevo);
         stmt.executeUpdate();
     }
 
