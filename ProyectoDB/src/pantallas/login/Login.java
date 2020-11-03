@@ -5,6 +5,7 @@
  */
 package pantallas.login;
 
+import accesosBD.Configuracion;
 import pantallas.administracion.persona.ComprobarPersona;
 import backend.AdministracionUsuarios;
 import java.sql.SQLException;
@@ -135,24 +136,23 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarseActionPerformed
-          ComprobarPersona cp = new ComprobarPersona();
-          cp.setVisible(true);
+        ComprobarPersona cp = new ComprobarPersona();
+        cp.setVisible(true);
     }//GEN-LAST:event_jButton_RegistrarseActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         try {
 
-            if(AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(), 
-                    String.valueOf(jPasswordField_Contrasena.getPassword()))){
-
+            if (AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(),
+                    String.valueOf(jPasswordField_Contrasena.getPassword()))) {
+                Configuracion.usuario = jTextField_Usuario.getText();
                 MenuPrincipal mp = new MenuPrincipal();
                 mp.setVisible(true);
                 this.dispose();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuario NO existe");
             }
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }

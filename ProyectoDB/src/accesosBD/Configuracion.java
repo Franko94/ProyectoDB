@@ -17,6 +17,8 @@ import java.sql.SQLException;
  */
 public class Configuracion {
     
+    public static String usuario;
+    
     //para franco
     
 //    private static final String USUARIO_DB  = "root";
