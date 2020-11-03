@@ -193,8 +193,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-      AdministracionRoles adminRol = new AdministracionRoles();
-      adminRol.setVisible(true);
+      AdminRoles adminRol;
+        try {
+            adminRol = new AdminRoles();
+                  adminRol.setVisible(true);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);
+      
       this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
