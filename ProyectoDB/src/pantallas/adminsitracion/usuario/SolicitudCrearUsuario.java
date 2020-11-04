@@ -5,6 +5,7 @@
  */
 package pantallas.adminsitracion.usuario;
 
+import backend.AdministracionAuditoria;
 import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -100,10 +101,10 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
             // TODO add your handling code here:
             //si el usuario no existe, lo creamos
             if(!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())){
-                System.out.println(jPasswordField_Contrasena.getText());
-                AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
-                        jPasswordField_Contrasena.getText(), ci);
+          //      AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
+                        //jPasswordField_Contrasena.getText(), ci);
                 JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
+                AdministracionAuditoria.agregarAuditoria(null,"1", jTextField_Nombre.getText(), null);
                 Login login = new Login();
                 this.dispose();
             }
