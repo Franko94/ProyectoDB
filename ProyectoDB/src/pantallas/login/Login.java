@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import pantallas.usuario.solicitudes.de.usuario.MenuPrincipalUser;
 
 /**
  *
@@ -146,8 +147,13 @@ public class Login extends javax.swing.JFrame {
             if (AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(),
                     String.valueOf(jPasswordField_Contrasena.getPassword()))) {
                 Configuracion.usuario = jTextField_Usuario.getText();
-                MenuPrincipal mp = new MenuPrincipal();
-                mp.setVisible(true);
+                if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
+                    MenuPrincipal mp = new MenuPrincipal();
+                    mp.setVisible(true);
+                } else {
+                    MenuPrincipalUser mpu = new MenuPrincipalUser();
+                    mpu.setVisible(true);
+                }
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuario NO existe");

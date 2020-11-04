@@ -105,4 +105,13 @@ public class AdministracionUsuarios {
             modelo.addRow(fila);
         }
     }
+    
+    public static boolean usuarioIsAdmin(String usuario) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.USUARIO_IS_ADMIN;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, usuario);
+        ResultSet rs = stmt.executeQuery();
+        return rs.next();
+    }
 }

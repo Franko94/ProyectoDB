@@ -23,6 +23,8 @@ public class UsuarioRW {
     
     public static String EDITAR_USUARIO = "update usuario set contrasena = ? , where id_usuario = ?";
     
+    public static String USUARIO_IS_ADMIN = "SELECT descripcion_rol FROM ususarios_con_roles_y_ci where id_usuario = ? and descripcion_rol = 'admin'";
+    
     public static String filtrarUsuarios(String id_usuario, String ci, String fecha, String descripcion_rol, String nombre_aplicacion, String habilitado) {
         String where = "";
         String filtro = "";
