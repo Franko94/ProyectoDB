@@ -24,7 +24,7 @@ public class AgregarRol extends javax.swing.JFrame {
      */
     public AgregarRol() {
         initComponents();
-        
+
         jComboBox1.removeAllItems();
         ArrayList<String> lista = new ArrayList<>();
         try {
@@ -43,7 +43,7 @@ public class AgregarRol extends javax.swing.JFrame {
 
     public void limpiar() {
         Descripcion.setText("");
-   
+
     }
 
     /**
@@ -143,7 +143,7 @@ public class AgregarRol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         try {
             try {
                 int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
@@ -177,14 +177,13 @@ public class AgregarRol extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-      
-        
-      
+
+
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**

@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
  * @author Agustin
  */
 public class RolMetodo extends javax.swing.JFrame {
-    
-    private static int id =0;
-    private static String descripcion ="";
+
+    private static int id = 0;
+    private static String descripcion = "";
 
     /**
      * Creates new form RolMetodo
@@ -36,15 +36,15 @@ public class RolMetodo extends javax.swing.JFrame {
     private void recargaMetodosAgregar() throws SQLException, ClassNotFoundException {
 
         ArrayList<String> listaNoRelacionados = new ArrayList<>();
-        listaNoRelacionados = AdministracionMetodos.traerMetodosNoRelacionados(id);
+        listaNoRelacionados = AdministracionMetodos.traerMetodosNoRelacionadosRol(id);
         listaNoRelacion.setListData(convertir(listaNoRelacionados));
         ArrayList<String> listaRelacionados = new ArrayList<>();
-        listaRelacionados = AdministracionMetodos.traerMetodosRelacionados(id);
+        listaRelacionados = AdministracionMetodos.traerMetodosRelacionadosRol(id);
         listaRelacion.setListData(convertir(listaRelacionados));
 
     }
-    
-     private String[] convertir(ArrayList<String> t) {
+
+    private String[] convertir(ArrayList<String> t) {
         int cantTemas = t.size();
         String[] retorno = new String[cantTemas];
 
@@ -201,11 +201,11 @@ public class RolMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
-       String met = (String) listaRelacion.getSelectedValue();
+        String met = (String) listaRelacion.getSelectedValue();
         int metodoId = Integer.parseInt(met.split("-")[0]);
         try {
             AdministracionRoles.eliminarRolMetodo(id, metodoId);
-             recargaMetodosAgregar();
+            recargaMetodosAgregar();
         } catch (SQLException ex) {
             Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -214,12 +214,12 @@ public class RolMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_quitarActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-         
+
         String met = (String) listaNoRelacion.getSelectedValue();
         int metodoId = Integer.parseInt(met.split("-")[0]);
         try {
             AdministracionRoles.insertarRolMetodo(id, metodoId);
-             recargaMetodosAgregar();
+            recargaMetodosAgregar();
         } catch (SQLException ex) {
             Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

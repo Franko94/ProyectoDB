@@ -10,14 +10,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import backend.AdministracionRoles;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
  */
 public class EditarRol extends javax.swing.JFrame {
-    
-    private static int id =0;
-    private static String descripcion ="";
+
+    private static int id = 0;
+    private static String descripcion = "";
 
     /**
      * Creates new form AgregarRol
@@ -26,16 +27,14 @@ public class EditarRol extends javax.swing.JFrame {
         initComponents();
         id = idRol;
         descripcion = desc;
-       lblId.setText(String.valueOf(id));
-       lbldescripcion.setText(desc);
+        lblId.setText(String.valueOf(id));
+        lbldescripcion.setText(desc);
     }
-    
-    
+
     public void limpiar() {
         nuevoNombre.setText("");
-   
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -114,14 +113,14 @@ public class EditarRol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        
-        if(!"".equals(nuevoNombre.getText())){
-        
+
+        if (!"".equals(nuevoNombre.getText())) {
+
             try {
                 AdministracionRoles.editarRol(Integer.parseInt(lblId.getText()), nuevoNombre.getText());
 
                 JOptionPane.showMessageDialog(null, "Rol editado con exito", "Exito", 1);
-                
+
                 lbldescripcion.setText(nuevoNombre.getText());
                 limpiar();
             } catch (SQLException ex) {
@@ -135,9 +134,8 @@ public class EditarRol extends javax.swing.JFrame {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else{
-             JOptionPane.showMessageDialog(null, "Debe escribir un nombre de rol","Error",0);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de rol", "Error", 0);
         }
     }//GEN-LAST:event_guardarActionPerformed
 
