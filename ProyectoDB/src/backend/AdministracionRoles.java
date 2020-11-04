@@ -51,7 +51,7 @@ public class AdministracionRoles {
             } else if (id == -1) {
 
                 PreparedStatement stmt = con.prepareStatement(RolRW.FILTRAR_ROL_DESCRIPCION);
-                stmt.setString(1, '%'+descripcion+'%');
+                stmt.setString(1, '%' + descripcion + '%');
                 ResultSet rs = stmt.executeQuery();
                 insertarDatos(tabla, rs);
 
@@ -81,7 +81,7 @@ public class AdministracionRoles {
             stmt.executeUpdate();
         }
     }
-    
+
     public static void eliminarRolMetodo(int idRol, int idMetodo) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(RolRW.ELIMINAR_ROL_METODO);
@@ -90,6 +90,7 @@ public class AdministracionRoles {
             stmt.executeUpdate();
         }
     }
+
     public static void editarRol(int id, String desc) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(RolRW.EDITAR_ROL);

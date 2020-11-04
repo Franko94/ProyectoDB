@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pantallas.adminsitracion.roles;
+
 import backend.AdministracionRoles;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -132,40 +133,56 @@ public class AdminRoles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       AgregarRol agregar = new AgregarRol();
-       agregar.setVisible(true);
-       this.setVisible(false);
+        AgregarRol agregar = new AgregarRol();
+        agregar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        EditarRol edit = new EditarRol();
-        edit.setVisible(true);
-        this.setVisible(false);
+
+
+        int row = jTable1.getSelectedRow();
+
+        if (row != -1) {
+
+            int id = (int) jTable1.getValueAt(row, 0);
+            String descripcion = (String) jTable1.getValueAt(row, 1);
+
+            EditarRol edit = new EditarRol(id, descripcion);
+            edit.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un rol", "Error", 0);
+        }
+
+
     }//GEN-LAST:event_editarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      MenuPrincipal menu = new MenuPrincipal();
-      menu.setVisible(true);
-      this.setVisible(false);        // TODO add your handling code here:
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    //String rol = rolname.getText();
-    int idBuscar = -1;
-    /*if (!"".equals(id.getText())){
-          idBuscar = Integer.parseInt(id.getText());
-    }
-       try {
 
-            if("".equals(id.getText()) && "".equals(rolname.getText())){
-            AdministracionRoles.cargarRoles(jTable1);
-        }else{
-                 AdministracionRoles.buscarRol(idBuscar, rol, jTable1);
-             }
-    
+        String rol = rolname.getText();
+        int idBuscar = -1;
+        if (!"".equals(id.getText())) {
+            idBuscar = Integer.parseInt(id.getText());
+        }
+        try {
+
+            if ("".equals(id.getText()) && "".equals(rolname.getText())) {
+                AdministracionRoles.cargarRoles(jTable1);
+            } else {
+                AdministracionRoles.buscarRol(idBuscar, rol, jTable1);
+            }
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
+
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -173,10 +190,10 @@ public class AdminRoles extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
         int row = jTable1.getSelectedRow();
-        int valor = (int)jTable1.getValueAt(row, 0);
-             try {
+        int valor = (int) jTable1.getValueAt(row, 0);
+        try {
             AdministracionRoles.eliminarRol(valor, jTable1);
-                 JOptionPane.showMessageDialog(null, "Rol eliminado correctamente","Eliminacion",1);
+            JOptionPane.showMessageDialog(null, "Rol eliminado correctamente", "Eliminacion", 1);
             AdministracionRoles.cargarRoles(jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);

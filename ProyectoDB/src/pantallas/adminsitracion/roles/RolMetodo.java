@@ -11,11 +11,43 @@ package pantallas.adminsitracion.roles;
  */
 public class RolMetodo extends javax.swing.JFrame {
 
+
+    private static int id = 0;
+    private static String descripcion = "";
+
+
     /**
      * Creates new form RolMetodo
      */
     public RolMetodo() {
         initComponents();
+]
+        id = idRol;
+        descripcion = desc;
+        rolname.setText(desc);
+        recargaMetodosAgregar();
+    }
+
+    private void recargaMetodosAgregar() throws SQLException, ClassNotFoundException {
+
+        ArrayList<String> listaNoRelacionados = new ArrayList<>();
+        listaNoRelacionados = AdministracionMetodos.traerMetodosNoRelacionadosRol(id);
+        listaNoRelacion.setListData(convertir(listaNoRelacionados));
+        ArrayList<String> listaRelacionados = new ArrayList<>();
+        listaRelacionados = AdministracionMetodos.traerMetodosRelacionadosRol(id);
+        listaRelacion.setListData(convertir(listaRelacionados));
+
+    }
+
+    private String[] convertir(ArrayList<String> t) {
+        int cantTemas = t.size();
+        String[] retorno = new String[cantTemas];
+
+        for (int i = 0; i < cantTemas; i++) {
+            retorno[i] = t.get(i);
+        }
+        return retorno;
+
     }
 
     /**
@@ -141,9 +173,41 @@ public class RolMetodo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        EditarRol edit = new EditarRol(id, descripcion);
+        edit.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_atrasActionPerformed
+
+    private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+        String met = (String) listaRelacion.getSelectedValue();
+        int metodoId = Integer.parseInt(met.split("-")[0]);
+        try {
+            AdministracionRoles.eliminarRolMetodo(id, metodoId);
+            recargaMetodosAgregar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_quitarActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+
+        String met = (String) listaNoRelacion.getSelectedValue();
+        int metodoId = Integer.parseInt(met.split("-")[0]);
+        try {
+            AdministracionRoles.insertarRolMetodo(id, metodoId);
+            recargaMetodosAgregar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_agregarActionPerformed
+
 
     /**
      * @param args the command line arguments

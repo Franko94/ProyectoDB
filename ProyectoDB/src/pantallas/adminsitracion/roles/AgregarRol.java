@@ -23,7 +23,10 @@ public class AgregarRol extends javax.swing.JFrame {
      */
     public AgregarRol() {
         initComponents();
-        /*jComboBox1.removeAllItems();
+
+
+        jComboBox1.removeAllItems();
+
         ArrayList<String> lista = new ArrayList<>();
         try {
             lista = AdministracionAplicacion.llenar_combo();
@@ -40,7 +43,9 @@ public class AgregarRol extends javax.swing.JFrame {
     }
 
     public void limpiar() {
-        //Descripcion.setText("");
+
+        Descripcion.setText("");
+
 
     }
 
@@ -128,16 +133,17 @@ public class AgregarRol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        /*try {
+
+ try {
             try {
-                //int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
+                int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
                 AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
                 JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
                 limpiar();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
             }
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             if (ex.getMessage().contains("duplicate key value")) {
                 JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
             } else {
@@ -146,7 +152,7 @@ public class AgregarRol extends javax.swing.JFrame {
 
             }
 
-        }*/
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -159,9 +165,16 @@ public class AgregarRol extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     /**
      * @param args the command line arguments

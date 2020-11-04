@@ -24,43 +24,79 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministracionMetodos {
 
+
+    public static ArrayList<String> traerMetodosNoRelacionadosRol(int id_metodo) throws SQLException, ClassNotFoundException {
+
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_NO_RELACIONADOS_ROL);
+            stmt.setInt(1, id_metodo);
+            ResultSet rs = stmt.executeQuery();
+            
+          while (rs.next()) {
+                String valor = rs.getString("id_metodo") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+
+            }
+            return resultado;
+        }
+
+    }
+
+    public static ArrayList<String> traerMetodosNoRelacionadosMenu(int id_metodo) throws SQLException, ClassNotFoundException {
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_NO_RELACIONADOS_MENU);
+            stmt.setInt(1, id_metodo);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String valor = rs.getString("id_metodo") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+            }
+            return resultado;
+        }
+
+    }
+
+    public static ArrayList<String> traerMetodosRelacionadosRol(int id_metodo) throws SQLException, ClassNotFoundException {
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_RELACIONADOS_ROL);
+            stmt.setInt(1, id_metodo);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String valor = rs.getString("id_metodo") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+            }
+            return resultado;
+        }
+
+    }
+
+    public static ArrayList<String> traerMetodosRelacionadosMenu(int id_metodo) throws SQLException, ClassNotFoundException {
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_RELACIONADOS_MENU);
+            stmt.setInt(1, id_metodo);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String valor = rs.getString("id_metodo") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+            }
+            return resultado;
+        }
+
+    }
+
     public static void insertarMetodo(String nombre) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(MetodoRW.INSERTAR_METODO);
             stmt.setString(1, nombre);
             stmt.executeUpdate();
         }
-    }
-    public static ArrayList<String> traerMetodosNoRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
-        ArrayList<String> resultado = new ArrayList<>();
-        try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_NO_RELACIONADOS);
-            stmt.setInt(1, id_metodo);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()){
-                String valor= rs.getString("id_metodo")+"-"+rs.getString("descripcion");
-               resultado.add(valor);
-            }
-            return resultado;
-        }
-
-
-    }
-     public static ArrayList<String> traerMetodosRelacionados(int id_metodo) throws SQLException, ClassNotFoundException{
-        ArrayList<String> resultado = new ArrayList<>();
-        try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MetodoRW.LISTAR_METODOS_RELACIONADOS);
-            stmt.setInt(1, id_metodo);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()){
-                String valor= rs.getString("id_metodo")+"-"+rs.getString("descripcion");
-               resultado.add(valor);
-            }
-            return resultado;
-        }
-
 
     }
 
@@ -83,6 +119,7 @@ public class AdministracionMetodos {
         }
     }
 
+
     public static void eliminarMetodo(String id, JTable tabla) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(MetodoRW.ELIMINAR_METODO);
@@ -99,6 +136,7 @@ public class AdministracionMetodos {
             stmt.executeUpdate();
         }
     }
+
 
     private static void insertarDatos(JTable tabla, ResultSet rs) throws SQLException {
         DefaultTableModel modelo = new DefaultTableModel();
