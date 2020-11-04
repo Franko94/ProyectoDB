@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package pantallas.login;
-import pantallas.adminsitracion.usuario.AdministracionUsuarios;
+import pantallas.adminsitracion.usuario.AdministracionUsuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -95,6 +95,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jButton7.setText("Cerrar Sesion");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButtonAuditoria.setText("Auditoria");
         jButtonAuditoria.addActionListener(new java.awt.event.ActionListener() {
@@ -209,9 +214,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        AdministracionUsuarios adminUsu = new AdministracionUsuarios();
-        adminUsu.setVisible(true);
-        this.setVisible(false);
+        try {
+            AdministracionUsuario adminUsu = new AdministracionUsuario();
+            adminUsu.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButtonAuditoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAuditoriaActionPerformed
@@ -252,6 +263,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

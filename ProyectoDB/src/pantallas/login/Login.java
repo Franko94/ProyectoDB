@@ -5,12 +5,14 @@
  */
 package pantallas.login;
 
+import accesosBD.Configuracion;
 import pantallas.administracion.persona.ComprobarPersona;
-import backend.AdministracionUsuario;
+import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import pantallas.user.MenuPrincipalUser;
 
 /**
  *
@@ -135,24 +137,28 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarseActionPerformed
-          ComprobarPersona cp = new ComprobarPersona();
-          cp.setVisible(true);
+        ComprobarPersona cp = new ComprobarPersona();
+        cp.setVisible(true);
     }//GEN-LAST:event_jButton_RegistrarseActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         try {
 
-            if(AdministracionUsuario.usuarioYContraseñaExisten(jTextField_Usuario.getText(), 
-                    String.valueOf(jPasswordField_Contrasena.getPassword()))){
-
-                MenuPrincipal mp = new MenuPrincipal();
-                mp.setVisible(true);
-                this.setVisible(false);
-            }
-            else{
+            if (AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(),
+                    String.valueOf(jPasswordField_Contrasena.getPassword()))) {
+                Configuracion.usuario = jTextField_Usuario.getText();
+                if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
+                    MenuPrincipal mp = new MenuPrincipal();
+                    mp.setVisible(true);
+                } else {
+                    MenuPrincipalUser mpu = new MenuPrincipalUser();
+                    mpu.setVisible(true);
+                }
+                this.dispose();
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuario NO existe");
             }
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
