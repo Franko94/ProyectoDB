@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import pantallas.usuario.solicitudes.de.usuario.MenuPrincipalUser;
+import pantallas.user.MenuPrincipalUser;
 
 /**
  *
