@@ -227,9 +227,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButtonAuditoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAuditoriaActionPerformed
-        Auditoria audit = new Auditoria();
-        audit.setVisible(true);
-        this.setVisible(false);
+        Auditoria audit;
+        try {
+            audit = new Auditoria();
+            audit.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jButtonAuditoriaActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
