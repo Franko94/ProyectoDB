@@ -47,6 +47,18 @@ public class AdministracionAuditoria {
         }
     }
     
+    public static void agregarAuditoria(String usuarioS,
+         String descripcion, String usuarioA, String rolA) throws SQLException, ClassNotFoundException{
+         try (Connection con = Configuracion.getConnection()) {
+                PreparedStatement stmt = con.prepareStatement(AuditoriaRW.INSERTAR_FILA);
+                stmt.setString(1, usuarioS);
+                stmt.setString(2, descripcion);
+                stmt.setString(3, usuarioA);
+                stmt.setString(4, rolA);
+                stmt.executeUpdate();
+         }
+    }
+    
     private static void insertarDatos(JTable tabla,ResultSet rs) throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
         tabla.setModel(modelo);
