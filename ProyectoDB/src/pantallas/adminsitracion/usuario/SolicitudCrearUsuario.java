@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.login;
+package pantallas.adminsitracion.usuario;
 
-import backend.AdministracionUsuario;
+import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import pantallas.login.Login;
 
 /**
  *
@@ -98,10 +99,13 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //si el usuario no existe, lo creamos
-            if(!AdministracionUsuario.usuarioExiste(jTextField_Nombre.getText())){
-                AdministracionUsuario.insertarUsuario(jTextField_Nombre.getText(), 
-                        jPasswordField_Contrasena.getPassword().toString(), ci);
+            if(!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())){
+                System.out.println(jPasswordField_Contrasena.getText());
+                AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
+                        jPasswordField_Contrasena.getText(), ci);
                 JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
+                Login login = new Login();
+                this.dispose();
             }
             //si existe levanto error
             else{

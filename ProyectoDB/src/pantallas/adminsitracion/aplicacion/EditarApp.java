@@ -153,9 +153,7 @@ public class EditarApp extends javax.swing.JFrame {
         Aplicaciones app;
         try {
             app = new Aplicaciones();
-               app.setVisible(true);
-               this.setVisible(false);
-                 app.setVisible(true);
+            app.setVisible(true);
             this.setVisible(false);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,7 +161,6 @@ public class EditarApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
-
         if(!jTextField1.getText().equals("")){
             try {
                 AdministracionAplicacion.modificarNombreAplicacion(jTextField1.getText(), id);

@@ -7,24 +7,9 @@ package accesosBD;
 
 /**
  *
- *
  * @author Agustin
  */
 public class MetodoRW {
-//    public static String INSERTAR_METODO = "INSERT into metodo (descripcion) values (?)";
-//    //public static String OBTENER_METODO = "SELECT * FROM metodo";
-//    public static String FILTRAR_METODO = "SELECT * FROM proyectofinal.metodo where descripcion = ?";
-//    public static String ELIMINAR_METODO = "DELETE FROM metodo where id_metodo = ?";
-//    public static String MODIFICAR_DESCRIPCION = "update metodo set descripcion = ? where id_metodo = ?";
-//    public static String OBTENER_METODO(String valorCelda){
-//        String where = "";
-//        String columna = "descripcion";
-//        if (!"".equals(valorCelda)) {
-//            where = "WHERE "+columna+"= '" + valorCelda + "'";
-//        }
-//        return "SELECT * FROM metodo"+where;
-//    }
-
     public static String INSERTAR_METODO = "INSERT into metodo (descripcion) values (?)";
     public static String OBTENER_METODOS = "SELECT * FROM metodo";
     public static String FILTRAR_METODOS = "SELECT * FROM metodo where id_metodo = ? or descripcion = ?";

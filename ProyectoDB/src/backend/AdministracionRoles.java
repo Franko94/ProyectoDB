@@ -20,9 +20,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class AdministracionRoles {
-
+    
     public static void insertarRol(String descripcion, int idAplicacion) throws SQLException {
-        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
+        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());     
         String sql = RolRW.INSERTAR_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, descripcion);
@@ -30,18 +30,17 @@ public class AdministracionRoles {
 
         stmt.executeUpdate();
     }
-
     public static void insertarRolMetodo(int idRol, int idMetodo) throws SQLException {
         Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
         String sql = RolRW.INSERTAR_ROL_METODO;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, idRol);
         stmt.setInt(2, idMetodo);
-
-        stmt.executeUpdate();
+         stmt.executeUpdate();
     }
-
+    
     public static void buscarRol(int id, String descripcion, JTable tabla) throws SQLException, ClassNotFoundException {
+
 
         try (Connection con = Configuracion.getConnection()) {
             if (descripcion == null) {
@@ -116,5 +115,5 @@ public class AdministracionRoles {
             modelo.addRow(fila);
         }
     }
-
+    
 }

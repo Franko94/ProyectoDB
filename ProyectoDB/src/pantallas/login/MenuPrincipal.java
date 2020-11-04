@@ -5,16 +5,16 @@
  */
 package pantallas.login;
 
-import pantallas.adminsitracion.usuario.AdministracionUsuarios;
+import pantallas.adminsitracion.usuario.AdministracionUsuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pantallas.adminsitracion.aplicacion.*;
 import pantallas.adminsitracion.aplicacion.Aplicaciones;
 import pantallas.adminsitracion.roles.*;
 import pantallas.administracion.Auditoria.*;
 import pantallas.administracion.menu.*;
 import pantallas.administracion.metodos.*;
+import pantallas.administracion.persona.AdministracionPersona;
 
 /**
  *
@@ -50,6 +50,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -94,6 +95,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jButton7.setText("Cerrar Sesion");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButtonAuditoria.setText("Auditoria");
         jButtonAuditoria.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +113,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel3.setText("Gestion de Negocios:");
 
         jLabel4.setText("Seguridad:");
+
+        jButton8.setText("Personas");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,11 +139,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2)
                             .addComponent(jLabel3)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addComponent(jLabel4)))))
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))))
                 .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -144,6 +159,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jButton8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton5)
                 .addGap(4, 4, 4)
@@ -160,7 +177,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jButtonAuditoria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(4, 4, 4)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -169,11 +186,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Aplicaciones app;
+    Aplicaciones app;
         try {
             app = new Aplicaciones();
-            app.setVisible(true);
-            this.setVisible(false);
             app.setVisible(true);
             this.setVisible(false);
         } catch (SQLException | ClassNotFoundException ex) {
@@ -186,6 +201,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         AdminRoles adminRol;
         try {
             adminRol = new AdminRoles();
+
             adminRol.setVisible(true);
 
         } catch (SQLException ex) {
@@ -194,12 +210,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.setVisible(false);
+      
+      this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        AdministracionUsuarios adminUsu = new AdministracionUsuarios();
-        adminUsu.setVisible(true);
-        this.setVisible(false);
+        try {
+            AdministracionUsuario adminUsu = new AdministracionUsuario();
+            adminUsu.setVisible(true);
+            this.setVisible(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButtonAuditoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAuditoriaActionPerformed
@@ -235,6 +259,25 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        try {
+            // TODO add your handling code here:
+            AdministracionPersona ap = new AdministracionPersona();
+            ap.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,6 +323,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonAuditoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
