@@ -26,6 +26,7 @@ public class EditarMetodo extends javax.swing.JFrame {
     public EditarMetodo(String id) {
         this.id = id;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

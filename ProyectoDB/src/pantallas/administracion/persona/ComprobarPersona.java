@@ -21,6 +21,7 @@ public class ComprobarPersona extends javax.swing.JFrame {
      */
     public ComprobarPersona() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

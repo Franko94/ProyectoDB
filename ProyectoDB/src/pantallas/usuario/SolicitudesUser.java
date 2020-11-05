@@ -26,6 +26,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
      */
     public SolicitudesUser() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
         AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(),jTextField_Estado.getText(),jTextField_Fecha_Creacion.getText(),jTextField_Fecha_actualizacion.getText(),jTextField_Tipo_Solicitud.getText(),jTextField_Usuario.getText(),jTable1);
          }
 

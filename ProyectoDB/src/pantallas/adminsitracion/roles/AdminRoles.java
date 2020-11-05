@@ -24,6 +24,7 @@ public class AdminRoles extends javax.swing.JFrame {
     public AdminRoles() throws SQLException, ClassNotFoundException {
         initComponents();
         AdministracionRoles.cargarRoles(jTable1);
+        this.setLocationRelativeTo(null);
 
     }
 

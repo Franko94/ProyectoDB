@@ -24,6 +24,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
      */
     public AdministracionPersona() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
         AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(),jTextField_Nombre.getText(),jTextField_Apellido.getText(),jTextField_Fecha.getText(),jTextField_Correo.getText(),jTextField_Sexo.getText(),jTable1);
          }
 

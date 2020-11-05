@@ -24,6 +24,7 @@ public class EditarApp extends javax.swing.JFrame {
     public EditarApp(String id) {
         this.id = id;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

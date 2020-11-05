@@ -31,6 +31,7 @@ public class MenuMetodo extends javax.swing.JFrame {
         descripcion = desc;
         menuname.setText(desc);
         recargaMetodosAgregar();
+        this.setLocationRelativeTo(null);
     }
 
     private void recargaMetodosAgregar() throws SQLException, ClassNotFoundException {

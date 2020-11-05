@@ -27,6 +27,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
     public SolicitudCrearUsuario(String cedula) {
         initComponents();
         this.ci=cedula;
+        this.setLocationRelativeTo(null);
         
     }
 

@@ -19,6 +19,7 @@ public class EditarRol extends javax.swing.JFrame {
 
     private static int id = 0;
     private static String descripcion = "";
+    
 
     /**
      * Creates new form AgregarRol
@@ -29,6 +30,7 @@ public class EditarRol extends javax.swing.JFrame {
         descripcion = desc;
         lblId.setText(String.valueOf(id));
         lbldescripcion.setText(desc);
+        this.setLocationRelativeTo(null);
     }
 
     public void limpiar() {

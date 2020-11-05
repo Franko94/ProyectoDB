@@ -22,6 +22,7 @@ public class Auditoria extends javax.swing.JFrame {
     public Auditoria() throws SQLException, ClassNotFoundException {
         initComponents();
         AdministracionAuditoria.cargarTodos(jTable1);
+        this.setLocationRelativeTo(null);
     }
 
     /**

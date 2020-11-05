@@ -22,6 +22,7 @@ String id_usuario;
     public EditarUsuario(String id) {
         initComponents();
         this.id_usuario = id;
+        this.setLocationRelativeTo(null);
     }
 
     /**

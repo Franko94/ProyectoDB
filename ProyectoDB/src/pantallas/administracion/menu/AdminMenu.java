@@ -24,6 +24,7 @@ public class AdminMenu extends javax.swing.JFrame {
     public AdminMenu() throws SQLException, ClassNotFoundException {
         initComponents();
         AdministracionMenu.cargarMenu(jTable1);
+        this.setLocationRelativeTo(null);
     }
 
     /**

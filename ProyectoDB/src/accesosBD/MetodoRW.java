@@ -36,8 +36,4 @@ public class MetodoRW {
         return "SELECT * FROM metodo " + where;
     }
 
-//    public static String OBTENER_MENUS_ASOCIADOS = "SELECT * FROM proyectoFinal.menus_en_aplicacion WHERE id_aplicacion = ?";
-//    public static String ELIMINAR_MENU_ASOCIADO = "DELETE FROM   proyectoFinal.menu_aplicacion  where id_aplicacion = ? and id_menu = ?";
-//    public static String OBTENER_MENUS_NO_ASOCIADOS = " select * FROM   menu m where id_menu not in (select id_menu from proyectoFinal.menu_aplicacion where id_aplicacion = ?)";
-//    public static String AGREGAR_MENU = "INSERT into menu_aplicacion values (?,?)";
 }

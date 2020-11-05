@@ -25,6 +25,7 @@ public class AdministracionUsuario extends javax.swing.JFrame {
      */
     public AdministracionUsuario() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
         AdministracionUsuarios.cargarTablaUsuarios(jTextField_Usuario.getText(),jTextField_CI.getText(),jTextField_Fecha.getText(),jTextField_Rol.getText(),jTextField_Aplicacion.getText(),jTextField_Habilitado.getText(),jTable1);
          }
 

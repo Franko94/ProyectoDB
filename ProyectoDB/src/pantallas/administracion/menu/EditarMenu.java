@@ -29,6 +29,7 @@ public class EditarMenu extends javax.swing.JFrame {
         descripcion = desc;
         lblId.setText(String.valueOf(id));
         lblDescripcion.setText(desc);
+        this.setLocationRelativeTo(null);
     }
 
     public void limpiar() {

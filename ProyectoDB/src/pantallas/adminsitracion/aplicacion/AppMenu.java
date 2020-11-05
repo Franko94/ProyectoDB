@@ -26,6 +26,7 @@ public class AppMenu extends javax.swing.JFrame {
         initComponents();
         AdministracionAplicacion.cargarListaMenuAsociados(id, jTable2);
         AdministracionAplicacion.cargarListaMenusNoAsociados(id, jTable1);
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -24,6 +24,7 @@ public class AgregarRol extends javax.swing.JFrame {
      */
     public AgregarRol() {
         initComponents();
+        this.setLocationRelativeTo(null);
 
         jComboBox1.removeAllItems();
         ArrayList<String> lista = new ArrayList<>();

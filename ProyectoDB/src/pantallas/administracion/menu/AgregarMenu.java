@@ -23,6 +23,7 @@ public class AgregarMenu extends javax.swing.JFrame {
      */
     public AgregarMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void limpiar() {

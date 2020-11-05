@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -210,4 +211,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField_Contrasena;
     private javax.swing.JTextField jTextField_Usuario;
     // End of variables declaration//GEN-END:variables
+
+
 }

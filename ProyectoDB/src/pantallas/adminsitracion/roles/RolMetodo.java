@@ -31,6 +31,7 @@ public class RolMetodo extends javax.swing.JFrame {
         descripcion = desc;
         rolname.setText(desc);
         recargaMetodosAgregar();
+        this.setLocationRelativeTo(null);
     }
 
     private void recargaMetodosAgregar() throws SQLException, ClassNotFoundException {

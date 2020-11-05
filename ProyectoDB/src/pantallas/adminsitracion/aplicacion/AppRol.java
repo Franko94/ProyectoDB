@@ -30,6 +30,7 @@ public class AppRol extends javax.swing.JFrame {
         initComponents();
         AdministracionAplicacion.cargarListaRolesAsociados(id, jTable3);
         AdministracionAplicacion.cargarListaRolesNoAsociados(id, jTable2);
+        this.setLocationRelativeTo(null);
       
     }
 

@@ -23,6 +23,7 @@ String ci;
     public EditarPersona(String cedula) {
         initComponents();
         this.ci=cedula;
+        this.setLocationRelativeTo(null);
     }
 
     /**

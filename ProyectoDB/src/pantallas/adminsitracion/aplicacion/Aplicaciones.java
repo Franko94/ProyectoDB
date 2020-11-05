@@ -23,6 +23,7 @@ public class Aplicaciones extends javax.swing.JFrame {
      */
     public Aplicaciones() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
         AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
     }
 

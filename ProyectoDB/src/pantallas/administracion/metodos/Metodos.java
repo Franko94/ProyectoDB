@@ -24,6 +24,7 @@ public class Metodos extends javax.swing.JFrame {
      */
     public Metodos() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
         AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(),jTextField_FiltroDescripcion.getText(),jTable1);
     }
 

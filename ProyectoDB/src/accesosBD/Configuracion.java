@@ -27,9 +27,14 @@ public class Configuracion {
    
     
     //para agustin
+    //private static final String USUARIO_DB  = "postgres";
+    //private static final String PASSWORD_DB  = "passwd";
+    //private static final String URL_DB = "jdbc:postgresql://192.168.132.128:5432/proyectoFinal";
+    
+    //CONFIG DE MEKI
     private static final String USUARIO_DB  = "postgres";
-    private static final String PASSWORD_DB  = "passwd";
-    private static final String URL_DB = "jdbc:postgresql://192.168.132.128:5432/proyectoFinal";
+    private static final String PASSWORD_DB  = "1ncr31bl3";
+    private static final String URL_DB  = "jdbc:postgresql://192.168.56.101:5432/proyectofinal";
     
     public static String getUsuario(){
         return USUARIO_DB;
