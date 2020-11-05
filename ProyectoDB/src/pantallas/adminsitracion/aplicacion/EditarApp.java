@@ -9,6 +9,7 @@ import backend.AdministracionAplicacion;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,6 +28,9 @@ public class EditarApp extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    private void limppiar(){
+        nombreApp.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,7 +41,7 @@ public class EditarApp extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        nombreApp = new javax.swing.JTextField();
         jButton_Modificar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -46,8 +50,6 @@ public class EditarApp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Nombre aplicacion");
-
-        jTextField1.setText("jTextField1");
 
         jButton_Modificar.setText("Modificar");
         jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +89,7 @@ public class EditarApp extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(36, 36, 36)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_Modificar))
                     .addGroup(layout.createSequentialGroup()
@@ -106,7 +108,7 @@ public class EditarApp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Modificar)
                     .addComponent(jLabel1))
                 .addGap(49, 49, 49)
@@ -162,13 +164,20 @@ public class EditarApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificarActionPerformed
-        if(!jTextField1.getText().equals("")){
+        String nuevoNombre = nombreApp.getText();
+        if (!"".equals(nuevoNombre)) {
+       
             try {
-                AdministracionAplicacion.modificarNombreAplicacion(jTextField1.getText(), id);
+                AdministracionAplicacion.modificarNombreAplicacion(nombreApp.getText(), id);
+                JOptionPane.showMessageDialog(null, "Aplicacion editada con exito", "Exito", 1);
+                limppiar();
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(EditarApp.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de aplicacion", "Error", 0);
         }
+        
     }//GEN-LAST:event_jButton_ModificarActionPerformed
 
     /**
@@ -212,6 +221,6 @@ public class EditarApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton_Modificar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nombreApp;
     // End of variables declaration//GEN-END:variables
 }
