@@ -66,6 +66,7 @@ public class AdministracionAuditoria {
                 else{
                     stmt.setInt(4, Integer.valueOf(rolA));
                 }
+               
                 stmt.executeUpdate();
          }
     }
