@@ -39,9 +39,9 @@ public class AdministracionAuditoria {
             }
             stmt.setString(1, fecha);
             stmt.setString(2, usuarioS);
-            stmt.setInt(4, Integer.valueOf(descripcion));
+            stmt.setString(3, descripcion);
             stmt.setString(4, usuarioA);
-            stmt.setInt(5, Integer.valueOf(rolA));
+            stmt.setString(5, rolA);
             ResultSet rs = stmt.executeQuery();
             insertarDatos(tabla, rs);
         }
@@ -52,9 +52,9 @@ public class AdministracionAuditoria {
          try (Connection con = Configuracion.getConnection()) {
                 PreparedStatement stmt = con.prepareStatement(AuditoriaRW.INSERTAR_FILA);
                 stmt.setString(1, usuarioS);
-                stmt.setInt(4, Integer.valueOf(descripcion));
+                stmt.setString(2, descripcion);
                 stmt.setString(3, usuarioA);
-                stmt.setInt(4, Integer.valueOf(rolA));
+                stmt.setString(4, rolA);
                 stmt.executeUpdate();
          }
     }
