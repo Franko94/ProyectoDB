@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class AdministracionSolicitud {
 
-    public static void insertarSolicitudHabilitarUsuario(String ci, Date fecha) {
+    public static void insertarSolicitudHabilitarUsuario(String idUsuario, Date fecha) {
 
         try {
             Connection con = Configuracion.getConnection();
@@ -35,7 +35,7 @@ public class AdministracionSolicitud {
             stmt.setDate(3, date);
             stmt.setString(4, "");
             stmt.setInt(5, 1);
-            stmt.setInt(6, Integer.parseInt(ci));
+            stmt.setString(6,idUsuario );
             stmt.setNull(7, 0);
             stmt.executeUpdate();
         } catch (SQLException ex) {

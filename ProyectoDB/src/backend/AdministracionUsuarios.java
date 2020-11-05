@@ -59,7 +59,7 @@ public class AdministracionUsuarios {
         stmt.setBoolean(7, false);
         stmt.executeUpdate();
         //armo la solicitud para ser aprobada y que el usuario quede habilitado 
-        AdministracionSolicitud.insertarSolicitudHabilitarUsuario(ci, date);
+        AdministracionSolicitud.insertarSolicitudHabilitarUsuario(idUsuario, date);
     }
     public static void editarUsuario(String id_usuario, String id_usuario_nuevo) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();

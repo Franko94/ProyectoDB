@@ -53,7 +53,7 @@ public class AdministracionAplicacion {
     public static void cargarListaMenuAsociados(String id, JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_MENUS_ASOCIADOS);
-            stmt.setString(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             ResultSet rs = stmt.executeQuery();
             insertarDatos(tabla, rs);
         }
@@ -62,7 +62,7 @@ public class AdministracionAplicacion {
     public static void cargarListaRolesAsociados(String id, JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.ROLES_EN_APLICACION);
-            stmt.setString(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             ResultSet rs = stmt.executeQuery();
             insertarDatos(tabla, rs);
         }
@@ -79,7 +79,7 @@ public class AdministracionAplicacion {
     public static void cargarListaMenusNoAsociados(String id, JTable tabla) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.OBTENER_MENUS_NO_ASOCIADOS);
-            stmt.setString(1, id);
+            stmt.setInt(1, Integer.parseInt(id));
             ResultSet rs = stmt.executeQuery();
             insertarDatos(tabla, rs);
         }
@@ -105,8 +105,8 @@ public class AdministracionAplicacion {
     public static void eliminarMenu(String idApp,String idMenu) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.ELIMINAR_MENU_ASOCIADO);
-            stmt.setString(1, idApp);
-            stmt.setString(2, idMenu);
+            stmt.setInt(1, Integer.parseInt(idApp));
+            stmt.setInt(2, Integer.parseInt(idMenu));
             stmt.executeUpdate();
         }
     }
@@ -114,15 +114,15 @@ public class AdministracionAplicacion {
      public static void eliminarRol(String idRol) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.QUITAR_ROL);
-            stmt.setString(1, idRol);
+            stmt.setInt(1, Integer.parseInt(idRol));
             stmt.executeUpdate();
         }
     }
      public static void agregarRol(String idApp, String idRol) throws SQLException, ClassNotFoundException{
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.AGREGAR_ROL);
-            stmt.setString(1, idApp);
-            stmt.setString(2, idRol);
+            stmt.setInt(1, Integer.parseInt(idApp));
+            stmt.setInt(2, Integer.parseInt(idRol));
             stmt.executeUpdate();
         }
     }
@@ -130,8 +130,8 @@ public class AdministracionAplicacion {
     public static void agregarMenu(String idApp,String idMenu)throws SQLException, ClassNotFoundException{
          try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(AplicacionRW.AGREGAR_MENU);
-            stmt.setString(1, idMenu);
-            stmt.setString(2, idApp);
+            stmt.setInt(1, Integer.parseInt(idMenu));
+            stmt.setInt(2, Integer.parseInt(idApp));
             stmt.executeUpdate();
          }
     }
