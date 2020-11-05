@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class AdministracionSolicitud {
 
-    public static void insertarSolicitudHabilitarUsuario(String idUsuario, Date fecha) {
+    public static void insertarSolicitudHabilitarUsuario(String usuario, Date fecha) {
 
         try {
             Connection con = Configuracion.getConnection();
@@ -33,10 +33,9 @@ public class AdministracionSolicitud {
             stmt.setString(1, "esperando");
             stmt.setDate(2, fecha);
             stmt.setDate(3, date);
-            stmt.setString(4, "");
-            stmt.setInt(5, 1);
-            stmt.setString(6,idUsuario );
-            stmt.setNull(7, 0);
+
+            stmt.setInt(4, 1);
+            stmt.setString(5, usuario);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,4 +44,5 @@ public class AdministracionSolicitud {
         }
 
     }
+    
 }

@@ -14,8 +14,8 @@ public class SolicitudRW {
     public static final String GET_SOLICITUD = "SELECT * FROM solicitud where id_solicitud = ?";
 
     public static final String INSERTAR_SOLICITUD = "INSERT INTO solicitud "
-            + "(estado,fecha_sol,fecha,descripcion,id_tipo_sol,ci_solicitante,id_usuario_autorizante)"
-            + " values (?,?,?,?,?,?,?)";
+            + "(estado,fecha_sol,fecha,id_tipo_sol,id_usuario_solicitante)"
+            + " values (?,?,?,?,?)";
 
     public static final String APROBAR_SOLICITUD = "UPDATE solicitud SET habilitado = true WHERE id_solicitud = ?";
 }
