@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pantallas.adminsitracion.roles.*;
 
 /**
@@ -208,28 +209,43 @@ public class MenuMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrasActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        String met = (String) listaNoRelacion.getSelectedValue();
-        int metodoId = Integer.parseInt(met.split("-")[0]);
-        try {
-            AdministracionMenu.insertarMenuMetodo(metodoId, id);
-            recargaMetodosAgregar();
-        } catch (SQLException ex) {
-            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        int row = listaNoRelacion.getSelectedIndex();
+
+        if (row != -1) {
+
+            String met = (String) listaNoRelacion.getSelectedValue();
+            int metodoId = Integer.parseInt(met.split("-")[0]);
+            try {
+                AdministracionMenu.insertarMenuMetodo(metodoId, id);
+                recargaMetodosAgregar();
+            } catch (SQLException ex) {
+                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un metodo para Agregar", "Error", 0);
         }
     }//GEN-LAST:event_agregarActionPerformed
 
     private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
-        String met = (String) listaRelacion.getSelectedValue();
-        int metodoId = Integer.parseInt(met.split("-")[0]);
-        try {
-            AdministracionMenu.eliminarMenuMetodo(metodoId, id);
-            recargaMetodosAgregar();
-        } catch (SQLException ex) {
-            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+
+        int row = listaRelacion.getSelectedIndex();
+
+        if (row != -1) {
+
+            String met = (String) listaRelacion.getSelectedValue();
+            int metodoId = Integer.parseInt(met.split("-")[0]);
+            try {
+                AdministracionMenu.eliminarMenuMetodo(metodoId, id);
+                recargaMetodosAgregar();
+            } catch (SQLException ex) {
+                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un metodo a quitar", "Error", 0);
         }
     }//GEN-LAST:event_quitarActionPerformed
 

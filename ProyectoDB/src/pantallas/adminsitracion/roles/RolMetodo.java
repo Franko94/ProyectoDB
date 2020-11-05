@@ -202,6 +202,11 @@ public class RolMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+        
+        int row = listaRelacion.getSelectedIndex();
+
+        if (row != -1) {
+        
         String met = (String) listaRelacion.getSelectedValue();
         int metodoId = Integer.parseInt(met.split("-")[0]);
         try {
@@ -212,10 +217,18 @@ public class RolMetodo extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un metodo a quitar", "Error", 0);
+        }
     }//GEN-LAST:event_quitarActionPerformed
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
 
+        
+        int row = listaNoRelacion.getSelectedIndex();
+
+        if (row != -1) {
+        
         String met = (String) listaNoRelacion.getSelectedValue();
         int metodoId = Integer.parseInt(met.split("-")[0]);
         try {
@@ -225,6 +238,9 @@ public class RolMetodo extends javax.swing.JFrame {
             Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un metodo para Agregar", "Error", 0);
         }
 
     }//GEN-LAST:event_agregarActionPerformed
