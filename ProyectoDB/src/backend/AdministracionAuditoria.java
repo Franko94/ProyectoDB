@@ -52,9 +52,14 @@ public class AdministracionAuditoria {
          try (Connection con = Configuracion.getConnection()) {
                 PreparedStatement stmt = con.prepareStatement(AuditoriaRW.INSERTAR_FILA);
                 stmt.setString(1, usuarioS);
-                stmt.setInt(4, Integer.valueOf(descripcion));
+                stmt.setInt(2, Integer.valueOf(descripcion));
                 stmt.setString(3, usuarioA);
-                stmt.setInt(4, Integer.valueOf(rolA));
+                if(rolA == null){
+                    stmt.setNull(4, 0);
+                }
+                else{
+                    stmt.setInt(4, Integer.valueOf(rolA));
+                }
                 stmt.executeUpdate();
          }
     }
