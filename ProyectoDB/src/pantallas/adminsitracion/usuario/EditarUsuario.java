@@ -5,6 +5,8 @@
  */
 package pantallas.adminsitracion.usuario;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -115,6 +117,7 @@ String id_usuario;
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
     try {    // TODO add your handling code here:
         AdministracionUsuarios.editarUsuario(id_usuario, jTextField_Contrasena.getText());
+        AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "3", id_usuario, null);
         AdministracionUsuario admin;
         admin = new AdministracionUsuario();
     admin.setVisible(true);

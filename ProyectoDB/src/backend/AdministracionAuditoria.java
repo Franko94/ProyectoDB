@@ -39,9 +39,15 @@ public class AdministracionAuditoria {
             }
             stmt.setString(1, fecha);
             stmt.setString(2, usuarioS);
-            stmt.setInt(4, Integer.valueOf(descripcion));
+            stmt.setString(3, descripcion);
             stmt.setString(4, usuarioA);
-            stmt.setInt(5, Integer.valueOf(rolA));
+            if(descripcion.equals("")){
+                stmt.setInt(5, 0);
+            }
+             else{
+                stmt.setInt(5, Integer.valueOf(rolA));
+            }
+            
             ResultSet rs = stmt.executeQuery();
             insertarDatos(tabla, rs);
         }
