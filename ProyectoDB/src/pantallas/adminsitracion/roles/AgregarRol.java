@@ -144,11 +144,13 @@ public class AgregarRol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+       String nuevoNombre = Descripcion.getText();
+        
+        if (!"".equals(nuevoNombre)) {
         try {
             try {
                 int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
-                AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
+                AdministracionRoles.insertarRol(nuevoNombre, idAppRol);
                 JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
                 limpiar();
             } catch (ClassNotFoundException ex) {
@@ -163,6 +165,9 @@ public class AgregarRol extends javax.swing.JFrame {
 
             }
 
+        }
+       }else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de rol", "Error", 0);
         }
 
 

@@ -25,7 +25,7 @@ public class Metodos extends javax.swing.JFrame {
     public Metodos() throws SQLException, ClassNotFoundException {
         initComponents();
         this.setLocationRelativeTo(null);
-        AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(),jTextField_FiltroDescripcion.getText(),jTable1);
+        AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(), jTextField_FiltroDescripcion.getText(), jTable1);
     }
 
     /**
@@ -194,13 +194,19 @@ public class Metodos extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        try {
-            AdministracionMetodos.insertarMetodo(jTextField_AgregarDescripcion.getText());
-            AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(),jTextField_FiltroDescripcion.getText(),jTable1);
-        } catch (SQLException ex) {
-            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+        String nuevoNombre = jTextField_AgregarDescripcion.getText();
+        if (!"".equals(nuevoNombre)) {
+
+            try {
+                AdministracionMetodos.insertarMetodo(nuevoNombre);
+                AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(), jTextField_FiltroDescripcion.getText(), jTable1);
+            } catch (SQLException ex) {
+                Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de metodo", "Error", 0);
         }
 
 
@@ -209,7 +215,7 @@ public class Metodos extends javax.swing.JFrame {
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
 
         try {
-            AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(),jTextField_FiltroDescripcion.getText(),jTable1);
+            AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(), jTextField_FiltroDescripcion.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -223,7 +229,7 @@ public class Metodos extends javax.swing.JFrame {
         String id = getSelectedRowId();
         try {
             AdministracionMetodos.eliminarMetodo(id, jTable1);
-            AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(),jTextField_FiltroDescripcion.getText(),jTable1);
+            AdministracionMetodos.cargarTablaMetodos(jTextField_FiltroId.getText(), jTextField_FiltroDescripcion.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

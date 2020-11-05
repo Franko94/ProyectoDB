@@ -46,7 +46,7 @@ public class Aplicaciones extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jTextField_FiltroNombre = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        nombreAppNueva = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,8 +100,6 @@ public class Aplicaciones extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setText("jTextField2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +124,7 @@ public class Aplicaciones extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton5)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nombreAppNueva, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
@@ -148,7 +146,7 @@ public class Aplicaciones extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(137, 137, 137)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreAppNueva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton_Agregar))
                                 .addGap(38, 38, 38)
                                 .addComponent(jButton2))
@@ -189,15 +187,25 @@ public class Aplicaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
+    
+        String nuevoNombre = nombreAppNueva.getText();
+        
+        if (!"".equals(nuevoNombre)) {
         try {
-            AdministracionAplicacion.insertarAplicacion(jTextField2.getText());
+            AdministracionAplicacion.insertarAplicacion(nombreAppNueva.getText());
             AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de aplicacion", "Error", 0);
+        }
+        
     }//GEN-LAST:event_jButton_AgregarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       
         try {
             AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
@@ -273,8 +281,8 @@ public class Aplicaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField_FiltroId;
     private javax.swing.JTextField jTextField_FiltroNombre;
+    private javax.swing.JTextField nombreAppNueva;
     // End of variables declaration//GEN-END:variables
 }

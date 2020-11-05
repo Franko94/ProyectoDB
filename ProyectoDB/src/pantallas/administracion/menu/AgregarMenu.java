@@ -111,20 +111,26 @@ public class AgregarMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
 
-            AdministracionMenu.insertarMenu(Descripcion.getText());
-            JOptionPane.showMessageDialog(null, "Menu ingresado con exito", "Exito", 1);
-            limpiar();
-        } catch (SQLException ex) {
-            if (ex.getMessage().contains("duplicate key value")) {
-                JOptionPane.showMessageDialog(null, "El Menu ya existe", "Error", 0);
-            } else {
+        String nuevoNombre = Descripcion.getText();
+        if (!"".equals(nuevoNombre)) {
+            try {
 
-                Logger.getLogger(AgregarMenu.class.getName()).log(Level.SEVERE, null, ex);
+                AdministracionMenu.insertarMenu(nuevoNombre);
+                JOptionPane.showMessageDialog(null, "Menu ingresado con exito", "Exito", 1);
+                limpiar();
+            } catch (SQLException ex) {
+                if (ex.getMessage().contains("duplicate key value")) {
+                    JOptionPane.showMessageDialog(null, "El Menu ya existe", "Error", 0);
+                } else {
+
+                    Logger.getLogger(AgregarMenu.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
 
             }
-
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de menu", "Error", 0);
         }
 
 
