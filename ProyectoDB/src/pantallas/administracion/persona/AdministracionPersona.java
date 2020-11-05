@@ -177,12 +177,24 @@ public class AdministracionPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EditarActionPerformed
+        int row = jTable1.getSelectedRow();
+
+        if (row != -1) {
+            
+        
+        int fila = jTable1.getSelectedRow();
         String ci = getSelectedRowId();
-        if (!ci.equals("")) {
-            EditarPersona edit = new EditarPersona(ci);
+        String nombre = jTable1.getValueAt(fila, 1).toString();
+        String apellido = jTable1.getValueAt(fila, 2).toString();
+        String nac = jTable1.getValueAt(fila, 4).toString();
+        String mail = jTable1.getValueAt(fila, 3).toString();
+
+            EditarPersona edit = new EditarPersona(ci, nombre, apellido,nac, mail);
             edit.setVisible(true);
+            this.setVisible(false);
+        
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una Persona", "Error", 0);
         }
 
 
