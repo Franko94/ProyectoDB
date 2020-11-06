@@ -248,15 +248,20 @@ public class CrearPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
-        try {
-            AdministracionPersonas.insertarPersona(jTextField_Nombre.getText(), jTextField_Apellido.getText(),
-                    ci, jTextField_Email.getText(), jTextField_Fecha.getText(), jComboBox_Sexo.getSelectedItem().toString());
+        if ("".equals(jTextField_Nombre.getText()) | "".equals(jTextField_Apellido.getText()) | "".equals(jTextField_Email.getText())
+                | "".equals(jTextField_Fecha.getText())) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos", "Error", 0);
+        } else {
+            try {
+                AdministracionPersonas.insertarPersona(jTextField_Nombre.getText(), jTextField_Apellido.getText(),
+                        ci, jTextField_Email.getText(), jTextField_Fecha.getText(), jComboBox_Sexo.getSelectedItem().toString());
 
-            SolicitudCrearUsuario solicitudCrearUsuario = new SolicitudCrearUsuario(ci);
-            solicitudCrearUsuario.setVisible(true);
-            this.dispose();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
+                SolicitudCrearUsuario solicitudCrearUsuario = new SolicitudCrearUsuario(ci);
+                solicitudCrearUsuario.setVisible(true);
+                this.dispose();
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(CrearPersona.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
@@ -300,7 +305,7 @@ public class CrearPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(CrearPersona.ICONIFIED);
+        this.setState(CrearPersona.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
