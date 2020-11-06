@@ -16,12 +16,22 @@ public class SolicitudRW {
     public static final String GET_SOLICITUD = "SELECT * FROM solicitud where id_solicitud = ?";
 
     public static final String INSERTAR_SOLICITUD = "INSERT INTO solicitud "
-            + "(estado,fecha_sol,fecha,id_tipo_sol,id_usuario_solicitante)"
-            + " values (?,?,?,?,?)";
+            + "(estado,fecha_sol,fecha,id_tipo_sol,id_usuario_solicitante,nuevo_valor)"
+            + " values (?,?,?,?,?,?)";
 
-    public static final String APROBAR_SOLICITUD = "UPDATE solicitud SET habilitado = true WHERE id_solicitud = ?";
+    public static final String APROBAR_SOLICITUD = "UPDATE solicitud SET estado = 'aprobado', "
+            + "fecha = now() WHERE id_solicitud = ? ";
+    
+    public static final String NO_APROBAR_SOLICITUD = "UPDATE solicitud SET estado = 'reprobado', "
+            + "fecha = now() WHERE id_solicitud = ? ";
+    
+    public static String GET_TIPO_SOLICITUD = "SELECT id_tipo_sol FROM solicitud where id_solicitud = ?";
+    
+    public static String QUITAR_SOLICITANTE = "UPDATE solicitud SET nuevo_valor = ? , id_usuario_solicitante = null WHERE id_solicitud = ?";
 
-    public static String filtrarSolicitud(String id_solicitud, String estado, String fecha_creacion, String fecha_actualizacion, String descripcion_solicitud, String usuario_solicitante, String aplicacion, String rol, String usuario_autorizante) {
+    public static String filtrarSolicitud(String id_solicitud, String estado, String fecha_creacion, 
+            String fecha_actualizacion, String descripcion_solicitud, String usuario_solicitante, String aplicacion, 
+            String rol, String usuario_autorizante) {
         String where = "where ci_solicitante != " + Configuracion.ci;
         String filtro = "";
         //si el id tiene algo, poner where id = ese_id
@@ -59,6 +69,6 @@ public class SolicitudRW {
         }
         return "SELECT id_solicitud,estado,fecha_sol,fecha_actualizacion,descripcion_solicitud,id_usuario_solicitante,"
                 + "nombre_aplicacion, descripcion_rol,"
-                + "id_usuario_autorizante FROM solicitudes_tipo_solicitudes_usuarios_con_roles_y_ci " + where + filtro;
+                + "id_usuario_autorizante, nuevo_valor FROM solicitudes_tipo_solicitudes_usuarios_con_roles_y_ci " + where + filtro;
     }
 }

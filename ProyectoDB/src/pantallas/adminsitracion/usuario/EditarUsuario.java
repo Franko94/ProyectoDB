@@ -114,7 +114,7 @@ String id_usuario;
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
     try {    // TODO add your handling code here:
-        AdministracionUsuarios.editarUsuario(id_usuario, jTextField_Contrasena.getText());
+        AdministracionUsuarios.editarNombreUsuario(id_usuario, jTextField_Contrasena.getText());
         AdministracionUsuario admin;
         admin = new AdministracionUsuario();
     admin.setVisible(true);
