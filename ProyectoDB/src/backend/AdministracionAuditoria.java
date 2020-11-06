@@ -83,8 +83,8 @@ public class AdministracionAuditoria {
         
          
         while (rs.next()){
-            Object [] fila = new Object[4];
-            for (int i=0;i<4;i++)
+            Object [] fila = new Object[5];
+            for (int i=0;i<=4;i++)
                 fila[i] = rs.getObject(i+2);
             modelo.addRow(fila);
         }
