@@ -181,7 +181,8 @@ public class ComprobarPersona extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
-        try {
+        if(AdministracionPersonas.esCIValida(jTextField_CI.getText())){
+         try {
             // TODO add your handling code here:
             //si la persona exite, se la manda a crear un usuario
             if (!AdministracionPersonas.personaExiste(jTextField_CI.getText())) {
@@ -199,7 +200,11 @@ public class ComprobarPersona extends javax.swing.JFrame {
             Logger.getLogger(ComprobarPersona.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ComprobarPersona.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        }else{
+            JOptionPane.showMessageDialog(null, "La cédula ingresada no es válida", "Error", 0);
         }
+        
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
