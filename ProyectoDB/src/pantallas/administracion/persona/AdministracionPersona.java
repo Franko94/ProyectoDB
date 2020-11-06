@@ -5,13 +5,14 @@
  */
 package pantallas.administracion.persona;
 
-
 import backend.AdministracionPersonas;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import pantallas.login.Login;
 import pantallas.login.MenuPrincipal;
+import java.awt.Color;
 
 /**
  *
@@ -24,8 +25,21 @@ public class AdministracionPersona extends javax.swing.JFrame {
      */
     public AdministracionPersona() throws SQLException, ClassNotFoundException {
         initComponents();
-        AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(),jTextField_Nombre.getText(),jTextField_Apellido.getText(),jTextField_Fecha.getText(),jTextField_Correo.getText(),jTextField_Sexo.getText(),jTable1);
-         }
+        this.setLocationRelativeTo(null);
+        AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(), jTextField_Nombre.getText(), jTextField_Apellido.getText(), jTextField_Fecha.getText(), jTextField_Correo.getText(), jTextField_Sexo.getText(), jTable1);
+    }
+
+    private void desvanecer() {
+        for (double i = 1.0; i >= 0.0; i -= 0.1) {
+            float f = (float) i;
+            this.setOpacity(f);
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,8 +64,18 @@ public class AdministracionPersona extends javax.swing.JFrame {
         jTextField_Fecha = new javax.swing.JTextField();
         jTextField_Correo = new javax.swing.JTextField();
         jTextField_Sexo = new javax.swing.JTextField();
+        panTitulo5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        btnSalir5 = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Persona");
 
@@ -109,12 +133,83 @@ public class AdministracionPersona extends javax.swing.JFrame {
             }
         });
 
+        panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
+        panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnSalir5.setText("X");
+        btnSalir5.setAlignmentY(0.0F);
+        btnSalir5.setBorder(null);
+        btnSalir5.setBorderPainted(false);
+        btnSalir5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir5.setFocusPainted(false);
+        btnSalir5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSalir5.setIconTextGap(0);
+        btnSalir5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseExited(evt);
+            }
+        });
+        btnSalir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir5ActionPerformed(evt);
+            }
+        });
+
+        btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnMinimizar.setText("-");
+        btnMinimizar.setAlignmentY(0.0F);
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setFocusPainted(false);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setIconTextGap(0);
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panTitulo5Layout = new javax.swing.GroupLayout(panTitulo5);
+        panTitulo5.setLayout(panTitulo5Layout);
+        panTitulo5Layout.setHorizontalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panTitulo5Layout.setVerticalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField_CI, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,23 +230,25 @@ public class AdministracionPersona extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(86, 86, 86))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Buscar)))
-                .addGap(33, 33, 33))
+                        .addComponent(jButton_Buscar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(25, 25, 25))
+            .addComponent(panTitulo5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                        .addGap(12, 12, 12)
                         .addComponent(jButton_Buscar)))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -161,27 +258,38 @@ public class AdministracionPersona extends javax.swing.JFrame {
                     .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Agregar)
                     .addComponent(jButton_Editar)
                     .addComponent(jButton_Eliminar)
                     .addComponent(jButton4))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EditarActionPerformed
-        String ci = getSelectedRowId();
-        if (!ci.equals("")) {
-            EditarPersona edit = new EditarPersona(ci);
+        int row = jTable1.getSelectedRow();
+
+        if (row != -1) {
+
+            int fila = jTable1.getSelectedRow();
+            String ci = getSelectedRowId();
+            String nombre = jTable1.getValueAt(fila, 1).toString();
+            String apellido = jTable1.getValueAt(fila, 2).toString();
+            String mail = jTable1.getValueAt(fila, 3).toString();
+            String nac = jTable1.getValueAt(fila, 4).toString();
+            
+            EditarPersona edit = new EditarPersona(ci, nombre, apellido, mail, nac);
             edit.setVisible(true);
+            this.setVisible(false);
+
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una Persona", "Error", 0);
         }
 
 
@@ -194,7 +302,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
-        ComprobarPersona cp = new  ComprobarPersona();
+        ComprobarPersona cp = new ComprobarPersona();
         cp.setVisible(true);
 
     }//GEN-LAST:event_jButton_AgregarActionPerformed
@@ -202,7 +310,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
 
         try {
-            AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(),jTextField_Nombre.getText(),jTextField_Apellido.getText(),jTextField_Fecha.getText(),jTextField_Correo.getText(),jTextField_Sexo.getText(),jTable1);
+            AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(), jTextField_Nombre.getText(), jTextField_Apellido.getText(), jTextField_Fecha.getText(), jTextField_Correo.getText(), jTextField_Sexo.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionPersona.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -216,7 +324,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
         String id = getSelectedRowId();
         try {
             AdministracionPersonas.eliminarPersona(id);
-            AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(),jTextField_Nombre.getText(),jTextField_Apellido.getText(),jTextField_Fecha.getText(),jTextField_Correo.getText(),jTextField_Sexo.getText(),jTable1);
+            AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(), jTextField_Nombre.getText(), jTextField_Apellido.getText(), jTextField_Fecha.getText(), jTextField_Correo.getText(), jTextField_Sexo.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionPersona.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -229,6 +337,53 @@ public class AdministracionPersona extends javax.swing.JFrame {
     private void jTextField_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_NombreActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        for (double i = 0.0; i <= 1.0; i += 0.1) {
+            float f = (float) i;
+            this.setOpacity(f);
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == 0) {
+            desvanecer();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnSalir5MouseClicked
+
+    private void btnSalir5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseEntered
+        btnSalir5.setBackground(Color.red);
+        btnSalir5.setForeground(Color.white);
+    }//GEN-LAST:event_btnSalir5MouseEntered
+
+    private void btnSalir5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseExited
+        btnSalir5.setBackground(Color.white);
+        btnSalir5.setForeground(Color.black);
+    }//GEN-LAST:event_btnSalir5MouseExited
+
+    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir5ActionPerformed
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+        this.setState(AdministracionPersona.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
+        btnMinimizar.setBackground(Color.gray);
+    }//GEN-LAST:event_btnMinimizarMouseEntered
+
+    private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
+        btnMinimizar.setBackground(Color.white);
+    }//GEN-LAST:event_btnMinimizarMouseExited
 
     private String getSelectedRowId() {
         int fila = jTable1.getSelectedRow();
@@ -286,12 +441,15 @@ public class AdministracionPersona extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnSalir5;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton_Agregar;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Editar;
     private javax.swing.JButton jButton_Eliminar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField_Apellido;
@@ -300,5 +458,6 @@ public class AdministracionPersona extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Fecha;
     private javax.swing.JTextField jTextField_Nombre;
     private javax.swing.JTextField jTextField_Sexo;
+    private javax.swing.JPanel panTitulo5;
     // End of variables declaration//GEN-END:variables
 }
