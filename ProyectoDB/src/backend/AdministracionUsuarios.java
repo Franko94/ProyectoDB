@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import accesosBD.CryptWithMD5;
 
 /**
  *
@@ -29,7 +30,7 @@ public class AdministracionUsuarios {
         String sql = UsuarioRW.GET_USUARIOYCONTRASENA;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, usuario);
-        stmt.setString(2, password);
+        stmt.setString(2, CryptWithMD5.cryptWithMD5(password));
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
@@ -46,12 +47,13 @@ public class AdministracionUsuarios {
     public static void insertarUsuario(String idUsuario, String contrasena, String ci)
             throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
-
+        
+        
         Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
         String sql = UsuarioRW.INSERTAR_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, idUsuario);
-        stmt.setString(2, contrasena);
+        stmt.setString(2, CryptWithMD5.cryptWithMD5(contrasena));
         stmt.setDate(3, date);
         stmt.setNull(4, 0);
         stmt.setInt(5, Integer.parseInt(ci));
