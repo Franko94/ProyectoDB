@@ -9,6 +9,7 @@ import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import pantallas.login.Login;
 
 /**
  *
@@ -41,6 +42,12 @@ String id_usuario;
         jButtonAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Editar Usuario");
@@ -140,6 +147,19 @@ String id_usuario;
             Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonAtrasActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+                for (double i = 0.0; i <= 1.0; i += 0.1) {
+            float f = (float) i;
+            this.setOpacity(f);
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
