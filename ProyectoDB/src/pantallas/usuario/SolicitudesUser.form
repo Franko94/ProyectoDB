@@ -27,21 +27,23 @@
               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jTextField_Id_solicitud" min="-2" pref="78" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jTextField_Estado" min="-2" pref="76" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField_Fecha_Creacion" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="jTextField_Id_solicitud" min="-2" pref="104" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField_Fecha_actualizacion" min="-2" pref="77" max="-2" attributes="0"/>
+                      <Component id="jTextField_Estado" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextField_Fecha_Creacion" min="-2" pref="99" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextField_Fecha_actualizacion" min="-2" pref="101" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextField_Tipo_Solicitud" min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jTextField_Usuario" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField_Tipo_Solicitud" min="-2" pref="81" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Component id="jTextField_Usuario" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="jTextField_Aplicacion" min="-2" pref="104" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField_Rol_Solicitado" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="jTextField_Rol_Solicitado" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField_Usuario_autorizante" max="32767" attributes="0"/>
+                      <Component id="jTextField_Usuario_autorizante" min="-2" pref="109" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jButton_Autorizar" min="-2" pref="94" max="-2" attributes="0"/>
@@ -50,7 +52,7 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jButton_Inicio" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" pref="677" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -84,6 +86,7 @@
                   <Component id="jTextField_Usuario" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField_Rol_Solicitado" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextField_Usuario_autorizante" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField_Aplicacion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="184" max="-2" attributes="0"/>
@@ -114,19 +117,25 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="4">
+              <Table columnCount="9" rowCount="4">
                 <Column editable="true" title="Id Solicitud" type="java.lang.Object"/>
                 <Column editable="true" title="Estado" type="java.lang.Object"/>
                 <Column editable="true" title="Fecha Creacion" type="java.lang.Object"/>
                 <Column editable="true" title="&#xda;ltima actualizaci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="true" title="Tipo de Solicitud" type="java.lang.Object"/>
                 <Column editable="true" title="Usuario" type="java.lang.Object"/>
+                <Column editable="true" title="Aplicacion" type="java.lang.Object"/>
                 <Column editable="true" title="Rol Solicitado" type="java.lang.Object"/>
                 <Column editable="true" title="Autorizante" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -216,6 +225,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Fecha_Creacion">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_Fecha_CreacionActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Fecha_actualizacion">
     </Component>
@@ -226,6 +238,8 @@
     <Component class="javax.swing.JTextField" name="jTextField_Rol_Solicitado">
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField_Usuario_autorizante">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField_Aplicacion">
     </Component>
   </SubComponents>
 </Form>

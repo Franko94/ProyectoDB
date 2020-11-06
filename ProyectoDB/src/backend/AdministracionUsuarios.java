@@ -114,4 +114,19 @@ public class AdministracionUsuarios {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
+
+    public static int GetCI(String usuario) throws SQLException, ClassNotFoundException {
+        int ci = -1;
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(UsuarioRW.GET_CI);
+            stmt.setString(1, usuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+               ci = rs.getInt("ci");
+            }
+            return ci;
+        }
+    }
+    
 }

@@ -5,7 +5,7 @@
  */
 package pantallas.usuario;
 
-
+import backend.AdministracionSolicitud;
 import pantallas.adminsitracion.usuario.*;
 import pantallas.administracion.persona.*;
 import backend.AdministracionUsuarios;
@@ -26,8 +26,8 @@ public class SolicitudesUser extends javax.swing.JFrame {
      */
     public SolicitudesUser() throws SQLException, ClassNotFoundException {
         initComponents();
-        AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(),jTextField_Estado.getText(),jTextField_Fecha_Creacion.getText(),jTextField_Fecha_actualizacion.getText(),jTextField_Tipo_Solicitud.getText(),jTextField_Usuario.getText(),jTable1);
-         }
+        AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +53,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
         jTextField_Usuario = new javax.swing.JTextField();
         jTextField_Rol_Solicitado = new javax.swing.JTextField();
         jTextField_Usuario_autorizante = new javax.swing.JTextField();
+        jTextField_Aplicacion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,13 +61,13 @@ public class SolicitudesUser extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Solicitud", "Estado", "Fecha Creacion", "Última actualización", "Tipo de Solicitud", "Usuario", "Rol Solicitado", "Autorizante"
+                "Id Solicitud", "Estado", "Fecha Creacion", "Última actualización", "Tipo de Solicitud", "Usuario", "Aplicacion", "Rol Solicitado", "Autorizante"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -105,6 +106,12 @@ public class SolicitudesUser extends javax.swing.JFrame {
             }
         });
 
+        jTextField_Fecha_Creacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_Fecha_CreacionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,28 +120,30 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField_Id_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextField_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Fecha_Creacion, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Id_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField_Fecha_actualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_Fecha_Creacion, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_Fecha_actualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_Tipo_Solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Tipo_Solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jTextField_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Aplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Rol_Solicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_Rol_Solicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Usuario_autorizante))
+                        .addComponent(jTextField_Usuario_autorizante, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton_Autorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton_NO_Autorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_Inicio))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,7 +169,8 @@ public class SolicitudesUser extends javax.swing.JFrame {
                     .addComponent(jTextField_Tipo_Solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_Rol_Solicitado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Usuario_autorizante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Usuario_autorizante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Aplicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
@@ -176,13 +186,6 @@ public class SolicitudesUser extends javax.swing.JFrame {
 
     private void jButton_NO_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NO_AutorizarActionPerformed
         String id_usuario = getSelectedRowId();
-        if (!id_usuario.equals("")) {
-            EditarUsuario edit = new EditarUsuario(id_usuario);
-            edit.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
-        }
-
 
     }//GEN-LAST:event_jButton_NO_AutorizarActionPerformed
 
@@ -193,26 +196,29 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AutorizarActionPerformed
-        ComprobarPersona cp = new  ComprobarPersona();
-        cp.setVisible(true);
+
 
     }//GEN-LAST:event_jButton_AutorizarActionPerformed
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
-
         try {
-            AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(),jTextField_Estado.getText(),jTextField_Fecha_Creacion.getText(),jTextField_Fecha_actualizacion.getText(),jTextField_Tipo_Solicitud.getText(),jTextField_Usuario.getText(),jTable1);
+            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+
     }//GEN-LAST:event_jButton_BuscarActionPerformed
 
     private void jTextField_EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_EstadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_EstadoActionPerformed
+
+    private void jTextField_Fecha_CreacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_Fecha_CreacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_Fecha_CreacionActionPerformed
 
     private String getSelectedRowId() {
         int fila = jTable1.getSelectedRow();
@@ -270,6 +276,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField_Aplicacion;
     private javax.swing.JTextField jTextField_Estado;
     private javax.swing.JTextField jTextField_Fecha_Creacion;
     private javax.swing.JTextField jTextField_Fecha_actualizacion;

@@ -18,6 +18,7 @@ import java.sql.SQLException;
 public class Configuracion {
     
     public static String usuario;
+    public static int ci;
     
     //para franco
     
