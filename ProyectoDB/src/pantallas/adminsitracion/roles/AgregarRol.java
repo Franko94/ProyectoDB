@@ -5,8 +5,10 @@
  */
 package pantallas.adminsitracion.roles;
 
+import accesosBD.Configuracion;
 import backend.AdministracionRoles;
 import backend.AdministracionAplicacion;
+import backend.AdministracionAuditoria;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -149,6 +151,7 @@ public class AgregarRol extends javax.swing.JFrame {
                 int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
                 AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
                 JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "7", null, AdministracionRoles.getIdRol(Descripcion.getText()));
                 limpiar();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);

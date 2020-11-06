@@ -5,6 +5,8 @@
  */
 package pantallas.adminsitracion.roles;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -118,7 +120,7 @@ public class EditarRol extends javax.swing.JFrame {
 
             try {
                 AdministracionRoles.editarRol(Integer.parseInt(lblId.getText()), nuevoNombre.getText());
-
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "8", null,id );
                 JOptionPane.showMessageDialog(null, "Rol editado con exito", "Exito", 1);
 
                 lbldescripcion.setText(nuevoNombre.getText());

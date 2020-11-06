@@ -30,6 +30,19 @@ public class AdministracionRoles {
 
         stmt.executeUpdate();
     }
+    
+    public static Integer getIdRol(String descripcion) throws SQLException, ClassNotFoundException{
+        Connection con = Configuracion.getConnection();
+        String sql = RolRW.GET_ID_ROL;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, descripcion);
+        ResultSet rs = stmt.executeQuery();
+        Integer res = -1;
+        if (rs.next()) {
+            res = Integer.valueOf(rs.getString("id_rol"));
+        }
+        return res;
+    }
     public static void insertarRolMetodo(int idRol, int idMetodo) throws SQLException {
         Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
         String sql = RolRW.INSERTAR_ROL_METODO;

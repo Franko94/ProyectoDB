@@ -5,6 +5,8 @@
  */
 package pantallas.adminsitracion.roles;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import backend.AdministracionRoles;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -214,6 +216,7 @@ public class AdminRoles extends javax.swing.JFrame {
         int valor = (int) jTable1.getValueAt(row, 0);
         try {
             AdministracionRoles.eliminarRol(valor, jTable1);
+            AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "9", null,valor );
             JOptionPane.showMessageDialog(null, "Rol eliminado correctamente", "Eliminacion", 1);
             AdministracionRoles.cargarRoles(jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
