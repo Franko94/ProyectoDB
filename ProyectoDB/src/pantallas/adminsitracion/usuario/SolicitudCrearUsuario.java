@@ -201,18 +201,22 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
             try {
             // TODO add your handling code here:
             //si el usuario no existe, lo creamos
-            if (!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())) {
-                AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(),
-                        jPasswordField_Contrasena.getText(), ci);
-
-                JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
-                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario,"1", jTextField_Nombre.getText(), null);
-
-                Login login = new Login();
-                this.dispose();
-            } //si existe levanto error
-            else {
-                JOptionPane.showMessageDialog(null, "usuario ya en uso, pruebe con otro");
+            if(!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())){
+                if(jPasswordField_Contrasena.getText().length()>=6){
+                    AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
+                    jPasswordField_Contrasena.getText(), ci);
+                    JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
+                    AdministracionAuditoria.agregarAuditoria(Configuracion.usuario,"1", jTextField_Nombre.getText(), null);
+                    Login login = new Login();
+                    this.dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"La contraseña debe tener minimo 6 caracteres");
+                }
+            }
+            //si existe levanto error
+            else{
+                JOptionPane.showMessageDialog(null,"usuario ya en uso, pruebe con otro");
             }
         } catch (SQLException ex) {
             Logger.getLogger(SolicitudCrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
