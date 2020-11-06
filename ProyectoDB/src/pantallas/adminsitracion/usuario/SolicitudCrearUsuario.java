@@ -5,6 +5,7 @@
  */
 package pantallas.adminsitracion.usuario;
 
+import accesosBD.Configuracion;
 import backend.AdministracionAuditoria;
 import backend.AdministracionUsuarios;
 import java.awt.Color;
@@ -202,8 +203,10 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
             if (!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())) {
                 AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(),
                         jPasswordField_Contrasena.getText(), ci);
-                JOptionPane.showMessageDialog(null, "usuario creado con EXITO, puede volver al inicio");
-                AdministracionAuditoria.agregarAuditoria(null, "1", jTextField_Nombre.getText(), null);
+
+                JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario,"1", jTextField_Nombre.getText(), null);
+
                 Login login = new Login();
                 this.dispose();
             } //si existe levanto error

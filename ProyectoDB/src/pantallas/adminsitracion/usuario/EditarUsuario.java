@@ -5,6 +5,8 @@
  */
 package pantallas.adminsitracion.usuario;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import backend.AdministracionUsuarios;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -216,18 +218,19 @@ public class EditarUsuario extends javax.swing.JFrame {
 
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        try {    // TODO add your handling code here:
-            AdministracionUsuarios.editarUsuario(id_usuario, jTextField_Contrasena.getText());
-            AdministracionUsuario admin;
-            admin = new AdministracionUsuario();
-            admin.setVisible(true);
 
-        } catch (SQLException ex) {
-            Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    try {    // TODO add your handling code here:
+        AdministracionUsuarios.editarUsuario(id_usuario, jTextField_Contrasena.getText());
+        AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "3", id_usuario, null);
+        AdministracionUsuario admin;
+        admin = new AdministracionUsuario();
+    admin.setVisible(true);
+        
+    } catch (SQLException ex) {
+        Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
