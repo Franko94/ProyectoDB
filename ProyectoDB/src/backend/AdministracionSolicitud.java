@@ -75,7 +75,6 @@ public class AdministracionSolicitud {
             Object[] fila = new Object[9];
             for (int i = 0; i < 9; i++) {
                 fila[i] = rs.getObject(i + 1);
-                System.out.println(String.valueOf(fila[i]));
             }
             modelo.addRow(fila);
         }

@@ -51,7 +51,7 @@ public class UsuarioRW {
             filtro += " habilitado = " +  habilitado + " or ";
         }
         if (!filtro.equalsIgnoreCase("")) {
-            where = "where";
+            where = "where ";
             filtro = removeLast3Characters(filtro);
 
         }
