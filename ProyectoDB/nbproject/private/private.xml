@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/administracion/Auditoria/Auditoria.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/AplicacionRW.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/login/Login.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/Configuracion.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/usuario/SolicitudCrearUsuario.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/usuario/EditarUsuario.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/UsuarioRW.java</file>
             <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionUsuarios.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionSolicitud.java</file>
-            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionAplicacion.java</file>
         </group>
     </open-files>
 </project-private>

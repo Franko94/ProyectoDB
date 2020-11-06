@@ -64,6 +64,8 @@ public class EditarUsuario extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField_Nombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -164,6 +166,8 @@ public class EditarUsuario extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel2.setText("Nombre");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,11 +181,18 @@ public class EditarUsuario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButtonAtras)
                         .addGap(89, 89, 89))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addComponent(jButtonAceptar)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(panTitulo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(266, 266, 266)
+                        .addComponent(jButtonAceptar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel2)
+                        .addGap(115, 115, 115)
+                        .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(175, 175, 175)
@@ -196,7 +207,11 @@ public class EditarUsuario extends javax.swing.JFrame {
                 .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addComponent(jButtonAceptar)
                 .addGap(23, 23, 23)
                 .addComponent(jButtonAtras)
@@ -220,8 +235,8 @@ public class EditarUsuario extends javax.swing.JFrame {
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
 
     try {    // TODO add your handling code here:
-
-        AdministracionUsuarios.editarUsuario(id_usuario, jTextField_Contrasena.getText());
+        AdministracionUsuarios.editarNombreUsuario(id_usuario, jTextField_Nombre.getText());
+        AdministracionUsuarios.editarContrasenaUsuario(id_usuario, jTextField_Contrasena.getText());
         AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "3", id_usuario, null);
         AdministracionUsuario admin;
         admin = new AdministracionUsuario();
@@ -343,8 +358,10 @@ public class EditarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAtras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField_Contrasena;
+    private javax.swing.JTextField jTextField_Nombre;
     private javax.swing.JPanel panTitulo5;
     // End of variables declaration//GEN-END:variables
 }

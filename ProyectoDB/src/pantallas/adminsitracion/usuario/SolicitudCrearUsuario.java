@@ -23,6 +23,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
 
     String ci;
 
+
     /**
      * Creates new form SolicitudCrearUsuario
      */
@@ -201,7 +202,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
             try {
             // TODO add your handling code here:
             //si el usuario no existe, lo creamos
-            if (!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())) {
+            if(!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())){
                 AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(),
                         jPasswordField_Contrasena.getText(), ci);
 
