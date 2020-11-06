@@ -281,10 +281,10 @@ public class AdministracionPersona extends javax.swing.JFrame {
             String ci = getSelectedRowId();
             String nombre = jTable1.getValueAt(fila, 1).toString();
             String apellido = jTable1.getValueAt(fila, 2).toString();
-            String nac = jTable1.getValueAt(fila, 4).toString();
             String mail = jTable1.getValueAt(fila, 3).toString();
-
-            EditarPersona edit = new EditarPersona(ci, nombre, apellido, nac, mail);
+            String nac = jTable1.getValueAt(fila, 4).toString();
+            
+            EditarPersona edit = new EditarPersona(ci, nombre, apellido, mail, nac);
             edit.setVisible(true);
             this.setVisible(false);
 
