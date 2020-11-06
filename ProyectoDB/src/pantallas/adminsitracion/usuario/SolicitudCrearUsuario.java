@@ -23,6 +23,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
 
     String ci;
 
+
     /**
      * Creates new form SolicitudCrearUsuario
      */

@@ -63,12 +63,29 @@ public class AdministracionUsuarios {
         //armo la solicitud para ser aprobada y que el usuario quede habilitado 
         AdministracionSolicitud.insertarSolicitudHabilitarUsuario(idUsuario, date);
     }
-    public static void editarUsuario(String id_usuario, String id_usuario_nuevo) throws SQLException, ClassNotFoundException {
+
+    public static void editarNombreUsuario(String id_usuario, String id_usuario_nuevo) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.EDITAR_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, id_usuario);
         stmt.setString(2, id_usuario_nuevo);
+        stmt.executeUpdate();
+    }
+    public static void editarContrasenaUsuario(String id_usuario, String contrasena) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.EDITAR_CONTRASENA;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, id_usuario);
+        stmt.setString(2, CryptWithMD5.cryptWithMD5(contrasena));
+        stmt.executeUpdate();
+    }
+    public static void editarRolUsuario(String id_usuario, String rol) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.SET_ROL;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(2, id_usuario);
+        stmt.setString(1, rol);
         stmt.executeUpdate();
     }
 
@@ -82,7 +99,7 @@ public class AdministracionUsuarios {
 
     public static void cargarTablaUsuarios(String id_usuario, String ci, String fecha, String descripcion_rol, String nombre_aplicacion, String habilitado, JTable tabla) throws SQLException, ClassNotFoundException {
         try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(UsuarioRW.filtrarUsuarios(id_usuario,ci, fecha,descripcion_rol, nombre_aplicacion, habilitado));
+            PreparedStatement stmt = con.prepareStatement(UsuarioRW.filtrarUsuarios(id_usuario, ci, fecha, descripcion_rol, nombre_aplicacion, habilitado));
             ResultSet rs = stmt.executeQuery();
             insertarDatos(tabla, rs);
         }
@@ -107,7 +124,16 @@ public class AdministracionUsuarios {
             modelo.addRow(fila);
         }
     }
-    
+
+    public static boolean usuarioIsHabilitado(String usuario) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.USUARIO_IS_HABILITADO;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, usuario);
+        ResultSet rs = stmt.executeQuery();
+        return rs.next();
+    }
+
     public static boolean usuarioIsAdmin(String usuario) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.USUARIO_IS_ADMIN;
@@ -116,4 +142,27 @@ public class AdministracionUsuarios {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
+
+    public static int GetCI(String usuario) throws SQLException, ClassNotFoundException {
+        int ci = -1;
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(UsuarioRW.GET_CI);
+            stmt.setString(1, usuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ci = rs.getInt("ci");
+            }
+            return ci;
+        }
+    }
+    
+     public static void Habilitar(String id_usuario) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.USUARIO_HABILITAR;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, id_usuario);
+        stmt.executeUpdate();
+    }
+
 }

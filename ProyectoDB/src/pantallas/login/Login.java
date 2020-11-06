@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pantallas.usuario.MenuPrincipalUser;
 
 
@@ -230,6 +231,8 @@ public class Login extends javax.swing.JFrame {
             if (AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(),
                     String.valueOf(jPasswordField_Contrasena.getPassword()))) {
                 Configuracion.usuario = jTextField_Usuario.getText();
+                Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
+                System.out.println(Configuracion.ci);
                 if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
                     MenuPrincipal mp = new MenuPrincipal();
                     mp.setVisible(true);

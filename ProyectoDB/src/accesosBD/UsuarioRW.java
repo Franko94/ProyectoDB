@@ -21,9 +21,20 @@ public class UsuarioRW {
     
     public static String ELIMINAR_USUARIO = "DELETE FROM usuario where id_usuario = ?";
     
-    public static String EDITAR_USUARIO = "update usuario set contrasena = ? , where id_usuario = ?";
+    public static String EDITAR_USUARIO = "update usuario set id_usuario = ? , where id_usuario = ?";
+    
+    public static String EDITAR_CONTRASENA = "update usuario set contrasena = ? , where id_usuario = ?";
     
     public static String USUARIO_IS_ADMIN = "SELECT descripcion_rol FROM ususarios_con_roles_y_ci where id_usuario = ? and descripcion_rol = 'admin'";
+    
+    public static String USUARIO_IS_HABILITADO = "SELECT habilitado FROM usuario WHERE id_usuario = ?";
+    
+    public static String USUARIO_HABILITAR = "UPDATE usuario set habilitado = true WHERE id_usuario = ?";
+    
+    public static String GET_CI = "SELECT ci FROM usuario where id_usuario = ?";
+    
+    public static String SET_ROL = "UPDATE usuario set id_rol = ? WHERE id_usuario = ?";
+    
     
     public static String filtrarUsuarios(String id_usuario, String ci, String fecha, String descripcion_rol, String nombre_aplicacion, String habilitado) {
         String where = "";
@@ -48,7 +59,7 @@ public class UsuarioRW {
             filtro += " habilitado = " +  habilitado + " or ";
         }
         if (!filtro.equalsIgnoreCase("")) {
-            where = "where";
+            where = "where ";
             filtro = removeLast3Characters(filtro);
 
         }
