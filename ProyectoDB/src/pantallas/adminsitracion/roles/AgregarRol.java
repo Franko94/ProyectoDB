@@ -5,8 +5,10 @@
  */
 package pantallas.adminsitracion.roles;
 
+import accesosBD.Configuracion;
 import backend.AdministracionRoles;
 import backend.AdministracionAplicacion;
+import backend.AdministracionAuditoria;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -248,18 +250,18 @@ public class AgregarRol extends javax.swing.JFrame {
 
         if (!"".equals(nuevoNombre)) {
             try {
-                try {
-                    int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
-                    AdministracionRoles.insertarRol(nuevoNombre, idAppRol);
-                    JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
-                    limpiar();
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } catch (SQLException ex) {
-                if (ex.getMessage().contains("duplicate key value")) {
-                    JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
-                } else {
+                int idAppRol = AdministracionAplicacion.getIdAplicacion(jComboBox1.getSelectedItem().toString());
+                AdministracionRoles.insertarRol(Descripcion.getText(), idAppRol);
+                JOptionPane.showMessageDialog(null, "Rol ingresado con exito", "Exito", 1);
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "7", null, AdministracionRoles.getIdRol(Descripcion.getText()));
+                limpiar();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            if (ex.getMessage().contains("duplicate key value")) {
+                JOptionPane.showMessageDialog(null, "El rol ya existe", "Error", 0);
+            } else {
 
                     Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
 

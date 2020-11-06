@@ -54,7 +54,7 @@ public class AdministracionAuditoria {
     }
     
     public static void agregarAuditoria(String usuarioS,
-         String descripcion, String usuarioA, String rolA) throws SQLException, ClassNotFoundException{
+         String descripcion, String usuarioA, Integer rolA) throws SQLException, ClassNotFoundException{
          try (Connection con = Configuracion.getConnection()) {
                 PreparedStatement stmt = con.prepareStatement(AuditoriaRW.INSERTAR_FILA);
                 stmt.setString(1, usuarioS);
@@ -64,7 +64,7 @@ public class AdministracionAuditoria {
                     stmt.setNull(4, 0);
                 }
                 else{
-                    stmt.setInt(4, Integer.valueOf(rolA));
+                    stmt.setInt(4, rolA);
                 }
                
                 stmt.executeUpdate();
@@ -83,8 +83,8 @@ public class AdministracionAuditoria {
         
          
         while (rs.next()){
-            Object [] fila = new Object[4];
-            for (int i=0;i<4;i++)
+            Object [] fila = new Object[5];
+            for (int i=0;i<=4;i++)
                 fila[i] = rs.getObject(i+2);
             modelo.addRow(fila);
         }
