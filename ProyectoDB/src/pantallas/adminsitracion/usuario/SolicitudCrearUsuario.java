@@ -7,6 +7,7 @@ package pantallas.adminsitracion.usuario;
 
 import backend.AdministracionAuditoria;
 import backend.AdministracionUsuarios;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,17 +19,29 @@ import pantallas.login.Login;
  * @author Agustin
  */
 public class SolicitudCrearUsuario extends javax.swing.JFrame {
+
     String ci;
-    
 
     /**
      * Creates new form SolicitudCrearUsuario
      */
     public SolicitudCrearUsuario(String cedula) {
         initComponents();
-        this.ci=cedula;
+        this.ci = cedula;
         this.setLocationRelativeTo(null);
-        
+
+    }
+
+    private void desvanecer() {
+        for (double i = 1.0; i >= 0.0; i -= 0.1) {
+            float f = (float) i;
+            this.setOpacity(f);
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     /**
@@ -41,6 +54,10 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton_Aceptar = new javax.swing.JButton();
+        panTitulo5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        btnSalir5 = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField_Nombre = new javax.swing.JTextField();
@@ -61,6 +78,77 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
             }
         });
 
+        panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
+        panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnSalir5.setText("X");
+        btnSalir5.setAlignmentY(0.0F);
+        btnSalir5.setBorder(null);
+        btnSalir5.setBorderPainted(false);
+        btnSalir5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir5.setFocusPainted(false);
+        btnSalir5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSalir5.setIconTextGap(0);
+        btnSalir5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseExited(evt);
+            }
+        });
+        btnSalir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir5ActionPerformed(evt);
+            }
+        });
+
+        btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnMinimizar.setText("-");
+        btnMinimizar.setAlignmentY(0.0F);
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setFocusPainted(false);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setIconTextGap(0);
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panTitulo5Layout = new javax.swing.GroupLayout(panTitulo5);
+        panTitulo5.setLayout(panTitulo5Layout);
+        panTitulo5Layout.setHorizontalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panTitulo5Layout.setVerticalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         jLabel1.setText("Nombre de usuario deseado");
 
         jLabel2.setText("Contraseña");
@@ -70,7 +158,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_Aceptar)
                 .addGap(162, 162, 162))
             .addGroup(layout.createSequentialGroup()
@@ -83,11 +171,15 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
                     .addComponent(jPasswordField_Contrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                     .addComponent(jTextField_Nombre))
                 .addGap(27, 27, 27))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -95,7 +187,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
                 .addComponent(jButton_Aceptar)
                 .addGap(30, 30, 30))
         );
@@ -107,17 +199,16 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //si el usuario no existe, lo creamos
-            if(!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())){
-                AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
+            if (!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())) {
+                AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(),
                         jPasswordField_Contrasena.getText(), ci);
-                JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
-                AdministracionAuditoria.agregarAuditoria(null,"1", jTextField_Nombre.getText(), null);
+                JOptionPane.showMessageDialog(null, "usuario creado con EXITO, puede volver al inicio");
+                AdministracionAuditoria.agregarAuditoria(null, "1", jTextField_Nombre.getText(), null);
                 Login login = new Login();
                 this.dispose();
-            }
-            //si existe levanto error
-            else{
-                JOptionPane.showMessageDialog(null,"usuario ya en uso, pruebe con otro");
+            } //si existe levanto error
+            else {
+                JOptionPane.showMessageDialog(null, "usuario ya en uso, pruebe con otro");
             }
         } catch (SQLException ex) {
             Logger.getLogger(SolicitudCrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -127,7 +218,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-                for (double i = 0.0; i <= 1.0; i += 0.1) {
+        for (double i = 0.0; i <= 1.0; i += 0.1) {
             float f = (float) i;
             this.setOpacity(f);
             try {
@@ -135,17 +226,54 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == 0) {
+            desvanecer();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnSalir5MouseClicked
+
+    private void btnSalir5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseEntered
+        btnSalir5.setBackground(Color.red);
+        btnSalir5.setForeground(Color.white);
+    }//GEN-LAST:event_btnSalir5MouseEntered
+
+    private void btnSalir5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseExited
+        btnSalir5.setBackground(Color.white);
+        btnSalir5.setForeground(Color.black);
+    }//GEN-LAST:event_btnSalir5MouseExited
+
+    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir5ActionPerformed
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+         this.setState(SolicitudCrearUsuario.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
+        btnMinimizar.setBackground(Color.gray);
+    }//GEN-LAST:event_btnMinimizarMouseEntered
+
+    private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
+        btnMinimizar.setBackground(Color.white);
+    }//GEN-LAST:event_btnMinimizarMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnSalir5;
     private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField jPasswordField_Contrasena;
     private javax.swing.JTextField jTextField_Nombre;
+    private javax.swing.JPanel panTitulo5;
     // End of variables declaration//GEN-END:variables
 }

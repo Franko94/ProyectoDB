@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import backend.AdministracionRoles;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import pantallas.login.Login;
 
@@ -20,7 +21,6 @@ public class EditarRol extends javax.swing.JFrame {
 
     private static int id = 0;
     private static String descripcion = "";
-    
 
     /**
      * Creates new form AgregarRol
@@ -32,6 +32,18 @@ public class EditarRol extends javax.swing.JFrame {
         lblId.setText(String.valueOf(id));
         lbldescripcion.setText(desc);
         this.setLocationRelativeTo(null);
+    }
+
+    private void desvanecer() {
+        for (double i = 1.0; i >= 0.0; i -= 0.1) {
+            float f = (float) i;
+            this.setOpacity(f);
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void limpiar() {
@@ -59,6 +71,10 @@ public class EditarRol extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         lbldescripcion = new javax.swing.JLabel();
+        panTitulo5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        btnSalir5 = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -71,7 +87,7 @@ public class EditarRol extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Editar Rol");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 32, 118, 49));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 118, 49));
 
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,12 +95,12 @@ public class EditarRol extends javax.swing.JFrame {
                 guardarActionPerformed(evt);
             }
         });
-        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, -1, -1));
+        getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Cambiar Nombre");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(128, 170, 150, 34));
-        getContentPane().add(nuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 137, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 150, 34));
+        getContentPane().add(nuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 137, -1));
 
         jButton2.setText("Atras");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +108,7 @@ public class EditarRol extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
 
         jButton3.setText("Asignar Metodos");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -100,22 +116,95 @@ public class EditarRol extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 230, 210, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 210, -1));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 120, 99, -1));
 
         jLabel3.setText("Nombre");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
 
         jLabel5.setText("Id Rol");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
         lblId.setText("jLabel6");
-        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, -1, -1));
+        getContentPane().add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
         lblId.getAccessibleContext().setAccessibleName("lblId");
 
         lbldescripcion.setText("jLabel7");
-        getContentPane().add(lbldescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
+        getContentPane().add(lbldescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
         lbldescripcion.getAccessibleContext().setAccessibleName("lbldescripcion");
+
+        panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
+        panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnSalir5.setText("X");
+        btnSalir5.setAlignmentY(0.0F);
+        btnSalir5.setBorder(null);
+        btnSalir5.setBorderPainted(false);
+        btnSalir5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir5.setFocusPainted(false);
+        btnSalir5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSalir5.setIconTextGap(0);
+        btnSalir5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseExited(evt);
+            }
+        });
+        btnSalir5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir5ActionPerformed(evt);
+            }
+        });
+
+        btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnMinimizar.setText("-");
+        btnMinimizar.setAlignmentY(0.0F);
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setFocusPainted(false);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setIconTextGap(0);
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panTitulo5Layout = new javax.swing.GroupLayout(panTitulo5);
+        panTitulo5.setLayout(panTitulo5Layout);
+        panTitulo5Layout.setHorizontalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 454, Short.MAX_VALUE)
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panTitulo5Layout.setVerticalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -178,7 +267,7 @@ public class EditarRol extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-                for (double i = 0.0; i <= 1.0; i += 0.1) {
+        for (double i = 0.0; i <= 1.0; i += 0.1) {
             float f = (float) i;
             this.setOpacity(f);
             try {
@@ -186,9 +275,43 @@ public class EditarRol extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == 0) {
+            desvanecer();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnSalir5MouseClicked
+
+    private void btnSalir5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseEntered
+        btnSalir5.setBackground(Color.red);
+        btnSalir5.setForeground(Color.white);
+    }//GEN-LAST:event_btnSalir5MouseEntered
+
+    private void btnSalir5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseExited
+        btnSalir5.setBackground(Color.white);
+        btnSalir5.setForeground(Color.black);
+    }//GEN-LAST:event_btnSalir5MouseExited
+
+    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir5ActionPerformed
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+         this.setState(EditarRol.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
+        btnMinimizar.setBackground(Color.gray);
+    }//GEN-LAST:event_btnMinimizarMouseEntered
+
+    private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
+        btnMinimizar.setBackground(Color.white);
+    }//GEN-LAST:event_btnMinimizarMouseExited
 
     /**
      * @param args the command line arguments
@@ -229,10 +352,13 @@ public class EditarRol extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnSalir5;
     private javax.swing.JButton guardar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -240,5 +366,6 @@ public class EditarRol extends javax.swing.JFrame {
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lbldescripcion;
     private javax.swing.JTextField nuevoNombre;
+    private javax.swing.JPanel panTitulo5;
     // End of variables declaration//GEN-END:variables
 }

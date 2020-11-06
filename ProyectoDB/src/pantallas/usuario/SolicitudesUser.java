@@ -5,10 +5,10 @@
  */
 package pantallas.usuario;
 
-
 import pantallas.adminsitracion.usuario.*;
 import pantallas.administracion.persona.*;
 import backend.AdministracionUsuarios;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,8 +28,20 @@ public class SolicitudesUser extends javax.swing.JFrame {
     public SolicitudesUser() throws SQLException, ClassNotFoundException {
         initComponents();
         this.setLocationRelativeTo(null);
-        AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(),jTextField_Estado.getText(),jTextField_Fecha_Creacion.getText(),jTextField_Fecha_actualizacion.getText(),jTextField_Tipo_Solicitud.getText(),jTextField_Usuario.getText(),jTable1);
-         }
+        AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTable1);
+    }
+
+    private void desvanecer() {
+        for (double i = 1.0; i >= 0.0; i -= 0.1) {
+            float f = (float) i;
+            this.setOpacity(f);
+            try {
+                Thread.sleep(25);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,6 +67,11 @@ public class SolicitudesUser extends javax.swing.JFrame {
         jTextField_Usuario = new javax.swing.JTextField();
         jTextField_Rol_Solicitado = new javax.swing.JTextField();
         jTextField_Usuario_autorizante = new javax.swing.JTextField();
+        panTitulo5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        btnSalir5 = new javax.swing.JButton();
+        btnMinimizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -63,8 +80,10 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Solicitudes");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,12 +98,15 @@ public class SolicitudesUser extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 677, 184));
+
         jButton_Autorizar.setText("Autorizar");
         jButton_Autorizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_AutorizarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Autorizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 94, -1));
 
         jButton_NO_Autorizar.setText("No Autorizar");
         jButton_NO_Autorizar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,6 +114,8 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 jButton_NO_AutorizarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_NO_Autorizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 94, -1));
+        getContentPane().add(jTextField_Id_solicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 78, -1));
 
         jButton_Inicio.setText("Volver al Inicio");
         jButton_Inicio.addActionListener(new java.awt.event.ActionListener() {
@@ -99,12 +123,14 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 jButton_InicioActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 390, -1, -1));
 
         jTextField_Estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_EstadoActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 76, -1));
 
         jButton_Buscar.setText("Buscar");
         jButton_Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,72 +138,87 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 jButton_BuscarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 90, -1, -1));
+        getContentPane().add(jTextField_Fecha_Creacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 78, -1));
+        getContentPane().add(jTextField_Fecha_actualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 77, -1));
+        getContentPane().add(jTextField_Tipo_Solicitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 81, -1));
+        getContentPane().add(jTextField_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 78, -1));
+        getContentPane().add(jTextField_Rol_Solicitado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 78, -1));
+        getContentPane().add(jTextField_Usuario_autorizante, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 85, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField_Id_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextField_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Fecha_Creacion, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField_Fecha_actualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Tipo_Solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(jTextField_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Rol_Solicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField_Usuario_autorizante))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton_Autorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton_NO_Autorizar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Inicio))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton_Buscar)))
-                .addGap(33, 33, 33))
+        panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
+        panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblTitle.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+
+        btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
+        btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        btnSalir5.setText("X");
+        btnSalir5.setAlignmentY(0.0F);
+        btnSalir5.setBorder(null);
+        btnSalir5.setBorderPainted(false);
+        btnSalir5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir5.setFocusPainted(false);
+        btnSalir5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnSalir5.setIconTextGap(0);
+        btnSalir5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSalir5MouseExited(evt);
+            }
+        });
+
+        btnMinimizar.setBackground(new java.awt.Color(255, 255, 255));
+        btnMinimizar.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnMinimizar.setText("-");
+        btnMinimizar.setAlignmentY(0.0F);
+        btnMinimizar.setBorder(null);
+        btnMinimizar.setBorderPainted(false);
+        btnMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMinimizar.setFocusPainted(false);
+        btnMinimizar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnMinimizar.setIconTextGap(0);
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panTitulo5Layout = new javax.swing.GroupLayout(panTitulo5);
+        panTitulo5.setLayout(panTitulo5Layout);
+        panTitulo5Layout.setHorizontalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(275, 275, 275))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButton_Buscar)))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Id_solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Fecha_Creacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Fecha_actualizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Tipo_Solicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Rol_Solicitado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Usuario_autorizante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_Autorizar)
-                    .addComponent(jButton_NO_Autorizar)
-                    .addComponent(jButton_Inicio))
-                .addContainerGap(45, Short.MAX_VALUE))
+        panTitulo5Layout.setVerticalGroup(
+            panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -201,7 +242,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AutorizarActionPerformed
-        ComprobarPersona cp = new  ComprobarPersona();
+        ComprobarPersona cp = new ComprobarPersona();
         cp.setVisible(true);
 
     }//GEN-LAST:event_jButton_AutorizarActionPerformed
@@ -209,7 +250,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
 
         try {
-            AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(),jTextField_Estado.getText(),jTextField_Fecha_Creacion.getText(),jTextField_Fecha_actualizacion.getText(),jTextField_Tipo_Solicitud.getText(),jTextField_Usuario.getText(),jTable1);
+            AdministracionUsuarios.cargarTablaUsuarios(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -223,7 +264,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_EstadoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-                for (double i = 0.0; i <= 1.0; i += 0.1) {
+        for (double i = 0.0; i <= 1.0; i += 0.1) {
             float f = (float) i;
             this.setOpacity(f);
             try {
@@ -231,9 +272,39 @@ public class SolicitudesUser extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == 0) {
+            desvanecer();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnSalir5MouseClicked
+
+    private void btnSalir5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseEntered
+        btnSalir.setBackground(Color.red);
+        btnSalir.setForeground(Color.white);
+    }//GEN-LAST:event_btnSalir5MouseEntered
+
+    private void btnSalir5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseExited
+        btnSalir.setBackground(Color.white);
+        btnSalir.setForeground(Color.black);
+    }//GEN-LAST:event_btnSalir5MouseExited
+
+    private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
+         this.setState(SolicitudesUser.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarMouseClicked
+
+    private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
+        btnMinimizar.setBackground(Color.gray);
+    }//GEN-LAST:event_btnMinimizarMouseEntered
+
+    private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
+        btnMinimizar.setBackground(Color.white);
+    }//GEN-LAST:event_btnMinimizarMouseExited
 
     private String getSelectedRowId() {
         int fila = jTable1.getSelectedRow();
@@ -284,11 +355,24 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSalir1;
+    private javax.swing.JButton btnSalir2;
+    private javax.swing.JButton btnSalir3;
+    private javax.swing.JButton btnSalir4;
+    private javax.swing.JButton btnSalir5;
     private javax.swing.JButton jButton_Autorizar;
     private javax.swing.JButton jButton_Buscar;
     private javax.swing.JButton jButton_Inicio;
     private javax.swing.JButton jButton_NO_Autorizar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField_Estado;
@@ -299,5 +383,12 @@ public class SolicitudesUser extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Tipo_Solicitud;
     private javax.swing.JTextField jTextField_Usuario;
     private javax.swing.JTextField jTextField_Usuario_autorizante;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel panTitulo;
+    private javax.swing.JPanel panTitulo1;
+    private javax.swing.JPanel panTitulo2;
+    private javax.swing.JPanel panTitulo3;
+    private javax.swing.JPanel panTitulo4;
+    private javax.swing.JPanel panTitulo5;
     // End of variables declaration//GEN-END:variables
 }
