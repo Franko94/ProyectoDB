@@ -248,9 +248,20 @@ public class EditarUsuario extends javax.swing.JFrame {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
 
-    try {    // TODO add your handling code here:
-        AdministracionUsuarios.editarNombreUsuario(id_usuario, jTextField_Nombre.getText());
-        AdministracionUsuarios.editarContrasenaUsuario(id_usuario, jTextField_Contrasena.getText());
+    try {    
+        if(!jTextField_Nombre.getText().equalsIgnoreCase("")){
+            AdministracionUsuarios.editarNombreUsuario(id_usuario, jTextField_Nombre.getText());//cambio solo pass
+            if(!jTextField_Contrasena.getText().equalsIgnoreCase("")){
+               AdministracionUsuarios.editarContrasenaUsuario(jTextField_Nombre.getText(), jTextField_Contrasena.getText()); 
+            }
+        }
+        else{
+            if(!jTextField_Contrasena.getText().equalsIgnoreCase("")){
+               AdministracionUsuarios.editarContrasenaUsuario(id_usuario, jTextField_Contrasena.getText()); 
+            }
+        }
+        
+        
         AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "3", id_usuario, null);
         AdministracionUsuario admin;
         admin = new AdministracionUsuario();
