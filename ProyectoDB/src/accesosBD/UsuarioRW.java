@@ -32,6 +32,7 @@ public class UsuarioRW {
     public static String USUARIO_HABILITAR = "UPDATE usuario set habilitado = true WHERE id_usuario = ?";
     
     public static String GET_CI = "SELECT ci FROM usuario where id_usuario = ?";
+    public static String GET_ROL = "SELECT id_rol FROM usuario where id_usuario = ?";
     
     public static String SET_ROL = "UPDATE usuario set id_rol = ? WHERE id_usuario = ?";
     

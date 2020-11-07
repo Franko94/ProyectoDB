@@ -21,4 +21,8 @@ public class RolRW {
     public static String INSERTAR_ROL_METODO = "INSERT INTO public.rol_metodo(id_rol, id_metodo)VALUES (?, ?)";
     public static String ELIMINAR_ROL_METODO = "DELETE FROM rol_metodo WHERE id_rol = ? AND id_metodo = ?";
     public static String GET_ID_ROL = "SELECT id_rol from rol WHERE descripcion = ?";
+    public static String GET_DESCRIPCION_ROL = "SELECT descripcion from rol WHERE id_aplicacion = ? AND id_rol != ?";
+    public static String GET_ID_APLICACION = "SELECT id_aplicacion from rol WHERE id_rol = ?";
+    public static String DESCRIPCION_DE_UN_ROL = "SELECT descripcion from rol WHERE id_rol = ?";
+    public static String GET_ID_ROL_CON_APP_Y_DESC = "SELECT id_rol from rol WHERE id_aplicacion = ? AND descripcion = ?";
 }

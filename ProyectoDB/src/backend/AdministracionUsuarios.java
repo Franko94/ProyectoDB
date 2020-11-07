@@ -85,7 +85,7 @@ public class AdministracionUsuarios {
         String sql = UsuarioRW.SET_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
-        stmt.setString(1, rol);
+        stmt.setInt(1, Integer.parseInt(rol));
         stmt.executeUpdate();
     }
 
@@ -154,6 +154,19 @@ public class AdministracionUsuarios {
                 ci = rs.getInt("ci");
             }
             return ci;
+        }
+    }
+    public static int GetRol(String usuario) throws SQLException, ClassNotFoundException {
+        int id_rol = -1;
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(UsuarioRW.GET_ROL);
+            stmt.setString(1, usuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                id_rol = rs.getInt("id_rol");
+            }
+            return id_rol;
         }
     }
     
