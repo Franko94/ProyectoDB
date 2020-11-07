@@ -233,6 +233,7 @@ public class Login extends javax.swing.JFrame {
                 if(AdministracionUsuarios.usuarioIsHabilitado(jTextField_Usuario.getText())){
                     Configuracion.usuario = jTextField_Usuario.getText();
                     Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
+                    AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(),0);
                     System.out.println(Configuracion.ci);
                     if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
                         MenuPrincipal mp = new MenuPrincipal();
@@ -248,6 +249,11 @@ public class Login extends javax.swing.JFrame {
                 }
                 
             } else {
+                int logFallido = AdministracionUsuarios.getCantLogueosFallidos(jTextField_Usuario.getText())+1;
+                AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(), logFallido);
+                if(logFallido > 3){
+                    AdministracionUsuarios.updateHabilitado(jTextField_Usuario.getText(), false);
+                }
                 JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos");
                 limpiarPass();
             }
