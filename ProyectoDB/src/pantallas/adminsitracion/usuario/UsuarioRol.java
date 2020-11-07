@@ -40,7 +40,6 @@ public class UsuarioRol extends javax.swing.JFrame {
     }
 
     private void cargarApps() {
-        comboApp.removeAllItems();
         ArrayList<String> lista = new ArrayList<>();
         try {
             lista = AdministracionAplicacion.llenar_combo();
@@ -62,13 +61,9 @@ public class UsuarioRol extends javax.swing.JFrame {
        
 
     }
-    
-    private void limpiarLista(){
-        listaRolesPorApp.removeAll();
-    }
-    
+
     private void objetosAPantalla() throws SQLException, ClassNotFoundException{
-        //limpiarLista();
+
         String nombreAppBuscar = comboApp.getSelectedItem().toString();
         int idAppBuscar = AdministracionAplicacion.getIdAplicacion(nombreAppBuscar);
         recargaRolesAgregar(idAppBuscar);
@@ -230,7 +225,6 @@ public class UsuarioRol extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        comboApp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboApp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboAppItemStateChanged(evt);
@@ -337,7 +331,7 @@ public class UsuarioRol extends javax.swing.JFrame {
             try {
                 AdministracionUsuarios.editarRolUsuario(id ,rolId);
                JOptionPane.showMessageDialog(null, "Rol asignado con exito", "Exito", 1);
-               recargaRolesAgregar(idAppSeleccionada);
+                cargarApps();
                rolActivo.setText(nombreRolNuevo);
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
@@ -398,19 +392,12 @@ public class UsuarioRol extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarMouseExited
 
     private void comboAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAppActionPerformed
-        /*try {
-            int idAppActivo = AdministracionAplicacion.getIdAplicacion(comboApp.getSelectedItem().toString());
-            recargaRolesAgregar(idAppActivo);
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+
         
     }//GEN-LAST:event_comboAppActionPerformed
 
     private void comboAppItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAppItemStateChanged
-        System.out.println("hola");
+
         try {
             objetosAPantalla();
         } catch (SQLException ex) {

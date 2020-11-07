@@ -320,9 +320,11 @@ public class AdminRoles extends javax.swing.JFrame {
                 Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-            if (ex.getMessage().contains("violates foreign key constraint")) {
+            if (ex.getMessage().contains("violates foreign key constraint \"id_rol\" on table \"rol_menu")) {
                 JOptionPane.showMessageDialog(null, "El rol no puede eliminarse aun porque tiene metodos asociados", "Error", 0);
-            } else {
+            } else if (ex.getMessage().contains(" violates foreign key constraint \"id_rol\" on table \"usuario")) {
+                JOptionPane.showMessageDialog(null, "El rol no puede eliminarse aun porque tiene usuarios asociados", "Error", 0);
+            }else{
 
                 Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
 

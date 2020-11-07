@@ -65,6 +65,7 @@ public class AdministracionPersonas {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, Integer.valueOf(ci));
         stmt.executeUpdate();
+        
     }
 
     public static void cargarTablaPersonas(String ci, String nombre, String apellido, String fecha, String correo, String sexo, JTable tabla) throws SQLException, ClassNotFoundException {
