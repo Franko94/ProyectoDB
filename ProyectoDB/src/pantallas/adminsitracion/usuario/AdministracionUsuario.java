@@ -279,6 +279,8 @@ public class AdministracionUsuario extends javax.swing.JFrame {
         if (!id_usuario.equals("")) {
             EditarUsuario edit = new EditarUsuario(id_usuario);
             edit.setVisible(true);
+            this.setVisible(false);
+            
         } else {
             JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
         }

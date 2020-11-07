@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class AdministracionRoles {
-    
+
     public static void insertarRol(String descripcion, int idAplicacion) throws SQLException {
-        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());     
+        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
         String sql = RolRW.INSERTAR_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, descripcion);
@@ -30,8 +31,8 @@ public class AdministracionRoles {
 
         stmt.executeUpdate();
     }
-    
-    public static Integer getIdRol(String descripcion) throws SQLException, ClassNotFoundException{
+
+    public static Integer getIdRol(String descripcion) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = RolRW.GET_ID_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
@@ -43,17 +44,17 @@ public class AdministracionRoles {
         }
         return res;
     }
+
     public static void insertarRolMetodo(int idRol, int idMetodo) throws SQLException {
         Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
         String sql = RolRW.INSERTAR_ROL_METODO;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, idRol);
         stmt.setInt(2, idMetodo);
-         stmt.executeUpdate();
+        stmt.executeUpdate();
     }
-    
-    public static void buscarRol(int id, String descripcion, JTable tabla) throws SQLException, ClassNotFoundException {
 
+    public static void buscarRol(int id, String descripcion, JTable tabla) throws SQLException, ClassNotFoundException {
 
         try (Connection con = Configuracion.getConnection()) {
             if (descripcion == null) {
@@ -128,5 +129,23 @@ public class AdministracionRoles {
             modelo.addRow(fila);
         }
     }
-    
+
+ public static ArrayList<String> traerRolesPorApp(int id_App) throws SQLException, ClassNotFoundException {
+
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(RolRW.GET_ROL_POR_APP);
+            stmt.setInt(1, id_App);
+            ResultSet rs = stmt.executeQuery();
+            
+          while (rs.next()) {
+                String valor = rs.getString("id_rol") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+
+            }
+            return resultado;
+        }
+
+    }
+
 }
