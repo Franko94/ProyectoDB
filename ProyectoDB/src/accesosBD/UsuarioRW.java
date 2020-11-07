@@ -27,7 +27,7 @@ public class UsuarioRW {
     
     public static String USUARIO_IS_ADMIN = "SELECT descripcion_rol FROM ususarios_con_roles_y_ci where id_usuario = ? and descripcion_rol = 'admin'";
     
-    public static String USUARIO_IS_HABILITADO = "SELECT * FROM usuario WHERE id_usuario = ?";
+    public static String USUARIO_IS_HABILITADO = "SELECT habilitado FROM usuario WHERE id_usuario = ?";
     
     public static String USUARIO_HABILITAR = "UPDATE usuario set habilitado = true WHERE id_usuario = ?";
     

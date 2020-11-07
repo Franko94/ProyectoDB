@@ -70,6 +70,7 @@ public class AdministracionUsuarios {
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
         return rs.next();
+       
     }
     
     public static void insertarUsuario(String idUsuario, String contrasena, String ci)
@@ -160,7 +161,7 @@ public class AdministracionUsuarios {
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
         rs.next();
-       return rs.getBoolean(7);
+       return rs.getBoolean(1);
     }
 
     public static boolean usuarioIsAdmin(String usuario) throws SQLException, ClassNotFoundException {
@@ -170,6 +171,7 @@ public class AdministracionUsuarios {
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
         return rs.next();
+       
     }
 
     public static int GetCI(String usuario) throws SQLException, ClassNotFoundException {
