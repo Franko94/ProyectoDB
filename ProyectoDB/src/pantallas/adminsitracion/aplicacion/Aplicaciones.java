@@ -316,6 +316,12 @@ public class Aplicaciones extends javax.swing.JFrame {
             AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex.getMessage().contains("rol")) {
+                JOptionPane.showMessageDialog(null, "La aplicacion no puede eliminarse aun porque existen roles asociados", "Error", 0);
+            }
+            if (ex.getMessage().contains("menu")) {
+                JOptionPane.showMessageDialog(null, "La aplicacion no puede eliminarse aun porque existen menus asociados", "Error", 0);
+            }
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -356,7 +362,7 @@ public class Aplicaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(Aplicaciones.ICONIFIED);
+        this.setState(Aplicaciones.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered

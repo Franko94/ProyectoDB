@@ -21,7 +21,7 @@ public class UsuarioRW {
     
     public static String ELIMINAR_USUARIO = "DELETE FROM usuario where id_usuario = ?";
     
-    public static String EDITAR_USUARIO = "update usuario set id_usuario = ? , where id_usuario = ?";
+    public static String EDITAR_USUARIO = "update usuario set id_usuario = ?  where id_usuario = ?";
     
     public static String EDITAR_CONTRASENA = "update usuario set contrasena = ? , where id_usuario = ?";
     
