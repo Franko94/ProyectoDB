@@ -235,7 +235,6 @@ public class Login extends javax.swing.JFrame {
                     Configuracion.usuario = jTextField_Usuario.getText();
                     Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
                     AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(),0);
-                    System.out.println(Configuracion.ci);
                     if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
                         MenuPrincipal mp = new MenuPrincipal();
                         mp.setVisible(true);
