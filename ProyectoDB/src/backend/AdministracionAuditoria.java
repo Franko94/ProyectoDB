@@ -41,7 +41,7 @@ public class AdministracionAuditoria {
             stmt.setString(2, usuarioS);
             stmt.setString(3, descripcion);
             stmt.setString(4, usuarioA);
-            if(descripcion.equals("")){
+            if(rolA.equals("")){
                 stmt.setInt(5, 0);
             }
              else{

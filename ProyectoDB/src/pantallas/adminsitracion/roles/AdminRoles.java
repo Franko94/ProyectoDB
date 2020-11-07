@@ -5,12 +5,15 @@
  */
 package pantallas.adminsitracion.roles;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import backend.AdministracionRoles;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import pantallas.login.Login;
 import pantallas.login.MenuPrincipal;
 
@@ -314,6 +317,7 @@ public class AdminRoles extends javax.swing.JFrame {
             int valor = (int) jTable1.getValueAt(row, 0);
             try {
                 AdministracionRoles.eliminarRol(valor, jTable1);
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "9", null, valor);
                 JOptionPane.showMessageDialog(null, "Rol eliminado correctamente", "Eliminacion", 1);
                 AdministracionRoles.cargarRoles(jTable1);
             } catch (ClassNotFoundException ex) {

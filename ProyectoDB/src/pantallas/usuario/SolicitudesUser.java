@@ -5,6 +5,8 @@
  */
 package pantallas.usuario;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import backend.AdministracionSolicitud;
 import pantallas.adminsitracion.usuario.*;
 import pantallas.administracion.persona.*;
@@ -203,6 +205,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
         String id_usuario = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 5);
         try {
             AdministracionSolicitud.no_autorizar(id_solicitud, id_usuario);
+            AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "11", id_usuario, null);
             AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
         
         } catch (ClassNotFoundException ex) {
@@ -223,6 +226,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
     String id_usuario = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 5);
         try {
             AdministracionSolicitud.autorizar(getSelectedRowId(), id_usuario, (String)jTable1.getValueAt(jTable1.getSelectedRow(), 5));
+            AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "10", id_usuario, null);
             AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
         
         } catch (ClassNotFoundException ex) {
