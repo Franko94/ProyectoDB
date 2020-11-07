@@ -12,9 +12,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import accesosBD.CryptWithMD5;
@@ -34,6 +31,37 @@ public class AdministracionUsuarios {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
+    
+    public static Integer getCantLogueosFallidos(String id) throws SQLException, ClassNotFoundException{
+        int res = -1;
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.GET_INTENTOS_FALLIDOS;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, id);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            res = Integer.valueOf(rs.getString("intentos_logueo_fallido"));
+        }
+        return res;
+    }
+    
+    public static void updateLogsFallidos(String id, Integer cantidad) throws SQLException, ClassNotFoundException{
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.UPDATE_INTENTOS_FALLIDOS;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, cantidad);
+        stmt.setString(2, id);
+        stmt.executeUpdate();
+    }
+    
+    public static void updateHabilitado(String id, boolean cantidad) throws SQLException, ClassNotFoundException{
+        Connection con = Configuracion.getConnection();
+        String sql = UsuarioRW.UPDATE_HABILITADO;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setBoolean(1, cantidad);
+        stmt.setString(2, id);
+        stmt.executeUpdate();
+    }
 
     public static boolean usuarioExiste(String usuario) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
@@ -43,7 +71,7 @@ public class AdministracionUsuarios {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
-
+    
     public static void insertarUsuario(String idUsuario, String contrasena, String ci)
             throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
@@ -131,7 +159,8 @@ public class AdministracionUsuarios {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
-        return rs.next();
+        rs.next();
+       return rs.getBoolean(7);
     }
 
     public static boolean usuarioIsAdmin(String usuario) throws SQLException, ClassNotFoundException {
