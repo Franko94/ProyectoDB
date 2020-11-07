@@ -12,9 +12,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import accesosBD.CryptWithMD5;
@@ -43,7 +40,7 @@ public class AdministracionUsuarios {
         ResultSet rs = stmt.executeQuery();
         return rs.next();
     }
-
+    
     public static void insertarUsuario(String idUsuario, String contrasena, String ci)
             throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();

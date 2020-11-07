@@ -230,17 +230,23 @@ public class Login extends javax.swing.JFrame {
 
             if (AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(),
                     String.valueOf(jPasswordField_Contrasena.getPassword()))) {
-                Configuracion.usuario = jTextField_Usuario.getText();
-                Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
-                System.out.println(Configuracion.ci);
-                if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
-                    MenuPrincipal mp = new MenuPrincipal();
-                    mp.setVisible(true);
-                } else {
-                    MenuPrincipalUser mpu = new MenuPrincipalUser();
-                    mpu.setVisible(true);
+                if(AdministracionUsuarios.usuarioIsHabilitado(jTextField_Usuario.getText())){
+                    Configuracion.usuario = jTextField_Usuario.getText();
+                    Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
+                    System.out.println(Configuracion.ci);
+                    if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
+                        MenuPrincipal mp = new MenuPrincipal();
+                        mp.setVisible(true);
+                    } else {
+                        MenuPrincipalUser mpu = new MenuPrincipalUser();
+                        mpu.setVisible(true);
+                    }
+                    this.dispose();
                 }
-                this.dispose();
+                else{
+                    JOptionPane.showMessageDialog(rootPane, "Usuario bloqueado");
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos");
                 limpiarPass();

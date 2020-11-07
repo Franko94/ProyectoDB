@@ -35,6 +35,8 @@ public class UsuarioRW {
     
     public static String SET_ROL = "UPDATE usuario set id_rol = ? WHERE id_usuario = ?";
     
+    public static String UPDATE_INTENTOS_FALLIDOS = "UPDATE usuario set intentos_logueo_fallido = ? WHERE id_usuario = ?";
+    
     
     public static String filtrarUsuarios(String id_usuario, String ci, String fecha, String descripcion_rol, String nombre_aplicacion, String habilitado) {
         String where = "";
