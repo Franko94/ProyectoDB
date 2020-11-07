@@ -6,6 +6,7 @@
 package pantallas.login;
 
 import accesosBD.Configuracion;
+import backend.AdministracionSolicitud;
 import pantallas.administracion.persona.ComprobarPersona;
 import backend.AdministracionUsuarios;
 import java.awt.Color;
@@ -253,6 +254,7 @@ public class Login extends javax.swing.JFrame {
                 AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(), logFallido);
                 if(logFallido > 3){
                     AdministracionUsuarios.updateHabilitado(jTextField_Usuario.getText(), false);
+                    AdministracionSolicitud.insertarSolicitudHabilitarUsuarioBloqueado(jTextField_Usuario.getText());
                 }
                 JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos");
                 limpiarPass();

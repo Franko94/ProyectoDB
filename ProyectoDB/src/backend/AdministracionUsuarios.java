@@ -90,7 +90,7 @@ public class AdministracionUsuarios {
         stmt.setBoolean(7, false);
         stmt.executeUpdate();
         //armo la solicitud para ser aprobada y que el usuario quede habilitado 
-        AdministracionSolicitud.insertarSolicitudHabilitarUsuario(idUsuario, date);
+        AdministracionSolicitud.insertarSolicitudHabilitarUsuarioNuevo(idUsuario, date);
     }
 
     public static void editarNombreUsuario(String id_usuario, String id_usuario_nuevo) throws SQLException, ClassNotFoundException {

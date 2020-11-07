@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministracionSolicitud {
 
-    public static void insertarSolicitudHabilitarUsuario(String usuario, Date fecha) {
+    public static void insertarSolicitudHabilitarUsuarioNuevo(String usuario, Date fecha) {
 
         try {
             Connection con = Configuracion.getConnection();
@@ -137,6 +137,11 @@ public class AdministracionSolicitud {
                 //cambiar rol
                 AdministracionUsuarios.editarRolUsuario(id_usuario, nuevo_valor);
                 break;
+                
+                case 3://usuario bloqueado
+                AdministracionUsuarios.Habilitar(id_usuario);
+                //habilitar
+                break;
             default:
                 break;
         }
@@ -158,9 +163,9 @@ public class AdministracionSolicitud {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, id_usuario);
                 stmt.setInt(2, Integer.parseInt(id_solicitud));
-                
+
                 stmt.executeUpdate();
-                
+
                 AdministracionUsuarios.eliminarUsuario(id_usuario);
                 break;
             default:
@@ -173,4 +178,28 @@ public class AdministracionSolicitud {
         stmt.executeUpdate();
     }
 
+        public static void insertarSolicitudHabilitarUsuarioBloqueado(String usuario) {
+
+        try {
+            Connection con = Configuracion.getConnection();
+
+            Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
+            String sql = SolicitudRW.INSERTAR_SOLICITUD;
+            PreparedStatement stmt;
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, "esperando");
+            stmt.setDate(2, date);
+            stmt.setDate(3, date);
+
+            stmt.setInt(4, 3);
+            stmt.setString(5, usuario);
+            stmt.setString(6, usuario);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
