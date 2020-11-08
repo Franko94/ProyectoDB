@@ -28,6 +28,8 @@ public class SolicitudRW {
     public static String GET_TIPO_SOLICITUD = "SELECT id_tipo_sol FROM solicitud where id_solicitud = ?";
     
     public static String QUITAR_SOLICITANTE = "UPDATE solicitud SET nuevo_valor = ? , id_usuario_solicitante = null WHERE id_solicitud = ?";
+    
+    public static String SET_AUTORIZANTE = "UPDATE solicitud SET id_usuario_autorizante = ? WHERE id_solicitud = ?";
 
     public static String filtrarSolicitud(String id_solicitud, String estado, String fecha_creacion, 
             String fecha_actualizacion, String descripcion_solicitud, String usuario_solicitante, String aplicacion, 

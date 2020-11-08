@@ -137,8 +137,8 @@ public class AdministracionSolicitud {
                 //cambiar rol
                 AdministracionUsuarios.editarRolUsuario(id_usuario, nuevo_valor);
                 break;
-                
-                case 3://usuario bloqueado
+
+            case 3://usuario bloqueado
                 AdministracionUsuarios.Habilitar(id_usuario);
                 //habilitar
                 break;
@@ -150,6 +150,7 @@ public class AdministracionSolicitud {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, Integer.parseInt(id_solicitud));
         stmt.executeUpdate();
+        set_autorizante(id_solicitud);
     }
 
     public static void no_autorizar(String id_solicitud, String id_usuario) throws ClassNotFoundException, SQLException {
@@ -165,7 +166,6 @@ public class AdministracionSolicitud {
                 stmt.setInt(2, Integer.parseInt(id_solicitud));
 
                 stmt.executeUpdate();
-
                 AdministracionUsuarios.eliminarUsuario(id_usuario);
                 break;
             default:
@@ -176,9 +176,10 @@ public class AdministracionSolicitud {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, Integer.parseInt(id_solicitud));
         stmt.executeUpdate();
+        set_autorizante(id_solicitud);
     }
 
-        public static void insertarSolicitudHabilitarUsuarioBloqueado(String usuario) {
+    public static void insertarSolicitudHabilitarUsuarioBloqueado(String usuario) {
 
         try {
             Connection con = Configuracion.getConnection();
@@ -201,5 +202,14 @@ public class AdministracionSolicitud {
             Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public static void set_autorizante(String id_solicitud) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = SolicitudRW.SET_AUTORIZANTE;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, Configuracion.usuario);
+        stmt.setInt(2, Integer.parseInt(id_solicitud));
+        stmt.executeUpdate();
     }
 }

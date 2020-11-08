@@ -206,7 +206,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
                 if(jPasswordField_Contrasena.getText().length()>=6){
                     AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
                     jPasswordField_Contrasena.getText(), ci);
-                    JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
+                    JOptionPane.showMessageDialog(null, "Se ha solicitado el ingreso al sistema, luego de la autorización quedará habilitado para usar", "Exito", 1);
                     AdministracionAuditoria.agregarAuditoria(Configuracion.usuario,"1", jTextField_Nombre.getText(), null);
                     Login login = new Login();
                     this.dispose();
