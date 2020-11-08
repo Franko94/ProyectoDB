@@ -19,6 +19,8 @@ import java.awt.Color;
  */
 public class EditarApp extends javax.swing.JFrame {
 
+    private int xx;
+    private int yy;
     /**
      * Creates new form EditarApp
      */
@@ -73,8 +75,11 @@ public class EditarApp extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre aplicacion");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 72, -1, -1));
+        getContentPane().add(nombreApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 69, 141, -1));
 
         jButton_Modificar.setText("Modificar");
         jButton_Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +87,7 @@ public class EditarApp extends javax.swing.JFrame {
                 jButton_ModificarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton_Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 68, -1, -1));
 
         jButton2.setText("Roles");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +95,7 @@ public class EditarApp extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 94, 42));
 
         jButton3.setText("Menus");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -96,6 +103,7 @@ public class EditarApp extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 141, 94, 41));
 
         jButton4.setText("Atras");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -103,9 +111,20 @@ public class EditarApp extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 193, -1, -1));
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTitulo5MouseDragged(evt);
+            }
+        });
+        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTitulo5MousePressed(evt);
+            }
+        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -175,50 +194,7 @@ public class EditarApp extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(21, 21, 21))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(36, 36, 36)
-                        .addComponent(nombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_Modificar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreApp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Modificar)
-                    .addComponent(jLabel1))
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addContainerGap())
-        );
+        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -316,7 +292,7 @@ public class EditarApp extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(EditarApp.ICONIFIED);
+        this.setState(EditarApp.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -326,6 +302,17 @@ public class EditarApp extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
+
+    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_panTitulo5MouseDragged
+
+    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_panTitulo5MousePressed
 
     /**
      * @param args the command line arguments

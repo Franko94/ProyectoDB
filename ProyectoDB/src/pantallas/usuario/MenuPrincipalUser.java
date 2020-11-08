@@ -18,6 +18,9 @@ import pantallas.login.Login;
  */
 public class MenuPrincipalUser extends javax.swing.JFrame {
 
+    private int xx;
+    private int yy;
+
     /**
      * Creates new form MenuPrincipalUser
      */
@@ -25,8 +28,8 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
-            private void desvanecer() {
+
+    private void desvanecer() {
         for (double i = 1.0; i >= 0.0; i -= 0.1) {
             float f = (float) i;
             this.setOpacity(f);
@@ -47,6 +50,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
         panTitulo5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
@@ -63,8 +67,21 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblTitle.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 89, 652, 38));
+
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTitulo5MouseDragged(evt);
+            }
+        });
+        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTitulo5MousePressed(evt);
+            }
+        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -122,7 +139,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,10 +151,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 40));
-
-        lblTitle.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        getContentPane().add(lblTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 89, 652, 38));
+        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         sol.setText("sol");
         sol.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +165,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-                for (double i = 0.0; i <= 1.0; i += 0.1) {
+        for (double i = 0.0; i <= 1.0; i += 0.1) {
             float f = (float) i;
             this.setOpacity(f);
             try {
@@ -159,7 +173,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -181,8 +195,12 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
         btnSalir5.setForeground(Color.black);
     }//GEN-LAST:event_btnSalir5MouseExited
 
+    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSalir5ActionPerformed
+
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(MenuPrincipalUser.ICONIFIED);
+        this.setState(MenuPrincipalUser.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -193,9 +211,16 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
 
-    private void btnSalir5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSalir5ActionPerformed
+    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_panTitulo5MouseDragged
+
+    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_panTitulo5MousePressed
 
     private void solActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solActionPerformed
         try {

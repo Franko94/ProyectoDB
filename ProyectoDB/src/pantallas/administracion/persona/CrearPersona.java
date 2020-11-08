@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
 public class CrearPersona extends javax.swing.JFrame {
 
     String ci;
+    private int xx;
+    private int yy;
 
     /**
      * Creates new form CrearPersona
@@ -68,6 +70,7 @@ public class CrearPersona extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        jButton_atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -106,6 +109,16 @@ public class CrearPersona extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTitulo5MouseDragged(evt);
+            }
+        });
+        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTitulo5MousePressed(evt);
+            }
+        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -163,7 +176,7 @@ public class CrearPersona extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,19 +188,30 @@ public class CrearPersona extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jButton_atras.setText("Cancelar");
+        jButton_atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_atrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(75, 75, 75)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(109, 109, 109)
+                            .addComponent(jButton_Aceptar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton_atras))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel3)
@@ -200,11 +224,9 @@ public class CrearPersona extends javax.swing.JFrame {
                                 .addComponent(jTextField_Email)
                                 .addComponent(jTextField_Apellido)
                                 .addComponent(jTextField_Nombre)
-                                .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(33, 33, 33)))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(jButton_Aceptar))
+                                .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panTitulo5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +255,9 @@ public class CrearPersona extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(jComboBox_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jButton_Aceptar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_Aceptar)
+                    .addComponent(jButton_atras))
                 .addGap(36, 36, 36))
         );
 
@@ -309,6 +333,23 @@ public class CrearPersona extends javax.swing.JFrame {
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
 
+    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_panTitulo5MouseDragged
+
+    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_panTitulo5MousePressed
+
+    private void jButton_atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_atrasActionPerformed
+        ComprobarPersona comp = new ComprobarPersona();
+        comp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton_atrasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,6 +389,7 @@ public class CrearPersona extends javax.swing.JFrame {
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir5;
     private javax.swing.JButton jButton_Aceptar;
+    private javax.swing.JButton jButton_atras;
     private javax.swing.JComboBox<String> jComboBox_Sexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

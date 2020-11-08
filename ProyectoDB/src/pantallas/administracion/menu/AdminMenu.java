@@ -20,6 +20,9 @@ import java.awt.Color;
  */
 public class AdminMenu extends javax.swing.JFrame {
 
+    private int xx;
+    private int yy;
+
     /**
      * Creates new form test
      */
@@ -126,6 +129,16 @@ public class AdminMenu extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTitulo5MouseDragged(evt);
+            }
+        });
+        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTitulo5MousePressed(evt);
+            }
+        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -360,6 +373,17 @@ public class AdminMenu extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
+
+    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_panTitulo5MouseDragged
+
+    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_panTitulo5MousePressed
 
     /**
      * @param args the command line arguments

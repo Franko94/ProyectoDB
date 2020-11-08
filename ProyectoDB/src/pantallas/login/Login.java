@@ -17,12 +17,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pantallas.usuario.MenuPrincipalUser;
 
-
 /**
  *
  * @author Usuario
  */
 public class Login extends javax.swing.JFrame {
+
+    private int xx;
+    private int yy;
 
     /**
      * Creates new form Login
@@ -31,8 +33,8 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
-        private void desvanecer() {
+
+    private void desvanecer() {
         for (double i = 1.0; i >= 0.0; i -= 0.1) {
             float f = (float) i;
             this.setOpacity(f);
@@ -43,10 +45,11 @@ public class Login extends javax.swing.JFrame {
             }
         }
     }
-    public void limpiarPass(){
+
+    public void limpiarPass() {
         jPasswordField_Contrasena.setText("");
     }
-            
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,6 +114,16 @@ public class Login extends javax.swing.JFrame {
 
         panTitulo.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panTitulo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTituloMouseDragged(evt);
+            }
+        });
+        panTitulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTituloMousePressed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -274,7 +287,7 @@ public class Login extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -295,6 +308,17 @@ public class Login extends javax.swing.JFrame {
         btnSalir.setBackground(Color.white);
         btnSalir.setForeground(Color.black);
     }//GEN-LAST:event_btnSalirMouseExited
+
+    private void panTituloMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTituloMousePressed
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_panTituloMousePressed
+
+    private void panTituloMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTituloMouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_panTituloMouseDragged
 
     /**
      * @param args the command line arguments
@@ -348,6 +372,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panTitulo;
     // End of variables declaration//GEN-END:variables
-
 
 }
