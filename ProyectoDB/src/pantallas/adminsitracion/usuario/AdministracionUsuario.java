@@ -297,7 +297,6 @@ public class AdministracionUsuario extends javax.swing.JFrame {
     private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
         ComprobarPersona cp = new ComprobarPersona();
         cp.setVisible(true);
-        this.dispose();
 
     }//GEN-LAST:event_jButton_AgregarActionPerformed
 

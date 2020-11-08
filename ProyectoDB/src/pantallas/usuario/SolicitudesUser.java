@@ -217,9 +217,6 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_NO_AutorizarActionPerformed
 
     private void jButton_InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InicioActionPerformed
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AutorizarActionPerformed
