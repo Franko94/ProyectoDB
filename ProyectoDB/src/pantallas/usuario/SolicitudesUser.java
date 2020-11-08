@@ -340,7 +340,6 @@ public class SolicitudesUser extends javax.swing.JFrame {
         String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
         String id_sol = getSelectedRowId();
         String id_usuario = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
-        System.out.println(estado);
         if (!estado.equalsIgnoreCase("esperando")) {
             JOptionPane.showMessageDialog(rootPane, "No puede modificar una solicitud que ya fue resuelta");
         } else {

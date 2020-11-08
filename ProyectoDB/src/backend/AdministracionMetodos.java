@@ -169,8 +169,9 @@ public class AdministracionMetodos {
 
         ArrayList<String> resultado = new ArrayList<>();
         try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MetodoRW.GET_METODO_POR_MENU);
-            stmt.setInt(1, id_Menu);
+            String sql = "SELECT metodo.id_metodo, metodo.descripcion from metodo JOIN metodo_menu as memu on metodo.id_metodo = memu.id_metodo where memu.id_menu = " + String.valueOf(id_Menu); 
+            PreparedStatement stmt = con.prepareStatement(sql);
+            //stmt.setInt(1, id_Menu);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {

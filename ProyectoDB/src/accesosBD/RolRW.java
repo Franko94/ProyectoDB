@@ -23,5 +23,6 @@ public class RolRW {
     public static String GET_ID_ROL = "SELECT id_rol from rol WHERE descripcion = ?";
     public static String GET_ROL_POR_APP = "SELECT id_rol, descripcion from rol WHERE id_aplicacion = ?";
     public static String DESCRIPCION_DE_UN_ROL = "SELECT descripcion from rol WHERE id_rol = ?";
-
+    public static String ELIMINAR_ROL_MENU = "DELETE FROM rol_menu WHERE id_rol = ? AND id_menu = ?";
+    public static String INSERTAR_ROL_MENU = "INSERT INTO rol_menu(id_rol, id_menu)VALUES (?, ?)";
 }

@@ -37,7 +37,6 @@ public class AdministracionRoles {
             stmt.setString(1, descripcion);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            System.out.println(rs.getInt("id_rol"));
             return rs.getInt(1);
         }}
 
@@ -47,6 +46,15 @@ public class AdministracionRoles {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, idRol);
         stmt.setInt(2, idMetodo);
+        stmt.executeUpdate();
+    }
+    
+    public static void insertarRolMenu(int idRol, int idMenu) throws SQLException {
+        Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
+        String sql = RolRW.INSERTAR_ROL_MENU;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setInt(1, idRol);
+        stmt.setInt(2, idMenu);
         stmt.executeUpdate();
     }
 
@@ -97,6 +105,15 @@ public class AdministracionRoles {
             PreparedStatement stmt = con.prepareStatement(RolRW.ELIMINAR_ROL_METODO);
             stmt.setInt(1, idRol);
             stmt.setInt(2, idMetodo);
+            stmt.executeUpdate();
+        }
+    }
+    
+    public static void eliminarRolMenu(int idRol, int idMenu) throws SQLException, ClassNotFoundException {
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(RolRW.ELIMINAR_ROL_MENU);
+            stmt.setInt(1, idRol);
+            stmt.setInt(2, idMenu);
             stmt.executeUpdate();
         }
     }

@@ -115,7 +115,6 @@ public class AdministracionUsuarios {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
         stmt.setInt(1, rol);
-        System.out.println(stmt.toString());
         stmt.executeUpdate();
     }
 

@@ -3,15 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pantallas.usuario;
+package pantallas.adminsitracion.roles;
 
-import pantallas.adminsitracion.usuario.*;
-import backend.AdministracionAplicacion;
-import pantallas.adminsitracion.roles.*;
-import backend.AdministracionUsuarios;
-import backend.AdministracionRoles;
-import backend.AdministracionSolicitud;
 import backend.AdministracionMenu;
+import backend.AdministracionRoles;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,71 +14,38 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pantallas.login.Login;
-import accesosBD.Configuracion;
-import backend.AdministracionMetodos;
 
 /**
  *
  * @author Agustin
  */
-public class MenuPincipalUsuario extends javax.swing.JFrame {
+public class RolMenu extends javax.swing.JFrame {
 
-    private static String id;
-    int menuSeleccionado;
-    String idAppUsuario;
-    int idRolUser;
-    String nombreRol;
+    private static int id = 0;
+    private static String nombreRol = "";
     private int xx;
     private int yy;
 
     /**
-     * Creates new form RolMetodo
+     * Creates new form RolMenu
      */
-    public MenuPincipalUsuario() throws SQLException, ClassNotFoundException {
+    public RolMenu(int idRol, String desc) throws SQLException, ClassNotFoundException {
         initComponents();
-        id = Configuracion.usuario;
-        username.setText(id);
-        idRolUser = AdministracionUsuarios.GetRol(id);
-        nombreRol = AdministracionRoles.getDescripcionDeUnRol(idRolUser);
-        idAppUsuario = AdministracionAplicacion.getNombreAplicacionRol(idRolUser);
-        jLabel1Aplicacion.setText(idAppUsuario);
-        rolActivo.setText(nombreRol);
-
+        id = idRol;
+        nombreRol = desc;
+        rolname.setText(desc);
+        recargaMenusAgregar();
         this.setLocationRelativeTo(null);
-        cargarMenu();
-        //System.out.println(comboMenu.getSelectedItem().toString());
-        menuSeleccionado = AdministracionMenu.getIdMenu(comboMenu.getItemAt(0).toString());
-        //menuSeleccionado = AdministracionMenu.getIdMenu(comboMenu.getSelectedItem().toString());
-        recargaMetodosAgregar(menuSeleccionado);
     }
 
-    private void cargarMenu() {
-        ArrayList<String> lista = new ArrayList<>();
-        try {
-            lista = AdministracionMenu.llenar_combo(idRolUser);
-        } catch (SQLException ex) {
-            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for (int i = 0; i < lista.size(); i++) {
+    private void recargaMenusAgregar() throws SQLException, ClassNotFoundException {
 
-            comboMenu.addItem(lista.get(i));
-        }
-    }
-
-    private void recargaMetodosAgregar(int idBuscar) throws SQLException, ClassNotFoundException {
-        ArrayList<String> listaMetodo = new ArrayList<>();
-        listaMetodo = AdministracionMetodos.traerMetodoPorMenu(idBuscar);
-        listaMetodos.setListData(convertir(listaMetodo));
-
-    }
-
-    private void objetosAPantalla() throws SQLException, ClassNotFoundException {
-
-        String nombreMenuBuscar = comboMenu.getSelectedItem().toString();
-        int idMetodoBuscar = AdministracionMenu.getIdMenu(nombreMenuBuscar);
-        recargaMetodosAgregar(idMetodoBuscar);
+        ArrayList<String> listaNoRelacionados = new ArrayList<>();
+        listaNoRelacionados = AdministracionMenu.traerMenusNoRelacionadosRol(id);
+        listaNoRelacion.setListData(convertir(listaNoRelacionados));
+        ArrayList<String> listaRelacionados = new ArrayList<>();
+        listaRelacionados = AdministracionMenu.traerMenuRelacionadosRol(id);
+        listaRelacion.setListData(convertir(listaRelacionados));
 
     }
 
@@ -118,22 +80,22 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1Aplicacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaRelacion = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        listaMetodos = new javax.swing.JList<>();
+        listaNoRelacion = new javax.swing.JList<>();
+        agregar = new javax.swing.JButton();
+        quitar = new javax.swing.JButton();
         atras = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        username = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        comboMenu = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        rolActivo = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        rolname = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         panTitulo5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -143,45 +105,50 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
             }
         });
 
-        jLabel1Aplicacion.setText("Aplicacion");
+        jLabel1.setText("Rol - Menus");
 
-        listaMetodos.setModel(new javax.swing.AbstractListModel<String>() {
+        listaRelacion.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(listaMetodos);
+        jScrollPane1.setViewportView(listaRelacion);
 
-        atras.setText("Cerrar Sesion");
+        listaNoRelacion.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(listaNoRelacion);
+
+        agregar.setText("<-- Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
+
+        quitar.setText("Quitar -->");
+        quitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitarActionPerformed(evt);
+            }
+        });
+
+        atras.setText("Atras");
         atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 atrasActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Mis Metodos");
+        jLabel2.setText("Menus en uso");
 
-        username.setText("jLabel4");
+        jLabel3.setText("Menus disponibles");
 
-        jLabel5.setText("Usuario:");
+        rolname.setText("jLabel4");
 
-        comboMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  " }));
-        comboMenu.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboMenuItemStateChanged(evt);
-            }
-        });
-        comboMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboMenuActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Seleccione Menu");
-
-        jLabel4.setText("Rol activo:");
-
-        rolActivo.setText("(Ninguno)");
+        jLabel5.setText("Rol:");
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -252,7 +219,7 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -264,90 +231,127 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Bienvenido");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(comboMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
-            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel1Aplicacion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(283, 283, 283)
-                        .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(username)
-                                .addGap(107, 107, 107)
-                                .addComponent(jLabel4)
-                                .addGap(26, 26, 26)
-                                .addComponent(rolActivo))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
-                                .addComponent(jLabel3)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(agregar)
+                                    .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(34, 34, 34))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel5)
+                        .addGap(41, 41, 41)
+                        .addComponent(rolname)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atras)
+                .addGap(38, 38, 38))
+            .addComponent(panTitulo5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1Aplicacion)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addComponent(username))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
+                        .addGap(31, 31, 31))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rolActivo)
-                            .addComponent(jLabel4))))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rolname)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel3)))
+                    .addComponent(jLabel3))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(comboMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(66, 66, 66)
+                        .addComponent(agregar)
+                        .addGap(18, 18, 18)
+                        .addComponent(quitar))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(atras)))
-                .addGap(0, 21, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(37, 37, 37)
+                .addComponent(atras)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
-        Login login = new Login();
-        login.setVisible(true);
+        EditarRol edit = new EditarRol(id, nombreRol);
+        edit.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_atrasActionPerformed
+
+    private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
+
+        int row = listaRelacion.getSelectedIndex();
+
+        if (row != -1) {
+
+            String met = (String) listaRelacion.getSelectedValue();
+            int menuId = Integer.parseInt(met.split("-")[0]);
+            try {
+                AdministracionRoles.eliminarRolMenu(id, menuId);
+                recargaMenusAgregar();
+            } catch (SQLException ex) {
+                Logger.getLogger(RolMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RolMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un menu a quitar", "Error", 0);
+        }
+    }//GEN-LAST:event_quitarActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+
+        int row = listaNoRelacion.getSelectedIndex();
+
+        if (row != -1) {
+
+            String met = (String) listaNoRelacion.getSelectedValue();
+            int menuId = Integer.parseInt(met.split("-")[0]);
+            try {
+                AdministracionRoles.insertarRolMenu(id, menuId);
+                recargaMenusAgregar();
+            } catch (SQLException ex) {
+                Logger.getLogger(RolMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(RolMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un menu para Agregar", "Error", 0);
+        }
+
+    }//GEN-LAST:event_agregarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         for (double i = 0.0; i <= 1.0; i += 0.1) {
@@ -361,22 +365,6 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void comboMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMenuActionPerformed
-
-
-    }//GEN-LAST:event_comboMenuActionPerformed
-
-    private void comboMenuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboMenuItemStateChanged
-
-        try {
-            objetosAPantalla();
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuPincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MenuPincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_comboMenuItemStateChanged
 
     private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
         int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
@@ -401,7 +389,7 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-        this.setState(MenuPincipalUsuario.ICONIFIED);
+        this.setState(RolMenu.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -440,20 +428,14 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RolMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RolMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RolMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPincipalUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RolMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -461,32 +443,32 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new MenuPincipalUsuario().setVisible(true);
+                    new RolMenu(id, nombreRol).setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(MenuPincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RolMenu.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(MenuPincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RolMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton agregar;
     private javax.swing.JButton atras;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir5;
-    private javax.swing.JComboBox<String> comboMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel1Aplicacion;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> listaMetodos;
+    private javax.swing.JList<String> listaNoRelacion;
+    private javax.swing.JList<String> listaRelacion;
     private javax.swing.JPanel panTitulo5;
-    private javax.swing.JLabel rolActivo;
-    private javax.swing.JLabel username;
+    private javax.swing.JButton quitar;
+    private javax.swing.JLabel rolname;
     // End of variables declaration//GEN-END:variables
 }
