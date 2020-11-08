@@ -359,7 +359,7 @@ public class UsuarioRol extends javax.swing.JFrame {
             String nombreRolNuevo = met.split("-")[1];
 
             try {
-                AdministracionUsuarios.editarRolUsuario(id, rolId);
+                AdministracionUsuarios.editarRolUsuario(id, Integer.parseInt(rolId));
                 JOptionPane.showMessageDialog(null, "Rol asignado con exito", "Exito", 1);
                 cargarApps();
                 rolActivo.setText(nombreRolNuevo);
