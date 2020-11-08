@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import pantallas.login.*;
 import java.awt.Color;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
 
 /**
@@ -246,6 +247,8 @@ public class Auditoria extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Auditoria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Auditoria.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(Auditoria.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
