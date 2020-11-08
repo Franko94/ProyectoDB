@@ -22,7 +22,8 @@ import pantallas.login.Login;
 public class SolicitudCrearUsuario extends javax.swing.JFrame {
 
     String ci;
-
+    private int xx;
+    private int yy;
 
     /**
      * Creates new form SolicitudCrearUsuario
@@ -82,6 +83,16 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                panTitulo5MouseDragged(evt);
+            }
+        });
+        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panTitulo5MousePressed(evt);
+            }
+        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -198,37 +209,34 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
-         if (!"".equals(jTextField_Nombre.getText())){
+        if (!"".equals(jTextField_Nombre.getText())) {
             try {
-            // TODO add your handling code here:
-            //si el usuario no existe, lo creamos
-            if(!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())){
-                if(jPasswordField_Contrasena.getText().length()>=6){
-                    AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(), 
-                    jPasswordField_Contrasena.getText(), ci);
-                    JOptionPane.showMessageDialog(null,"usuario creado con EXITO, puede volver al inicio");
-                    AdministracionAuditoria.agregarAuditoria(Configuracion.usuario,"1", jTextField_Nombre.getText(), null);
-                    Login login = new Login();
-                    this.dispose();
+                // TODO add your handling code here:
+                //si el usuario no existe, lo creamos
+                if (!AdministracionUsuarios.usuarioExiste(jTextField_Nombre.getText())) {
+                    if (jPasswordField_Contrasena.getText().length() >= 6) {
+                        AdministracionUsuarios.insertarUsuario(jTextField_Nombre.getText(),
+                                jPasswordField_Contrasena.getText(), ci);
+                        JOptionPane.showMessageDialog(null, "usuario creado con EXITO, puede volver al inicio");
+                        AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "1", jTextField_Nombre.getText(), null);
+                        Login login = new Login();
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La contraseña debe tener minimo 6 caracteres");
+                    }
+                } //si existe levanto error
+                else {
+                    JOptionPane.showMessageDialog(null, "usuario ya en uso, pruebe con otro");
                 }
-                else{
-                    JOptionPane.showMessageDialog(null,"La contraseña debe tener minimo 6 caracteres");
-                }
+            } catch (SQLException ex) {
+                Logger.getLogger(SolicitudCrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SolicitudCrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
-            //si existe levanto error
-            else{
-                JOptionPane.showMessageDialog(null,"usuario ya en uso, pruebe con otro");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SolicitudCrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SolicitudCrearUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-         }
-         else{
-             JOptionPane.showMessageDialog(null, "Debe escribir un nombre de usuario", "Error", 0);
-         }
-        
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escribir un nombre de usuario", "Error", 0);
+        }
+
     }//GEN-LAST:event_jButton_AceptarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -267,7 +275,7 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(SolicitudCrearUsuario.ICONIFIED);
+        this.setState(SolicitudCrearUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -277,6 +285,17 @@ public class SolicitudCrearUsuario extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
+
+    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
+        xx = evt.getX();
+        yy = evt.getY();
+    }//GEN-LAST:event_panTitulo5MousePressed
+
+    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - yy);
+    }//GEN-LAST:event_panTitulo5MouseDragged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

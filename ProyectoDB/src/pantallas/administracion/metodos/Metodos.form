@@ -68,7 +68,7 @@
               </Group>
               <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
-          <Component id="panTitulo5" alignment="1" max="32767" attributes="0"/>
+          <Component id="panTitulo5" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -212,6 +212,10 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="panTitulo5MouseDragged"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panTitulo5MousePressed"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
