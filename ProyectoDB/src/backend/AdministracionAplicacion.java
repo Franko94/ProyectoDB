@@ -180,5 +180,19 @@ public class AdministracionAplicacion {
         }
 
     }
+    public static String getNombreAplicacionRol(int idRol) throws SQLException, ClassNotFoundException{
+        String nombreApp="";
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(AplicacionRW.ID_APLICACIONES_ROL);
+            stmt.setInt(1, idRol);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()){
+               nombreApp = rs.getString("nombre");
+            }
+            return nombreApp;
+        }
+
+    }
     
 }

@@ -19,6 +19,7 @@ public class MetodoRW {
     public static String LISTAR_METODOS_NO_RELACIONADOS_MENU = "SELECT * FROM metodo WHERE id_metodo NOT IN (SELECT id_metodo FROM metodo_menu WHERE id_menu = ?)";
     public static String LISTAR_METODOS_RELACIONADOS_ROL = "SELECT * FROM metodo WHERE id_metodo IN (SELECT id_metodo FROM rol_metodo WHERE id_rol = ?)";
     public static String LISTAR_METODOS_RELACIONADOS_MENU = "SELECT * FROM metodo WHERE id_metodo IN (SELECT id_metodo FROM metodo_menu WHERE id_menu = ?)";
+    public static String GET_METODO_POR_MENU = "SELECT metodo.id_metodo, metodo.descripcion from metodo JOIN metodo_menu as memu on metodo.id_metodo = memu.id_metodo where memu.id_menu = ?";
 
     public static String filtrarMetodos(String id, String descripcion) {
         String where = "";
