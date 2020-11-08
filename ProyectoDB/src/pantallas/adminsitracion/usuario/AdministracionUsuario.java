@@ -279,6 +279,8 @@ public class AdministracionUsuario extends javax.swing.JFrame {
         if (!id_usuario.equals("")) {
             EditarUsuario edit = new EditarUsuario(id_usuario);
             edit.setVisible(true);
+            this.setVisible(false);
+            
         } else {
             JOptionPane.showMessageDialog(rootPane, "Seleccione una fila");
         }
@@ -295,6 +297,7 @@ public class AdministracionUsuario extends javax.swing.JFrame {
     private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
         ComprobarPersona cp = new ComprobarPersona();
         cp.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jButton_AgregarActionPerformed
 

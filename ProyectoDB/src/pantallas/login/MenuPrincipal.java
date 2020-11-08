@@ -92,7 +92,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 120, -1));
 
         jButton3.setText("Roles");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 91, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 120, -1));
 
         jButton4.setText("Menus");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +108,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 91, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 120, -1));
 
         jButton5.setText("Usuarios");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +116,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 91, -1));
+        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 120, -1));
 
         jButton6.setText("Metodos");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, 91, -1));
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 120, -1));
 
         jButton7.setText("Cerrar Sesion");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -140,16 +140,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButtonAuditoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAuditoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 91, -1));
+        getContentPane().add(jButtonAuditoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 120, -1));
 
         jLabel2.setText("Gestion de Personas:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
         jLabel3.setText("Gestion de Negocios:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
         jLabel4.setText("Seguridad:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
 
         jButton8.setText("Personas");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +157,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton8ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 91, -1));
+        getContentPane().add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 120, -1));
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -323,7 +323,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             // TODO add your handling code here:
             AdministracionPersona ap = new AdministracionPersona();
             ap.setVisible(true);
-            this.dispose();
+            this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -334,7 +334,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Login login = new Login();
         login.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

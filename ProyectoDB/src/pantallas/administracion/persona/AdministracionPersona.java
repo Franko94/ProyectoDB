@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import pantallas.login.Login;
 import pantallas.login.MenuPrincipal;
 import java.awt.Color;
+import java.sql.ResultSet;
 
 /**
  *
@@ -325,6 +326,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
         try {
             AdministracionPersonas.eliminarPersona(id);
             AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(), jTextField_Nombre.getText(), jTextField_Apellido.getText(), jTextField_Fecha.getText(), jTextField_Correo.getText(), jTextField_Sexo.getText(), jTable1);
+            
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionPersona.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

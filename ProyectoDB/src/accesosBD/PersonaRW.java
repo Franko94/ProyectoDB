@@ -22,7 +22,7 @@ public class PersonaRW {
 
     //public static String OBTENER_METODOS = "SELECT * FROM metodo";
     // public static String FILTRAR_METODOS = "SELECT * FROM metodo where id_metodo = ? or descripcion = ?";
-    public static String ELIMINAR_PERSONA = "DELETE FROM persona where ci = ?";
+    public static String ELIMINAR_PERSONA = "DELETE FROM persona where ci = ? AND ci not in (SELECT ci from usuario)";
     public static String EDITAR_PERSONA = "update persona set nombre = ? , apellido = ? , fecha_nac = ? , correo = ? , sexo = ? where ci = ?";
 
     public static String filtrarPersonas(String ci, String nombre, String apellido, String fecha, String correo, String sexo) {

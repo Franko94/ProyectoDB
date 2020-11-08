@@ -113,7 +113,7 @@ public class AdministracionUsuarios {
         String sql = UsuarioRW.SET_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
-        stmt.setString(1, rol);
+        stmt.setInt(1, Integer.parseInt(rol));
         stmt.executeUpdate();
     }
 
