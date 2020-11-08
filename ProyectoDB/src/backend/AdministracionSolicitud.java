@@ -211,6 +211,5 @@ public class AdministracionSolicitud {
         stmt.setString(1, Configuracion.usuario);
         stmt.setInt(2, Integer.parseInt(id_solicitud));
         stmt.executeUpdate();
-        System.out.println(stmt.toString());
     }
 }

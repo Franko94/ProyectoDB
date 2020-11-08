@@ -29,8 +29,8 @@ public class SolicitudesUser extends javax.swing.JFrame {
      */
     public SolicitudesUser() throws SQLException, ClassNotFoundException {
         initComponents();
-        AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
-        }
+        AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(), jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,16 +202,23 @@ public class SolicitudesUser extends javax.swing.JFrame {
 
     private void jButton_NO_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NO_AutorizarActionPerformed
         String id_solicitud = getSelectedRowId();
-        String id_usuario = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 5);
-        try {
-            AdministracionSolicitud.no_autorizar(id_solicitud, id_usuario);
-            AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "11", id_usuario, null);
-            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
-        
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
+        String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+        String id_usuario = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
+        if (estado.equalsIgnoreCase("esperando")) {
+            JOptionPane.showMessageDialog(rootPane, "No puede modificar una solicitud que ya fue resuelta");
+        } else {
+            try {
+                AdministracionSolicitud.no_autorizar(id_solicitud, id_usuario);
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "11", id_usuario, null);
+                AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), 
+                        jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),
+                        jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }//GEN-LAST:event_jButton_NO_AutorizarActionPerformed
@@ -220,23 +227,32 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AutorizarActionPerformed
-    String id_usuario = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 5);
-        try {
-            AdministracionSolicitud.autorizar(getSelectedRowId(), id_usuario, (String)jTable1.getValueAt(jTable1.getSelectedRow(), 5));
-            AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "10", id_usuario, null);
-            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
-        
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
+        String id_usuario = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
+        String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
+        if (estado.equalsIgnoreCase("esperando")) {
+            JOptionPane.showMessageDialog(rootPane, "No puede modificar una solicitud que ya fue resuelta");
+        } else {
+            try {
+                AdministracionSolicitud.autorizar(getSelectedRowId(), id_usuario, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5));
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "10", id_usuario, null);
+                AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(),
+                        jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(), 
+                        jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
+
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }//GEN-LAST:event_jButton_AutorizarActionPerformed
 
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         try {
-            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
+            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), 
+                    jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),
+                    jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
         } catch (SQLException ex) {
             Logger.getLogger(SolicitudesUser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
