@@ -14,6 +14,7 @@ import pantallas.adminsitracion.roles.*;
 import pantallas.administracion.Auditoria.*;
 import pantallas.administracion.menu.*;
 import pantallas.administracion.metodos.*;
+import pantallas.usuario.SolicitudesUser;
 import pantallas.administracion.persona.AdministracionPersona;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -73,6 +74,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        solicitudes = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -135,7 +137,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 435, 112, 42));
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 440, 112, 42));
 
         jButtonAuditoria.setText("Auditoria");
         jButtonAuditoria.addActionListener(new java.awt.event.ActionListener() {
@@ -244,6 +246,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 40));
+
+        solicitudes.setText("Solicitudes");
+        solicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitudesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(solicitudes, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -408,6 +418,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocation(x - xx, y - yy);
     }//GEN-LAST:event_panTitulo5MouseDragged
 
+    private void solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitudesActionPerformed
+       SolicitudesUser sol;
+        try {
+            sol = new SolicitudesUser();
+            sol.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }//GEN-LAST:event_solicitudesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -462,5 +486,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel panTitulo5;
+    private javax.swing.JButton solicitudes;
     // End of variables declaration//GEN-END:variables
 }
