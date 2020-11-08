@@ -164,4 +164,22 @@ public class AdministracionMetodos {
             modelo.addRow(fila);
         }
     }
+    
+        public static ArrayList<String> traerMetodoPorMenu(int id_Menu) throws SQLException, ClassNotFoundException {
+
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MetodoRW.GET_METODO_POR_MENU);
+            stmt.setInt(1, id_Menu);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String valor = rs.getString("id_metodo") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+
+            }
+            return resultado;
+        }
+
+    }
 }

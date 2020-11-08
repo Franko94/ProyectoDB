@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pantallas.usuario.MenuPrincipalUser;
+import pantallas.usuario.MenuPincipalUsuario;
 
 /**
  *
@@ -241,32 +242,33 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed
         try {
-
             if (AdministracionUsuarios.usuarioYContraseñaExisten(jTextField_Usuario.getText(),
                     String.valueOf(jPasswordField_Contrasena.getPassword()))) {
-                if(AdministracionUsuarios.usuarioIsHabilitado(jTextField_Usuario.getText())){
+                if (AdministracionUsuarios.usuarioIsHabilitado(jTextField_Usuario.getText())) {
                     Configuracion.usuario = jTextField_Usuario.getText();
                     Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
-                    AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(),0);
+                    AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(), 0);
                     if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
                         MenuPrincipal mp = new MenuPrincipal();
                         mp.setVisible(true);
                     } else {
-                        MenuPrincipalUser mpu = new MenuPrincipalUser();
-                        mpu.setVisible(true);
+                        
+                        MenuPincipalUsuario menu = new MenuPincipalUsuario();
+                        menu.setVisible(true);
+                        this.dispose();
+                       
                     }
                     this.dispose();
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "Usuario bloqueado");
                 }
-                
+
             } else {
-                int logFallido = AdministracionUsuarios.getCantLogueosFallidos(jTextField_Usuario.getText())+1;
+                int logFallido = AdministracionUsuarios.getCantLogueosFallidos(jTextField_Usuario.getText()) + 1;
                 AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(), logFallido);
-                if(logFallido > 3){
+                if (logFallido > 3) {
                     AdministracionUsuarios.updateHabilitado(jTextField_Usuario.getText(), false);
-                    AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(),0);
+                    AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(), 0);
                     AdministracionSolicitud.insertarSolicitudHabilitarUsuarioBloqueado(jTextField_Usuario.getText());
                 }
                 JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos");

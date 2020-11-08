@@ -22,6 +22,7 @@ public class AplicacionRW {
     public static String AGREGAR_MENU = "INSERT into menu_aplicacion values (?,?)";
     public static String NOMBRE_APLICACIONES = "SELECT nombre FROM aplicacion";
     public static String ID_APLICACIONES = "SELECT id_aplicacion FROM aplicacion where nombre= ?";
+    public static String ID_APLICACIONES_ROL = "SELECT nombre FROM aplicacion where id_aplicacion IN (SELECT id_aplicacion FROM rol WHERE id_rol = ?)";
     
         public static String filtrarAplicaciones(String id, String nombre) {
         String where = "";
