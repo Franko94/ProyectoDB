@@ -20,9 +20,6 @@ import javax.swing.JOptionPane;
  */
 public class AppMenu extends javax.swing.JFrame {
 
-    private int xx;
-    private int yy;
-
     /**
      * Creates new form AppRol
      */
@@ -151,16 +148,6 @@ public class AppMenu extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                panTitulo5MouseDragged(evt);
-            }
-        });
-        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panTitulo5MousePressed(evt);
-            }
-        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -255,7 +242,9 @@ public class AppMenu extends javax.swing.JFrame {
                         .addGap(94, 94, 94))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,17 +262,19 @@ public class AppMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(24, 24, 24)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton3))
+                        .addComponent(jButton3)
+                        .addGap(108, 108, 108))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
@@ -359,7 +350,7 @@ public class AppMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-        this.setState(AppMenu.ICONIFIED);
+         this.setState(AppMenu.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -369,17 +360,6 @@ public class AppMenu extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
-
-    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - yy);
-    }//GEN-LAST:event_panTitulo5MouseDragged
-
-    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
-        xx = evt.getX();
-        yy = evt.getY();
-    }//GEN-LAST:event_panTitulo5MousePressed
 
     private String getSelectedRowId(JTable tabla) {
         int fila = tabla.getSelectedRow();

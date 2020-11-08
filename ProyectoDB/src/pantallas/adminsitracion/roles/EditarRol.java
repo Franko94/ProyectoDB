@@ -23,8 +23,6 @@ public class EditarRol extends javax.swing.JFrame {
 
     private static int id = 0;
     private static String descripcion = "";
-    private int xx;
-    private int yy;
 
     /**
      * Creates new form AgregarRol
@@ -139,16 +137,6 @@ public class EditarRol extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                panTitulo5MouseDragged(evt);
-            }
-        });
-        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panTitulo5MousePressed(evt);
-            }
-        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -218,7 +206,7 @@ public class EditarRol extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -230,7 +218,7 @@ public class EditarRol extends javax.swing.JFrame {
 
             try {
                 AdministracionRoles.editarRol(Integer.parseInt(lblId.getText()), nuevoNombre.getText());
-                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "8", null, id);
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "8", null,id );
                 JOptionPane.showMessageDialog(null, "Rol editado con exito", "Exito", 1);
 
                 lbldescripcion.setText(nuevoNombre.getText());
@@ -316,7 +304,7 @@ public class EditarRol extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-        this.setState(EditarRol.ICONIFIED);
+         this.setState(EditarRol.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -326,17 +314,6 @@ public class EditarRol extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
-
-    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - yy);
-    }//GEN-LAST:event_panTitulo5MouseDragged
-
-    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
-        xx = evt.getX();
-        yy = evt.getY();
-    }//GEN-LAST:event_panTitulo5MousePressed
 
     /**
      * @param args the command line arguments

@@ -21,9 +21,6 @@ import java.sql.ResultSet;
  */
 public class AdministracionPersona extends javax.swing.JFrame {
 
-    private int xx;
-    private int yy;
-
     /**
      * Creates new form Metodoes
      */
@@ -139,16 +136,6 @@ public class AdministracionPersona extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                panTitulo5MouseDragged(evt);
-            }
-        });
-        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panTitulo5MousePressed(evt);
-            }
-        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -297,7 +284,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
             String apellido = jTable1.getValueAt(fila, 2).toString();
             String mail = jTable1.getValueAt(fila, 3).toString();
             String nac = jTable1.getValueAt(fila, 4).toString();
-
+            
             EditarPersona edit = new EditarPersona(ci, nombre, apellido, mail, nac);
             edit.setVisible(true);
             this.setVisible(false);
@@ -339,7 +326,7 @@ public class AdministracionPersona extends javax.swing.JFrame {
         try {
             AdministracionPersonas.eliminarPersona(id);
             AdministracionPersonas.cargarTablaPersonas(jTextField_CI.getText(), jTextField_Nombre.getText(), jTextField_Apellido.getText(), jTextField_Fecha.getText(), jTextField_Correo.getText(), jTextField_Sexo.getText(), jTable1);
-
+            
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionPersona.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -399,17 +386,6 @@ public class AdministracionPersona extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
-
-    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - yy);
-    }//GEN-LAST:event_panTitulo5MouseDragged
-
-    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
-        xx = evt.getX();
-        yy = evt.getY();
-    }//GEN-LAST:event_panTitulo5MousePressed
 
     private String getSelectedRowId() {
         int fila = jTable1.getSelectedRow();

@@ -25,9 +25,7 @@ import pantallas.login.Login;
 public class UsuarioRol extends javax.swing.JFrame {
 
     private static String id;
-    int idAppSeleccionada;
-    private int xx;
-    private int yy;
+    int idAppSeleccionada; 
 
     /**
      * Creates new form RolMetodo
@@ -61,15 +59,16 @@ public class UsuarioRol extends javax.swing.JFrame {
         ArrayList<String> listaRoles = new ArrayList<>();
         listaRoles = AdministracionRoles.traerRolesPorApp(idBuscar);
         listaRolesPorApp.setListData(convertir(listaRoles));
+       
 
     }
 
-    private void objetosAPantalla() throws SQLException, ClassNotFoundException {
+    private void objetosAPantalla() throws SQLException, ClassNotFoundException{
 
         String nombreAppBuscar = comboApp.getSelectedItem().toString();
         int idAppBuscar = AdministracionAplicacion.getIdAplicacion(nombreAppBuscar);
         recargaRolesAgregar(idAppBuscar);
-
+        
     }
 
     private String[] convertir(ArrayList<String> t) {
@@ -111,14 +110,14 @@ public class UsuarioRol extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        comboApp = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        rolActivo = new javax.swing.JLabel();
         panTitulo5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        comboApp = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        rolActivo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -157,35 +156,8 @@ public class UsuarioRol extends javax.swing.JFrame {
 
         jLabel5.setText("Usuario:");
 
-        comboApp.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboAppItemStateChanged(evt);
-            }
-        });
-        comboApp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboAppActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("Seleccione aplicacion");
-
-        jLabel4.setText("Rol activo:");
-
-        rolActivo.setText("(Ninguno)");
-
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                panTitulo5MouseDragged(evt);
-            }
-        });
-        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panTitulo5MousePressed(evt);
-            }
-        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -241,9 +213,8 @@ public class UsuarioRol extends javax.swing.JFrame {
         panTitulo5Layout.setHorizontalGroup(
             panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,7 +225,6 @@ public class UsuarioRol extends javax.swing.JFrame {
             .addComponent(btnMinimizar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
 
         comboApp.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -272,6 +242,7 @@ public class UsuarioRol extends javax.swing.JFrame {
         jLabel4.setText("Rol actual / solicitado:");
 
         rolActivo.setText("(Ninguno)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -303,13 +274,13 @@ public class UsuarioRol extends javax.swing.JFrame {
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,25 +326,12 @@ public class UsuarioRol extends javax.swing.JFrame {
         if (row != -1) {
 
             String met = (String) listaRolesPorApp.getSelectedValue();
-            String rolId = met.split("-")[0];
+            String rolId =met.split("-")[0];
             String nombreRolNuevo = met.split("-")[1];
-
-            try {
-                AdministracionUsuarios.editarRolUsuario(id, rolId);
-                JOptionPane.showMessageDialog(null, "Rol asignado con exito", "Exito", 1);
-                cargarApps();
-                rolActivo.setText(nombreRolNuevo);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
             AdministracionSolicitud.insertarSolicitudCambiarRol(id ,rolId);
             JOptionPane.showMessageDialog(null, "La solicitud de cambio de rol ha sido realizada", "Exito", 1);
             cargarApps();
             rolActivo.setText(nombreRolNuevo);
-
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un rol para Agregar", "Error", 0);
         }
@@ -392,22 +350,6 @@ public class UsuarioRol extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void comboAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAppActionPerformed
-
-
-    }//GEN-LAST:event_comboAppActionPerformed
-
-    private void comboAppItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAppItemStateChanged
-
-        try {
-            objetosAPantalla();
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_comboAppItemStateChanged
 
     private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
         int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
@@ -443,16 +385,21 @@ public class UsuarioRol extends javax.swing.JFrame {
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
 
-    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - yy);
-    }//GEN-LAST:event_panTitulo5MouseDragged
+    private void comboAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAppActionPerformed
 
-    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
-        xx = evt.getX();
-        yy = evt.getY();
-    }//GEN-LAST:event_panTitulo5MousePressed
+        
+    }//GEN-LAST:event_comboAppActionPerformed
+
+    private void comboAppItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAppItemStateChanged
+
+        try {
+            objetosAPantalla();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comboAppItemStateChanged
 
     /**
      * @param args the command line arguments

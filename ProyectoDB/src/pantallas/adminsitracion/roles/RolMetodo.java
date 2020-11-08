@@ -23,8 +23,6 @@ public class RolMetodo extends javax.swing.JFrame {
 
     private static int id = 0;
     private static String descripcion = "";
-    private int xx;
-    private int yy;
 
     /**
      * Creates new form RolMetodo
@@ -58,8 +56,7 @@ public class RolMetodo extends javax.swing.JFrame {
         }
         return retorno;
     }
-
-    private void desvanecer() {
+            private void desvanecer() {
         for (double i = 1.0; i >= 0.0; i -= 0.1) {
             float f = (float) i;
             this.setOpacity(f);
@@ -152,16 +149,6 @@ public class RolMetodo extends javax.swing.JFrame {
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panTitulo5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                panTitulo5MouseDragged(evt);
-            }
-        });
-        panTitulo5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                panTitulo5MousePressed(evt);
-            }
-        });
 
         btnSalir5.setBackground(new java.awt.Color(255, 255, 255));
         btnSalir5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -219,7 +206,7 @@ public class RolMetodo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +235,7 @@ public class RolMetodo extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(agregar)
                                     .addComponent(quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -266,7 +253,9 @@ public class RolMetodo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(atras)
                 .addGap(38, 38, 38))
-            .addComponent(panTitulo5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,21 +300,21 @@ public class RolMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_atrasActionPerformed
 
     private void quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarActionPerformed
-
+        
         int row = listaRelacion.getSelectedIndex();
 
         if (row != -1) {
-
-            String met = (String) listaRelacion.getSelectedValue();
-            int metodoId = Integer.parseInt(met.split("-")[0]);
-            try {
-                AdministracionRoles.eliminarRolMetodo(id, metodoId);
-                recargaMetodosAgregar();
-            } catch (SQLException ex) {
-                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
+        String met = (String) listaRelacion.getSelectedValue();
+        int metodoId = Integer.parseInt(met.split("-")[0]);
+        try {
+            AdministracionRoles.eliminarRolMetodo(id, metodoId);
+            recargaMetodosAgregar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un metodo a quitar", "Error", 0);
         }
@@ -333,20 +322,21 @@ public class RolMetodo extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
 
+        
         int row = listaNoRelacion.getSelectedIndex();
 
         if (row != -1) {
-
-            String met = (String) listaNoRelacion.getSelectedValue();
-            int metodoId = Integer.parseInt(met.split("-")[0]);
-            try {
-                AdministracionRoles.insertarRolMetodo(id, metodoId);
-                recargaMetodosAgregar();
-            } catch (SQLException ex) {
-                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        
+        String met = (String) listaNoRelacion.getSelectedValue();
+        int metodoId = Integer.parseInt(met.split("-")[0]);
+        try {
+            AdministracionRoles.insertarRolMetodo(id, metodoId);
+            recargaMetodosAgregar();
+        } catch (SQLException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RolMetodo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un metodo para Agregar", "Error", 0);
         }
@@ -354,7 +344,7 @@ public class RolMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        for (double i = 0.0; i <= 1.0; i += 0.1) {
+                for (double i = 0.0; i <= 1.0; i += 0.1) {
             float f = (float) i;
             this.setOpacity(f);
             try {
@@ -362,7 +352,7 @@ public class RolMetodo extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -389,7 +379,7 @@ public class RolMetodo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-        this.setState(RolMetodo.ICONIFIED);
+         this.setState(RolMetodo.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -399,17 +389,6 @@ public class RolMetodo extends javax.swing.JFrame {
     private void btnMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseExited
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
-
-    private void panTitulo5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - yy);
-    }//GEN-LAST:event_panTitulo5MouseDragged
-
-    private void panTitulo5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panTitulo5MousePressed
-        xx = evt.getX();
-        yy = evt.getY();
-    }//GEN-LAST:event_panTitulo5MousePressed
 
     /**
      * @param args the command line arguments
