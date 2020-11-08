@@ -95,7 +95,7 @@ public class AdministracionSolicitud {
         modelo.addColumn("Tipo de Solicitud");
         modelo.addColumn("Usuario");
         modelo.addColumn("Aplicacion");
-        modelo.addColumn("Rol Solicitado");
+        modelo.addColumn("Rol Actual");
         modelo.addColumn("Autorizante");
         modelo.addColumn("Nuevo valor");
 

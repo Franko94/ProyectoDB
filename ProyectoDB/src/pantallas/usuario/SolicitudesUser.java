@@ -71,7 +71,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Id Solicitud", "Estado", "Fecha Creacion", "Última actualización", "Tipo de Solicitud", "Usuario", "Aplicacion", "Rol Solicitado", "Autorizante", "Nuevo valor"
+                "Id Solicitud", "Estado", "Fecha Creacion", "Última actualización", "Tipo de Solicitud", "Usuario", "Aplicacion", "Rol Actual", "Autorizante", "Nuevo valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {

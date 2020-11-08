@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/accesosBD/Configuracion.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/AgregarRol.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/backend/AdministracionRoles.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/AdminRoles.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/backend/AdministracionAuditoria.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/roles/RolMetodo.java</file>
-            <file>file:/C:/Users/Usuario/Desktop/workspace/ProyectoDB/ProyectoDB/src/accesosBD/RolRW.java</file>
-
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/usuario/EditarUsuario.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionRoles.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/usuario/SolicitudesUser.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/RolRW.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/accesosBD/UsuarioRW.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/pantallas/adminsitracion/usuario/AdministracionUsuario.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionSolicitud.java</file>
+            <file>file:/C:/Users/Agustin/Documents/GitHub/ProyectoDB/ProyectoDB/src/backend/AdministracionUsuarios.java</file>
         </group>
     </open-files>
 </project-private>
