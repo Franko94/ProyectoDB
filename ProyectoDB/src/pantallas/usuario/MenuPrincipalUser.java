@@ -55,8 +55,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
-        lblTitle = new javax.swing.JLabel();
-        sol = new javax.swing.JButton();
+        lblTitle1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -153,13 +152,8 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
 
         getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        sol.setText("sol");
-        sol.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                solActionPerformed(evt);
-            }
-        });
-        getContentPane().add(sol, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
+        lblTitle1.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        getContentPane().add(lblTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 89, 652, 38));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -222,19 +216,6 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
         yy = evt.getY();
     }//GEN-LAST:event_panTitulo5MousePressed
 
-    private void solActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solActionPerformed
-        try {
-            SolicitudesUser su = new SolicitudesUser();
-            su.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuPrincipalUser.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MenuPrincipalUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-    }//GEN-LAST:event_solActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -278,7 +259,7 @@ public class MenuPrincipalUser extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir5;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitle1;
     private javax.swing.JPanel panTitulo5;
-    private javax.swing.JButton sol;
     // End of variables declaration//GEN-END:variables
 }
