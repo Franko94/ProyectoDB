@@ -30,9 +30,13 @@ public class EditarUsuario extends javax.swing.JFrame {
         initComponents();
         this.id_usuario = id;
         this.setLocationRelativeTo(null);
+        username.setText(id_usuario);
+        jTextField_Nombre.setText(id_usuario);
     }
-    
-    
+
+    private void limpiar() {
+        jTextField_Nombre.setText(" ");
+    }
 
     private void desvanecer() {
         for (double i = 1.0; i >= 0.0; i -= 0.1) {
@@ -66,7 +70,8 @@ public class EditarUsuario extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField_Nombre = new javax.swing.JTextField();
-        jButton_Asignar_Roles = new javax.swing.JButton();
+        asignarRol = new javax.swing.JButton();
+        username = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -75,9 +80,11 @@ public class EditarUsuario extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Editar Usuario");
+        jLabel1.setText("Editar Usuario:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 150, 49));
 
         jButtonAceptar.setText("Aceptar");
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,9 +92,12 @@ public class EditarUsuario extends javax.swing.JFrame {
                 jButtonAceptarActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 262, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Contraseña");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 185, 79, 34));
+        getContentPane().add(jTextField_Contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 193, 137, -1));
 
         jButtonAtras.setText("Atras");
         jButtonAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +105,7 @@ public class EditarUsuario extends javax.swing.JFrame {
                 jButtonAtrasActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 334, -1, -1));
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -155,7 +166,7 @@ public class EditarUsuario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 343, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -167,77 +178,28 @@ public class EditarUsuario extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jLabel2.setText("Nombre");
+        getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jButton_Asignar_Roles.setText("Rol");
-        jButton_Asignar_Roles.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Nombre");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(126, 157, -1, -1));
+
+        jTextField_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Asignar_RolesActionPerformed(evt);
+                jTextField_NombreActionPerformed(evt);
             }
         });
+        getContentPane().add(jTextField_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 154, 139, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(210, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(206, 206, 206))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonAtras)
-                        .addGap(89, 89, 89))))
-            .addComponent(panTitulo5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jLabel2)
-                        .addGap(115, 115, 115)
-                        .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(266, 266, 266)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonAceptar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jButton_Asignar_Roles)))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(175, 175, 175)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(71, 71, 71)
-                    .addComponent(jTextField_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(175, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addComponent(jButton_Asignar_Roles)
-                .addGap(42, 42, 42)
-                .addComponent(jButtonAceptar)
-                .addGap(23, 23, 23)
-                .addComponent(jButtonAtras)
-                .addGap(48, 48, 48))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(161, 161, 161)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(219, Short.MAX_VALUE)))
-        );
+        asignarRol.setText("Asignar Roles");
+        asignarRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                asignarRolActionPerformed(evt);
+            }
+        });
+        getContentPane().add(asignarRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 262, 128, -1));
+
+        username.setText("jLabel3");
+        getContentPane().add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 99, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -248,38 +210,29 @@ public class EditarUsuario extends javax.swing.JFrame {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
 
-    try {    
-        if(!jTextField_Nombre.getText().equalsIgnoreCase("")){
-            AdministracionUsuarios.editarNombreUsuario(id_usuario, jTextField_Nombre.getText());//cambio solo pass
-            if(!jTextField_Contrasena.getText().equalsIgnoreCase("")){
-               AdministracionUsuarios.editarContrasenaUsuario(jTextField_Nombre.getText(), jTextField_Contrasena.getText()); 
-            }
+        String nuevoNombre = jTextField_Nombre.getText();
+        try {    // TODO add your handling code here:
+            AdministracionUsuarios.editarNombreUsuario(id_usuario, nuevoNombre);
+            AdministracionUsuarios.editarContrasenaUsuario(id_usuario, jTextField_Contrasena.getText());
+            AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "3", id_usuario, null);
+            JOptionPane.showMessageDialog(null, "Usuario editado con exito", "Exito", 1);
+            jTextField_Nombre.setText(nuevoNombre);
+            limpiar();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else{
-            if(!jTextField_Contrasena.getText().equalsIgnoreCase("")){
-               AdministracionUsuarios.editarContrasenaUsuario(id_usuario, jTextField_Contrasena.getText()); 
-            }
-        }
-        
-        
-        AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "3", id_usuario, null);
-        AdministracionUsuario admin;
-        admin = new AdministracionUsuario();
-    admin.setVisible(true);
-        
-    } catch (SQLException ex) {
-        Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-    }
 
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtrasActionPerformed
         try {
             AdministracionUsuario admin = new AdministracionUsuario();
+            admin = new AdministracionUsuario();
             admin.setVisible(true);
-            this.setVisible(false);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -323,7 +276,7 @@ public class EditarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(EditarUsuario.ICONIFIED);
+        this.setState(EditarUsuario.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -334,26 +287,71 @@ public class EditarUsuario extends javax.swing.JFrame {
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
 
-    private void jButton_Asignar_RolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Asignar_RolesActionPerformed
-        // TODO add your handling code here:
-        UsuarioRol edit;
+    private void asignarRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarRolActionPerformed
         try {
-            edit = new UsuarioRol(id_usuario);edit.setVisible(true);
+            UsuarioRol user = new UsuarioRol(id_usuario);
+            user.setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(EditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }//GEN-LAST:event_jButton_Asignar_RolesActionPerformed
+
+    }//GEN-LAST:event_asignarRolActionPerformed
+
+    private void jTextField_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_NombreActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new EditarUsuario().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton asignarRol;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir5;
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAtras;
-    private javax.swing.JButton jButton_Asignar_Roles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -361,5 +359,6 @@ public class EditarUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_Contrasena;
     private javax.swing.JTextField jTextField_Nombre;
     private javax.swing.JPanel panTitulo5;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,12 +5,15 @@
  */
 package pantallas.adminsitracion.roles;
 
+import accesosBD.Configuracion;
+import backend.AdministracionAuditoria;
 import backend.AdministracionRoles;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import pantallas.login.Login;
 import pantallas.login.MenuPrincipal;
 
@@ -314,15 +317,18 @@ public class AdminRoles extends javax.swing.JFrame {
             int valor = (int) jTable1.getValueAt(row, 0);
             try {
                 AdministracionRoles.eliminarRol(valor, jTable1);
+                AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "9", null, valor);
                 JOptionPane.showMessageDialog(null, "Rol eliminado correctamente", "Eliminacion", 1);
                 AdministracionRoles.cargarRoles(jTable1);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AdminRoles.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (SQLException ex) {
-            if (ex.getMessage().contains("violates foreign key constraint")) {
+            if (ex.getMessage().contains("violates foreign key constraint \"id_rol\" on table \"rol_menu")) {
                 JOptionPane.showMessageDialog(null, "El rol no puede eliminarse aun porque tiene metodos asociados", "Error", 0);
-            } else {
+            } else if (ex.getMessage().contains(" violates foreign key constraint \"id_rol\" on table \"usuario")) {
+                JOptionPane.showMessageDialog(null, "El rol no puede eliminarse aun porque tiene usuarios asociados", "Error", 0);
+            }else{
 
                 Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
 

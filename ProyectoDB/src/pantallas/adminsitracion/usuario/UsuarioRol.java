@@ -5,48 +5,79 @@
  */
 package pantallas.adminsitracion.usuario;
 
-import pantallas.adminsitracion.aplicacion.*;
 import backend.AdministracionAplicacion;
-import static backend.AdministracionAplicacion.eliminarRol;
-import static backend.AdministracionAplicacion.agregarRol;
-import backend.AdministracionRoles;
-import backend.AdministracionSolicitud;
+import pantallas.adminsitracion.roles.*;
 import backend.AdministracionUsuarios;
+import backend.AdministracionRoles;
+import java.awt.Color;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
-import pantallas.login.Login;
-import java.awt.Color;
 import javax.swing.JOptionPane;
+import pantallas.login.Login;
 
 /**
  *
- * @author Meki
+ * @author Agustin
  */
 public class UsuarioRol extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AppRol
-     */
     private static String id;
-    private int id_aplicacion;
-    public UsuarioRol(String id) throws SQLException, ClassNotFoundException {
-        this.id = id;
-        //obtener el rol del usuario y ponerlo en la etiqueta
-        //obtener el id de aplicación para ese rol
-        //rellenar la tabla de roles disponibles con los roles que tengan esa app
+    int idAppSeleccionada; 
+
+    /**
+     * Creates new form RolMetodo
+     */
+    public UsuarioRol(String idUser) throws SQLException, ClassNotFoundException {
         initComponents();
-        actualizar();
+        id = idUser;
+        username.setText(id);
         this.setLocationRelativeTo(null);
+        cargarApps();
+        idAppSeleccionada = AdministracionAplicacion.getIdAplicacion(comboApp.getSelectedItem().toString());
+        recargaRolesAgregar(idAppSeleccionada);
+    }
+
+    private void cargarApps() {
+        ArrayList<String> lista = new ArrayList<>();
+        try {
+            lista = AdministracionAplicacion.llenar_combo();
+        } catch (SQLException ex) {
+            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AgregarRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < lista.size(); i++) {
+
+            comboApp.addItem(lista.get(i));
+        }
+    }
+
+    private void recargaRolesAgregar(int idBuscar) throws SQLException, ClassNotFoundException {
+        ArrayList<String> listaRoles = new ArrayList<>();
+        listaRoles = AdministracionRoles.traerRolesPorApp(idBuscar);
+        listaRolesPorApp.setListData(convertir(listaRoles));
+       
 
     }
-    public void actualizar() throws SQLException, ClassNotFoundException{
-        int id_rol_usuario = AdministracionUsuarios.GetRol(id);
-        int id_aplicacion = AdministracionRoles.GetidAplicacion(id_rol_usuario);
-        jLabel_ROL_EN_USO.setText(AdministracionRoles.getDescripcionDeUnRol(id_rol_usuario));
-        AdministracionRoles.cargarDescripcionesRoles(jTable_roles_disponibles, id_aplicacion, id_rol_usuario);
+
+    private void objetosAPantalla() throws SQLException, ClassNotFoundException{
+
+        String nombreAppBuscar = comboApp.getSelectedItem().toString();
+        int idAppBuscar = AdministracionAplicacion.getIdAplicacion(nombreAppBuscar);
+        recargaRolesAgregar(idAppBuscar);
         
+    }
+
+    private String[] convertir(ArrayList<String> t) {
+        int cantTemas = t.size();
+        String[] retorno = new String[cantTemas];
+
+        for (int i = 0; i < cantTemas; i++) {
+            retorno[i] = t.get(i);
+        }
+        return retorno;
     }
 
     private void desvanecer() {
@@ -71,17 +102,21 @@ public class UsuarioRol extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaRolesPorApp = new javax.swing.JList<>();
+        asignar = new javax.swing.JButton();
+        atras = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton_Atras = new javax.swing.JButton();
-        jButton_Agregar = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable_roles_disponibles = new javax.swing.JTable();
+        username = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         panTitulo5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
-        jLabel_ROL_EN_USO = new javax.swing.JLabel();
+        comboApp = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        rolActivo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -91,46 +126,34 @@ public class UsuarioRol extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Usuario - Rol");
+        jLabel1.setText("Rol de Usuario");
 
-        jLabel2.setText("Roles Disponibles");
+        listaRolesPorApp.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(listaRolesPorApp);
 
-        jLabel3.setText("Rol en Uso");
-
-        jButton_Atras.setText("Atras");
-        jButton_Atras.addActionListener(new java.awt.event.ActionListener() {
+        asignar.setText("Asignar");
+        asignar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AtrasActionPerformed(evt);
+                asignarActionPerformed(evt);
             }
         });
 
-        jButton_Agregar.setText("Asignar");
-        jButton_Agregar.addActionListener(new java.awt.event.ActionListener() {
+        atras.setText("Atras");
+        atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AgregarActionPerformed(evt);
+                atrasActionPerformed(evt);
             }
         });
 
-        jTable_roles_disponibles.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Rol"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false
-            };
+        jLabel3.setText("Roles disponibles");
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(jTable_roles_disponibles);
+        username.setText("jLabel4");
+
+        jLabel5.setText("Usuario:");
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -189,9 +212,8 @@ public class UsuarioRol extends javax.swing.JFrame {
         panTitulo5Layout.setHorizontalGroup(
             panTitulo5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTitulo5Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -203,74 +225,124 @@ public class UsuarioRol extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        comboApp.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboAppItemStateChanged(evt);
+            }
+        });
+        comboApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAppActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Seleccione aplicacion");
+
+        jLabel4.setText("Rol activo:");
+
+        rolActivo.setText("(Ninguno)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(104, 104, 104)
+                            .addComponent(jLabel3))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel_ROL_EN_USO))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(208, 208, 208)
-                                    .addComponent(jLabel2))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton_Agregar)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jButton_Atras)))
+                                    .addGap(215, 215, 215)
+                                    .addComponent(jLabel4))
+                                .addComponent(jLabel5))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(rolActivo)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(username)
+                                .addComponent(comboApp, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(asignar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(74, 74, 74)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(username)
+                    .addComponent(rolActivo))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel_ROL_EN_USO)
-                            .addComponent(jButton_Agregar))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButton_Atras)
-                .addContainerGap())
+                        .addComponent(comboApp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(asignar)))
+                .addGap(27, 27, 27)
+                .addComponent(atras)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AtrasActionPerformed
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         EditarUsuario edit = new EditarUsuario(id);
         edit.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton_AtrasActionPerformed
+    }//GEN-LAST:event_atrasActionPerformed
 
-    private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
-        String descripcionRol = getSelectedRowId(jTable_roles_disponibles);
-        try {
-            AdministracionSolicitud.insertarSolicitudCambiarRol(id, String.valueOf(AdministracionRoles.getIdRolATravesDeIdAppYDescripcion(id_aplicacion, descripcionRol)));
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-        }JOptionPane.showMessageDialog(null, "Su solicitud ha sido ingresada correctament, espere su aprobación");
-    }//GEN-LAST:event_jButton_AgregarActionPerformed
+    private void asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarActionPerformed
+
+        int row = listaRolesPorApp.getSelectedIndex();
+
+        if (row != -1) {
+
+            String met = (String) listaRolesPorApp.getSelectedValue();
+            String rolId =met.split("-")[0];
+            String nombreRolNuevo = met.split("-")[1];
+            try {
+                AdministracionUsuarios.editarRolUsuario(id ,rolId);
+               JOptionPane.showMessageDialog(null, "Rol asignado con exito", "Exito", 1);
+                cargarApps();
+               rolActivo.setText(nombreRolNuevo);
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un rol para Agregar", "Error", 0);
+        }
+
+    }//GEN-LAST:event_asignarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         for (double i = 0.0; i <= 1.0; i += 0.1) {
@@ -308,7 +380,7 @@ public class UsuarioRol extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalir5ActionPerformed
 
     private void btnMinimizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseClicked
-         this.setState(UsuarioRol.ICONIFIED);
+        this.setState(UsuarioRol.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarMouseClicked
 
     private void btnMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseEntered
@@ -319,14 +391,21 @@ public class UsuarioRol extends javax.swing.JFrame {
         btnMinimizar.setBackground(Color.white);
     }//GEN-LAST:event_btnMinimizarMouseExited
 
-    private String getSelectedRowId(JTable tabla) {
-        int fila = tabla.getSelectedRow();
-        if (fila != -1) {
-            return tabla.getValueAt(fila, 0).toString();
-        } else {
-            return "";
+    private void comboAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAppActionPerformed
+
+        
+    }//GEN-LAST:event_comboAppActionPerformed
+
+    private void comboAppItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAppItemStateChanged
+
+        try {
+            objetosAPantalla();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }//GEN-LAST:event_comboAppItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -361,7 +440,9 @@ public class UsuarioRol extends javax.swing.JFrame {
             public void run() {
                 try {
                     new UsuarioRol(id).setVisible(true);
-                } catch (SQLException | ClassNotFoundException ex) {
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
                     Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -369,18 +450,21 @@ public class UsuarioRol extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton asignar;
+    private javax.swing.JButton atras;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir5;
-    private javax.swing.JButton jButton_Agregar;
-    private javax.swing.JButton jButton_Atras;
+    private javax.swing.JComboBox<String> comboApp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel_ROL_EN_USO;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable_roles_disponibles;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listaRolesPorApp;
     private javax.swing.JPanel panTitulo5;
+    private javax.swing.JLabel rolActivo;
+    private javax.swing.JLabel username;
     // End of variables declaration//GEN-END:variables
-
 }
