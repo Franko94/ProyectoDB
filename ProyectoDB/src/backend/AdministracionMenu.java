@@ -120,7 +120,7 @@ public class AdministracionMenu {
     public static ArrayList<String> llenar_combo(int idRol) throws SQLException, ClassNotFoundException {
         ArrayList<String> resultado = new ArrayList<>();
         Connection con = Configuracion.getConnection();
-        String sql = "SELECT descripcion FROM menu JOIN rol_menu as roles on menu.id_menu = roles.id_menu where roles.id_rol ="+ idRol;
+        String sql = "SELECT descripcion FROM menu JOIN rol_menu as roles on menu.id_menu = roles.id_menu where roles.id_rol =" + idRol;
         PreparedStatement stmt = con.prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
@@ -129,12 +129,10 @@ public class AdministracionMenu {
         return resultado;
     }
 
-
-
-public static int getIdMenu(String nombre) throws SQLException, ClassNotFoundException {
+    public static int getIdMenu(String nombre) throws SQLException, ClassNotFoundException {
         int idMenu = 0;
         try (Connection con = Configuracion.getConnection()) {
-            String sql = "SELECT id_menu FROM menu where descripcion = '"+nombre+"'";
+            String sql = "SELECT id_menu FROM menu where descripcion = '" + nombre + "'";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
@@ -146,6 +144,37 @@ public static int getIdMenu(String nombre) throws SQLException, ClassNotFoundExc
 
     }
 
+    public static ArrayList<String> traerMenusNoRelacionadosRol(int id_menu) throws SQLException, ClassNotFoundException {
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MenuRW.LISTAR_MENUS_NO_RELACIONADOS_ROL);
+            stmt.setInt(1, id_menu);
+            ResultSet rs = stmt.executeQuery();
 
+            while (rs.next()) {
+                String valor = rs.getString("id_menu") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+
+            }
+            return resultado;
+        }
+
+    }
+
+    public static ArrayList<String> traerMenuRelacionadosRol(int id_menu) throws SQLException, ClassNotFoundException {
+        ArrayList<String> resultado = new ArrayList<>();
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(MenuRW.LISTAR_MENUS_RELACIONADOS_ROL);
+            stmt.setInt(1, id_menu);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String valor = rs.getString("id_menu") + "-" + rs.getString("descripcion");
+                resultado.add(valor);
+            }
+            return resultado;
+        }
+
+    }
 
 }

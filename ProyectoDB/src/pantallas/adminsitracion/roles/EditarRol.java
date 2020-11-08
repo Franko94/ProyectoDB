@@ -79,6 +79,7 @@ public class EditarRol extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
+        jButton_Asignar_Menus = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -220,6 +221,14 @@ public class EditarRol extends javax.swing.JFrame {
 
         getContentPane().add(panTitulo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
+        jButton_Asignar_Menus.setText("Asignar Menus");
+        jButton_Asignar_Menus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Asignar_MenusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton_Asignar_Menus, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 210, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -338,6 +347,20 @@ public class EditarRol extends javax.swing.JFrame {
         yy = evt.getY();
     }//GEN-LAST:event_panTitulo5MousePressed
 
+    private void jButton_Asignar_MenusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Asignar_MenusActionPerformed
+        RolMenu rm;
+        try {
+            rm = new RolMenu(Integer.parseInt(lblId.getText()),lbldescripcion.getText());
+            rm.setVisible(true);
+        this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EditarRol.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton_Asignar_MenusActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +405,7 @@ public class EditarRol extends javax.swing.JFrame {
     private javax.swing.JButton guardar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_Asignar_Menus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

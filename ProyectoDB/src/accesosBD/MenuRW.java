@@ -22,5 +22,7 @@ public class MenuRW {
     public static String FILTRAR_MENU = "SELECT * FROM menu where id_menu = ? or descripcion = ?";
     public static String ELIMINAR_MENU = "DELETE FROM menu where id_menu = ?";
     public static String INSERTAR_MENU = "INSERT INTO menu (descripcion) values(?)";
+    public static String LISTAR_MENUS_NO_RELACIONADOS_ROL = "SELECT * FROM menu WHERE id_menu NOT IN (SELECT id_menu FROM rol_menu WHERE id_rol = ?)";
+    public static String LISTAR_MENUS_RELACIONADOS_ROL = "SELECT * FROM menu WHERE id_menu IN (SELECT id_menu FROM rol_menu WHERE id_rol = ?)";
 
 }
