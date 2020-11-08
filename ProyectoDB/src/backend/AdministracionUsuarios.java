@@ -99,7 +99,6 @@ public class AdministracionUsuarios {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
         stmt.setString(1, id_usuario_nuevo);
-        System.out.println(stmt.toString());
         stmt.executeUpdate();
     }
     public static void editarContrasenaUsuario(String id_usuario, String contrasena) throws SQLException, ClassNotFoundException {
@@ -108,7 +107,6 @@ public class AdministracionUsuarios {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
         stmt.setString(1, CryptWithMD5.cryptWithMD5(contrasena));
-        System.out.println(stmt.toString());
         stmt.executeUpdate();
     }
     public static void editarRolUsuario(String id_usuario, String rol) throws SQLException, ClassNotFoundException {
