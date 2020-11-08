@@ -310,7 +310,6 @@ public class AdministracionUsuario extends javax.swing.JFrame {
     private void jButton_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AgregarActionPerformed
         ComprobarPersona cp = new ComprobarPersona();
         cp.setVisible(true);
-        this.dispose();
 
     }//GEN-LAST:event_jButton_AgregarActionPerformed
 
@@ -331,9 +330,12 @@ public class AdministracionUsuario extends javax.swing.JFrame {
         String id = getSelectedRowId();
         try {
             AdministracionUsuarios.eliminarUsuario(id);
-            AdministracionUsuarios.cargarTablaUsuarios(jTextField_Usuario.getText(), jTextField_CI.getText(), jTextField_Fecha.getText(), jTextField_Rol.getText(), jTextField_Aplicacion.getText(), jTextField_Habilitado.getText(), jTable1);
+
+            JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente", "Eliminacion", 1);
+            AdministracionUsuarios.cargarTablaUsuarios(jTextField_Usuario.getText(),jTextField_CI.getText(),jTextField_Fecha.getText(),jTextField_Rol.getText(),jTextField_Aplicacion.getText(),jTextField_Habilitado.getText(),jTable1);
             AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "6", id, null);
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Este usuario tiene una solicitud pendiente, resulva la solicitud para eliminarlo", "Error", 0);
             Logger.getLogger(AdministracionUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdministracionUsuario.class.getName()).log(Level.SEVERE, null, ex);

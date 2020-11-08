@@ -9,6 +9,7 @@ import backend.AdministracionAplicacion;
 import pantallas.adminsitracion.roles.*;
 import backend.AdministracionUsuarios;
 import backend.AdministracionRoles;
+import backend.AdministracionSolicitud;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -254,6 +255,23 @@ public class UsuarioRol extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+
+        comboApp.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboAppItemStateChanged(evt);
+            }
+        });
+        comboApp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAppActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Seleccione aplicacion");
+
+        jLabel4.setText("Rol actual / solicitado:");
+
+        rolActivo.setText("(Ninguno)");
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,19 +280,18 @@ public class UsuarioRol extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(104, 104, 104)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(215, 215, 215)
-                                    .addComponent(jLabel4))
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rolActivo)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rolActivo))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -340,6 +357,7 @@ public class UsuarioRol extends javax.swing.JFrame {
             String met = (String) listaRolesPorApp.getSelectedValue();
             String rolId = met.split("-")[0];
             String nombreRolNuevo = met.split("-")[1];
+
             try {
                 AdministracionUsuarios.editarRolUsuario(id, rolId);
                 JOptionPane.showMessageDialog(null, "Rol asignado con exito", "Exito", 1);
@@ -350,6 +368,12 @@ public class UsuarioRol extends javax.swing.JFrame {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
             }
+
+            AdministracionSolicitud.insertarSolicitudCambiarRol(id ,rolId);
+            JOptionPane.showMessageDialog(null, "La solicitud de cambio de rol ha sido realizada", "Exito", 1);
+            cargarApps();
+            rolActivo.setText(nombreRolNuevo);
+
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un rol para Agregar", "Error", 0);
         }

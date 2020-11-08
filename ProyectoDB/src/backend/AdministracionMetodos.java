@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -120,11 +121,21 @@ public class AdministracionMetodos {
     }
 
 
-    public static void eliminarMetodo(String id, JTable tabla) throws SQLException, ClassNotFoundException {
+    public static void eliminarMetodo(String id, JTable tabla) {
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(MetodoRW.ELIMINAR_METODO);
             stmt.setInt(1, Integer.parseInt(id));
             stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministracionMetodos.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex.getMessage().contains("rol")) {
+                JOptionPane.showMessageDialog(null, "La aplicacion no puede eliminarse aun porque existen roles asociados", "Error", 0);
+            }
+            if (ex.getMessage().contains("menu")) {
+                JOptionPane.showMessageDialog(null, "La aplicacion no puede eliminarse aun porque existen menus asociados", "Error", 0);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdministracionMetodos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

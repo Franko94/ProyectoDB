@@ -23,7 +23,7 @@ public class UsuarioRW {
     
     public static String EDITAR_USUARIO = "update usuario set id_usuario = ?  where id_usuario = ?";
     
-    public static String EDITAR_CONTRASENA = "update usuario set contrasena = ? , where id_usuario = ?";
+    public static String EDITAR_CONTRASENA = "update usuario set contrasena = ?  where id_usuario = ?";
     
     public static String USUARIO_IS_ADMIN = "SELECT descripcion_rol FROM ususarios_con_roles_y_ci where id_usuario = ? and descripcion_rol = 'admin'";
     
@@ -32,8 +32,15 @@ public class UsuarioRW {
     public static String USUARIO_HABILITAR = "UPDATE usuario set habilitado = true WHERE id_usuario = ?";
     
     public static String GET_CI = "SELECT ci FROM usuario where id_usuario = ?";
+    public static String GET_ROL = "SELECT id_rol FROM usuario where id_usuario = ?";
     
     public static String SET_ROL = "UPDATE usuario set id_rol = ? WHERE id_usuario = ?";
+    
+    public static String UPDATE_INTENTOS_FALLIDOS = "UPDATE usuario set intentos_logueo_fallido = ? WHERE id_usuario = ?";
+    
+    public static String UPDATE_HABILITADO = "UPDATE usuario set habilitado = ? WHERE id_usuario = ?";
+    
+    public static String GET_INTENTOS_FALLIDOS = "select intentos_logueo_fallido FROM usuario WHERE id_usuario = ?";
     
     
     public static String filtrarUsuarios(String id_usuario, String ci, String fecha, String descripcion_rol, String nombre_aplicacion, String habilitado) {

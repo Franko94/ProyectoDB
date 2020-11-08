@@ -66,7 +66,6 @@ public class CrearPersona extends javax.swing.JFrame {
         jTextField_Fecha = new javax.swing.JTextField();
         jButton_Aceptar = new javax.swing.JButton();
         jComboBox_Sexo = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         panTitulo5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
@@ -107,8 +106,6 @@ public class CrearPersona extends javax.swing.JFrame {
         });
 
         jComboBox_Sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
-
-        jLabel4.setText("aaaa-mm-dd");
 
         panTitulo5.setBackground(new java.awt.Color(255, 255, 255));
         panTitulo5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -221,9 +218,7 @@ public class CrearPersona extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel6)
                                 .addComponent(jLabel7))
-                            .addGap(47, 47, 47)
-                            .addComponent(jLabel4)
-                            .addGap(32, 32, 32)
+                            .addGap(139, 139, 139)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jComboBox_Sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jTextField_Email)
@@ -254,9 +249,7 @@ public class CrearPersona extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
+                    .addComponent(jTextField_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -402,7 +395,6 @@ public class CrearPersona extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

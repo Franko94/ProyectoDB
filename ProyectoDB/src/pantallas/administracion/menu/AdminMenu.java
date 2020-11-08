@@ -323,6 +323,7 @@ public class AdminMenu extends javax.swing.JFrame {
             AdministracionMenu.cargarMenu(jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "El menú tiene al menos un metodo asociado, no se puede eliminar", "Eliminacion", 1);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 

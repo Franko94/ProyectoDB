@@ -31,19 +31,15 @@ public class AdministracionRoles {
 
         stmt.executeUpdate();
     }
-
-    public static Integer getIdRol(String descripcion) throws SQLException, ClassNotFoundException {
-        Connection con = Configuracion.getConnection();
-        String sql = RolRW.GET_ID_ROL;
-        PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, descripcion);
-        ResultSet rs = stmt.executeQuery();
-        Integer res = -1;
-        if (rs.next()) {
-            res = Integer.valueOf(rs.getString("id_rol"));
-        }
-        return res;
-    }
+    public static int getIdRol(String descripcion) throws SQLException, ClassNotFoundException {
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(RolRW.GET_ID_ROL);
+            stmt.setString(1, descripcion);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            System.out.println(rs.getInt("id_rol"));
+            return rs.getInt(1);
+        }}
 
     public static void insertarRolMetodo(int idRol, int idMetodo) throws SQLException {
         Connection con = DriverManager.getConnection(Configuracion.getURL(), Configuracion.getUsuario(), Configuracion.getPassword());
@@ -130,15 +126,15 @@ public class AdministracionRoles {
         }
     }
 
- public static ArrayList<String> traerRolesPorApp(int id_App) throws SQLException, ClassNotFoundException {
+    public static ArrayList<String> traerRolesPorApp(int id_App) throws SQLException, ClassNotFoundException {
 
         ArrayList<String> resultado = new ArrayList<>();
         try (Connection con = Configuracion.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(RolRW.GET_ROL_POR_APP);
             stmt.setInt(1, id_App);
             ResultSet rs = stmt.executeQuery();
-            
-          while (rs.next()) {
+
+            while (rs.next()) {
                 String valor = rs.getString("id_rol") + "-" + rs.getString("descripcion");
                 resultado.add(valor);
 
@@ -146,6 +142,19 @@ public class AdministracionRoles {
             return resultado;
         }
 
+    }
+
+    public static String getDescripcionDeUnRol(int id_rol) throws SQLException, ClassNotFoundException {
+        String descripcion = "";
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(RolRW.DESCRIPCION_DE_UN_ROL);
+            stmt.setInt(1, id_rol);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                descripcion = rs.getString("descripcion");
+            }
+            return descripcion;
+        }
     }
 
 }

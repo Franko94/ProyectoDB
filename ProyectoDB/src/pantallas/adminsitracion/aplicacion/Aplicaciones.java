@@ -329,6 +329,12 @@ public class Aplicaciones extends javax.swing.JFrame {
             AdministracionAplicacion.cargarTablaAplicaciones(jTextField_FiltroId.getText(), jTextField_FiltroNombre.getText(), jTable1);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Aplicaciones.class.getName()).log(Level.SEVERE, null, ex);
+            if (ex.getMessage().contains("rol")) {
+                JOptionPane.showMessageDialog(null, "La aplicacion no puede eliminarse aun porque existen roles asociados", "Error", 0);
+            }
+            if (ex.getMessage().contains("menu")) {
+                JOptionPane.showMessageDialog(null, "La aplicacion no puede eliminarse aun porque existen menus asociados", "Error", 0);
+            }
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
