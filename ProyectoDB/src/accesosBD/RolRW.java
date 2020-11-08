@@ -22,4 +22,6 @@ public class RolRW {
     public static String ELIMINAR_ROL_METODO = "DELETE FROM rol_metodo WHERE id_rol = ? AND id_metodo = ?";
     public static String GET_ID_ROL = "SELECT id_rol from rol WHERE descripcion = ?";
     public static String GET_ROL_POR_APP = "SELECT id_rol, descripcion from rol WHERE id_aplicacion = ?";
+    public static String DESCRIPCION_DE_UN_ROL = "SELECT descripcion from rol WHERE id_rol = ?";
+
 }

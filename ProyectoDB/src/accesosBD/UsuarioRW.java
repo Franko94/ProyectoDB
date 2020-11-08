@@ -23,15 +23,16 @@ public class UsuarioRW {
     
     public static String EDITAR_USUARIO = "update usuario set id_usuario = ?  where id_usuario = ?";
     
-    public static String EDITAR_CONTRASENA = "update usuario set contrasena = ? , where id_usuario = ?";
+    public static String EDITAR_CONTRASENA = "update usuario set contrasena = ?  where id_usuario = ?";
     
     public static String USUARIO_IS_ADMIN = "SELECT descripcion_rol FROM ususarios_con_roles_y_ci where id_usuario = ? and descripcion_rol = 'admin'";
     
-    public static String USUARIO_IS_HABILITADO = "SELECT * FROM usuario WHERE id_usuario = ?";
+    public static String USUARIO_IS_HABILITADO = "SELECT habilitado FROM usuario WHERE id_usuario = ?";
     
     public static String USUARIO_HABILITAR = "UPDATE usuario set habilitado = true WHERE id_usuario = ?";
     
     public static String GET_CI = "SELECT ci FROM usuario where id_usuario = ?";
+    public static String GET_ROL = "SELECT id_rol FROM usuario where id_usuario = ?";
     
     public static String SET_ROL = "UPDATE usuario set id_rol = ? WHERE id_usuario = ?";
     

@@ -70,6 +70,7 @@ public class AdministracionUsuarios {
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
         return rs.next();
+       
     }
     
     public static void insertarUsuario(String idUsuario, String contrasena, String ci)
@@ -89,31 +90,32 @@ public class AdministracionUsuarios {
         stmt.setBoolean(7, false);
         stmt.executeUpdate();
         //armo la solicitud para ser aprobada y que el usuario quede habilitado 
-        AdministracionSolicitud.insertarSolicitudHabilitarUsuario(idUsuario, date);
+        AdministracionSolicitud.insertarSolicitudHabilitarUsuarioNuevo(idUsuario, date);
     }
 
     public static void editarNombreUsuario(String id_usuario, String id_usuario_nuevo) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.EDITAR_USUARIO;
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, id_usuario);
-        stmt.setString(2, id_usuario_nuevo);
+        stmt.setString(2, id_usuario);
+        stmt.setString(1, id_usuario_nuevo);
         stmt.executeUpdate();
     }
     public static void editarContrasenaUsuario(String id_usuario, String contrasena) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.EDITAR_CONTRASENA;
         PreparedStatement stmt = con.prepareStatement(sql);
-        stmt.setString(1, id_usuario);
-        stmt.setString(2, CryptWithMD5.cryptWithMD5(contrasena));
+        stmt.setString(2, id_usuario);
+        stmt.setString(1, CryptWithMD5.cryptWithMD5(contrasena));
         stmt.executeUpdate();
     }
-    public static void editarRolUsuario(String id_usuario, String rol) throws SQLException, ClassNotFoundException {
+    public static void editarRolUsuario(String id_usuario, int rol) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.SET_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
-        stmt.setInt(1, Integer.parseInt(rol));
+        stmt.setInt(1, rol);
+        System.out.println(stmt.toString());
         stmt.executeUpdate();
     }
 
@@ -160,7 +162,7 @@ public class AdministracionUsuarios {
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
         rs.next();
-       return rs.getBoolean(7);
+       return rs.getBoolean(1);
     }
 
     public static boolean usuarioIsAdmin(String usuario) throws SQLException, ClassNotFoundException {
@@ -170,6 +172,7 @@ public class AdministracionUsuarios {
         stmt.setString(1, usuario);
         ResultSet rs = stmt.executeQuery();
         return rs.next();
+       
     }
 
     public static int GetCI(String usuario) throws SQLException, ClassNotFoundException {
@@ -183,6 +186,19 @@ public class AdministracionUsuarios {
                 ci = rs.getInt("ci");
             }
             return ci;
+        }
+    }
+    public static int GetRol(String usuario) throws SQLException, ClassNotFoundException {
+        int id_rol = -1;
+        try (Connection con = Configuracion.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(UsuarioRW.GET_ROL);
+            stmt.setString(1, usuario);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                id_rol = rs.getInt("id_rol");
+            }
+            return id_rol;
         }
     }
     

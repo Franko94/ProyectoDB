@@ -6,6 +6,7 @@
 package pantallas.login;
 
 import accesosBD.Configuracion;
+import backend.AdministracionSolicitud;
 import pantallas.administracion.persona.ComprobarPersona;
 import backend.AdministracionUsuarios;
 import java.awt.Color;
@@ -234,7 +235,6 @@ public class Login extends javax.swing.JFrame {
                     Configuracion.usuario = jTextField_Usuario.getText();
                     Configuracion.ci = AdministracionUsuarios.GetCI(jTextField_Usuario.getText());
                     AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(),0);
-                    System.out.println(Configuracion.ci);
                     if (AdministracionUsuarios.usuarioIsAdmin(jTextField_Usuario.getText())) {
                         MenuPrincipal mp = new MenuPrincipal();
                         mp.setVisible(true);
@@ -253,6 +253,8 @@ public class Login extends javax.swing.JFrame {
                 AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(), logFallido);
                 if(logFallido > 3){
                     AdministracionUsuarios.updateHabilitado(jTextField_Usuario.getText(), false);
+                    AdministracionUsuarios.updateLogsFallidos(jTextField_Usuario.getText(),0);
+                    AdministracionSolicitud.insertarSolicitudHabilitarUsuarioBloqueado(jTextField_Usuario.getText());
                 }
                 JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña incorrectos");
                 limpiarPass();

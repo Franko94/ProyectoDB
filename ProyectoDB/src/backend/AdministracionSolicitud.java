@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdministracionSolicitud {
 
-    public static void insertarSolicitudHabilitarUsuario(String usuario, Date fecha) {
+    public static void insertarSolicitudHabilitarUsuarioNuevo(String usuario, Date fecha) {
 
         try {
             Connection con = Configuracion.getConnection();
@@ -52,6 +52,8 @@ public class AdministracionSolicitud {
     public static void insertarSolicitudCambiarRol(String usuario, String rol) {
 
         try {
+            
+            String descripcionRol = AdministracionRoles.getDescripcionDeUnRol(Integer.parseInt(rol));
             Connection con = Configuracion.getConnection();
 
             Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
@@ -64,7 +66,7 @@ public class AdministracionSolicitud {
 
             stmt.setInt(4, 2);//tipo de solicitud
             stmt.setString(5, usuario);
-            stmt.setString(6, rol);//nuevo valor
+            stmt.setString(6, descripcionRol);//nuevo valor
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
@@ -93,7 +95,7 @@ public class AdministracionSolicitud {
         modelo.addColumn("Tipo de Solicitud");
         modelo.addColumn("Usuario");
         modelo.addColumn("Aplicacion");
-        modelo.addColumn("Rol Solicitado");
+        modelo.addColumn("Rol Actual");
         modelo.addColumn("Autorizante");
         modelo.addColumn("Nuevo valor");
 
@@ -135,7 +137,13 @@ public class AdministracionSolicitud {
                 break;
             case 2://nmuevo rol
                 //cambiar rol
-                AdministracionUsuarios.editarRolUsuario(id_usuario, nuevo_valor);
+                int idrol = AdministracionRoles.getIdRol(nuevo_valor);
+                AdministracionUsuarios.editarRolUsuario(id_usuario, idrol);
+                break;
+
+            case 3://usuario bloqueado
+                AdministracionUsuarios.Habilitar(id_usuario);
+                //habilitar
                 break;
             default:
                 break;
@@ -145,6 +153,7 @@ public class AdministracionSolicitud {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, Integer.parseInt(id_solicitud));
         stmt.executeUpdate();
+        set_autorizante(id_solicitud);
     }
 
     public static void no_autorizar(String id_solicitud, String id_usuario) throws ClassNotFoundException, SQLException {
@@ -158,9 +167,8 @@ public class AdministracionSolicitud {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, id_usuario);
                 stmt.setInt(2, Integer.parseInt(id_solicitud));
-                
+
                 stmt.executeUpdate();
-                
                 AdministracionUsuarios.eliminarUsuario(id_usuario);
                 break;
             default:
@@ -171,6 +179,40 @@ public class AdministracionSolicitud {
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setInt(1, Integer.parseInt(id_solicitud));
         stmt.executeUpdate();
+        set_autorizante(id_solicitud);
     }
 
+    public static void insertarSolicitudHabilitarUsuarioBloqueado(String usuario) {
+
+        try {
+            Connection con = Configuracion.getConnection();
+
+            Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
+            String sql = SolicitudRW.INSERTAR_SOLICITUD;
+            PreparedStatement stmt;
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, "esperando");
+            stmt.setDate(2, date);
+            stmt.setDate(3, date);
+
+            stmt.setInt(4, 3);
+            stmt.setString(5, usuario);
+            stmt.setString(6, usuario);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static void set_autorizante(String id_solicitud) throws SQLException, ClassNotFoundException {
+        Connection con = Configuracion.getConnection();
+        String sql = SolicitudRW.SET_AUTORIZANTE;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1, Configuracion.usuario);
+        stmt.setInt(2, Integer.parseInt(id_solicitud));
+        stmt.executeUpdate();
+    }
 }
