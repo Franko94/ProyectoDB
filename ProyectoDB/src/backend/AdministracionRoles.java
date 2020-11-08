@@ -37,7 +37,6 @@ public class AdministracionRoles {
             stmt.setString(1, descripcion);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            System.out.println(rs.getInt("id_rol"));
             return rs.getInt(1);
         }}
 

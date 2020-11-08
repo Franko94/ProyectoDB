@@ -36,7 +36,6 @@
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="comboApp1" min="-2" max="-2" attributes="0"/>
                   <Component id="panTitulo5" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="180" pref="180" max="-2" attributes="0"/>
@@ -77,10 +76,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="comboApp1" min="-2" max="-2" attributes="0"/>
-                  <Component id="panTitulo5" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="panTitulo5" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel1Aplicacion" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
@@ -180,7 +176,9 @@
     <Component class="javax.swing.JComboBox" name="comboMenu">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
+          <StringArray count="1">
+            <StringItem index="0" value="  "/>
+          </StringArray>
         </Property>
       </Properties>
       <Events>
@@ -303,20 +301,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="comboApp1">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="0"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboMenuItemStateChanged"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboMenuActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Bienvenido"/>

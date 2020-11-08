@@ -119,24 +119,23 @@ public class AdministracionMenu {
 
     public static ArrayList<String> llenar_combo(int idRol) throws SQLException, ClassNotFoundException {
         ArrayList<String> resultado = new ArrayList<>();
-        try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MenuRW.FILTRAR_MENU_ROL);
-            stmt.setInt(1, idRol);
-            ResultSet rs = stmt.executeQuery();
-
-            while (rs.next()) {
-                resultado.add(rs.getString("descripcion"));
-            }
-            return resultado;
+        Connection con = Configuracion.getConnection();
+        String sql = "SELECT descripcion FROM menu JOIN rol_menu as roles on menu.id_menu = roles.id_menu where roles.id_rol ="+ idRol;
+        PreparedStatement stmt = con.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            resultado.add(rs.getString(1));
         }
-
+        return resultado;
     }
 
-    public static int getIdMenu(String nombre) throws SQLException, ClassNotFoundException {
+
+
+public static int getIdMenu(String nombre) throws SQLException, ClassNotFoundException {
         int idMenu = 0;
         try (Connection con = Configuracion.getConnection()) {
-            PreparedStatement stmt = con.prepareStatement(MenuRW.GET_MENU_ID);
-            stmt.setString(1, nombre);
+            String sql = "SELECT id_menu FROM menu where descripcion = '"+nombre+"'";
+            PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {

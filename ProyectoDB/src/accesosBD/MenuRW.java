@@ -18,7 +18,7 @@ public class MenuRW {
     public static String FILTRAR_MENU_ID = "SELECT * FROM menu where id_menu = ?";
     public static String FILTRAR_MENU_ROL = "SELECT descripcion FROM menu JOIN rol_menu as roles on menu.id_menu = roles.id_menu where roles.id_rol = ?";
     public static String FILTRAR_MENU_DESCRIPCION = "SELECT * FROM menu where descripcion like ?";
-    public static String GET_MENU_ID = "SELECT id_menu FROM menu where descripcion like ?";
+    public static String GET_MENU_ID = "SELECT id_menu FROM menu where descripcion like ' ? '";
     public static String FILTRAR_MENU = "SELECT * FROM menu where id_menu = ? or descripcion = ?";
     public static String ELIMINAR_MENU = "DELETE FROM menu where id_menu = ?";
     public static String INSERTAR_MENU = "INSERT INTO menu (descripcion) values(?)";

@@ -51,8 +51,9 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         cargarMenu();
-  
-        menuSeleccionado = AdministracionMenu.getIdMenu(comboMenu.getSelectedItem().toString());
+        //System.out.println(comboMenu.getSelectedItem().toString());
+        menuSeleccionado = AdministracionMenu.getIdMenu(comboMenu.getItemAt(0).toString());
+        //menuSeleccionado = AdministracionMenu.getIdMenu(comboMenu.getSelectedItem().toString());
         recargaMetodosAgregar(menuSeleccionado);
     }
 
@@ -132,7 +133,6 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
-        comboApp1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -165,6 +165,7 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
 
         jLabel5.setText("Usuario:");
 
+        comboMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  " }));
         comboMenu.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboMenuItemStateChanged(evt);
@@ -263,17 +264,6 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
             .addComponent(btnSalir5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        comboApp1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboMenuItemStateChanged(evt);
-            }
-        });
-        comboApp1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboMenuActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Bienvenido");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,7 +278,6 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
                 .addGap(76, 76, 76))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboApp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(180, 180, 180)
@@ -319,9 +308,7 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboApp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1Aplicacion)
                 .addGap(26, 26, 26)
@@ -488,7 +475,6 @@ public class MenuPincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JButton atras;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir5;
-    private javax.swing.JComboBox<String> comboApp1;
     private javax.swing.JComboBox<String> comboMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
