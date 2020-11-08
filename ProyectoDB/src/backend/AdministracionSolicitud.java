@@ -52,6 +52,8 @@ public class AdministracionSolicitud {
     public static void insertarSolicitudCambiarRol(String usuario, String rol) {
 
         try {
+            
+            String descripcionRol = AdministracionRoles.getDescripcionDeUnRol(Integer.parseInt(rol));
             Connection con = Configuracion.getConnection();
 
             Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
@@ -64,7 +66,7 @@ public class AdministracionSolicitud {
 
             stmt.setInt(4, 2);//tipo de solicitud
             stmt.setString(5, usuario);
-            stmt.setString(6, rol);//nuevo valor
+            stmt.setString(6, descripcionRol);//nuevo valor
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AdministracionSolicitud.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,7 +137,8 @@ public class AdministracionSolicitud {
                 break;
             case 2://nmuevo rol
                 //cambiar rol
-                AdministracionUsuarios.editarRolUsuario(id_usuario, nuevo_valor);
+                int idrol = AdministracionRoles.getIdRol(nuevo_valor);
+                AdministracionUsuarios.editarRolUsuario(id_usuario, idrol);
                 break;
 
             case 3://usuario bloqueado

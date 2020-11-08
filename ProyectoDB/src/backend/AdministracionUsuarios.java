@@ -109,12 +109,13 @@ public class AdministracionUsuarios {
         stmt.setString(1, CryptWithMD5.cryptWithMD5(contrasena));
         stmt.executeUpdate();
     }
-    public static void editarRolUsuario(String id_usuario, String rol) throws SQLException, ClassNotFoundException {
+    public static void editarRolUsuario(String id_usuario, int rol) throws SQLException, ClassNotFoundException {
         Connection con = Configuracion.getConnection();
         String sql = UsuarioRW.SET_ROL;
         PreparedStatement stmt = con.prepareStatement(sql);
         stmt.setString(2, id_usuario);
-        stmt.setInt(1, Integer.parseInt(rol));
+        stmt.setInt(1, rol);
+        System.out.println(stmt.toString());
         stmt.executeUpdate();
     }
 

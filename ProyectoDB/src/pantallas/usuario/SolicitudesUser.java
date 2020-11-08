@@ -7,6 +7,7 @@ package pantallas.usuario;
 
 import accesosBD.Configuracion;
 import backend.AdministracionAuditoria;
+import backend.AdministracionRoles;
 import backend.AdministracionSolicitud;
 import pantallas.adminsitracion.usuario.*;
 import pantallas.administracion.persona.*;
@@ -204,7 +205,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
         String id_solicitud = getSelectedRowId();
         String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
         String id_usuario = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
-        if (estado.equalsIgnoreCase("esperando")) {
+        if (!estado.equalsIgnoreCase("esperando")) {
             JOptionPane.showMessageDialog(rootPane, "No puede modificar una solicitud que ya fue resuelta");
         } else {
             try {
@@ -227,13 +228,18 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AutorizarActionPerformed
+        String nuevo_valor = "";
+
+        nuevo_valor = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 9);
+        String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
+        String id_sol = getSelectedRowId();
         String id_usuario = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
-        String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 2);
-        if (estado.equalsIgnoreCase("esperando")) {
+        System.out.println(estado);
+        if (!estado.equalsIgnoreCase("esperando")) {
             JOptionPane.showMessageDialog(rootPane, "No puede modificar una solicitud que ya fue resuelta");
         } else {
             try {
-                AdministracionSolicitud.autorizar(getSelectedRowId(), id_usuario, (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5));
+                AdministracionSolicitud.autorizar(id_sol, id_usuario, nuevo_valor);
                 AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "10", id_usuario, null);
                 AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(),
                         jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(), 
