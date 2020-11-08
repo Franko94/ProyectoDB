@@ -9,6 +9,7 @@ import backend.AdministracionAplicacion;
 import pantallas.adminsitracion.roles.*;
 import backend.AdministracionUsuarios;
 import backend.AdministracionRoles;
+import backend.AdministracionSolicitud;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -238,7 +239,7 @@ public class UsuarioRol extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione aplicacion");
 
-        jLabel4.setText("Rol activo:");
+        jLabel4.setText("Rol actual / solicitado:");
 
         rolActivo.setText("(Ninguno)");
 
@@ -250,19 +251,18 @@ public class UsuarioRol extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(104, 104, 104)
-                            .addComponent(jLabel3))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(215, 215, 215)
-                                    .addComponent(jLabel4))
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(rolActivo)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(139, 139, 139)
+                                .addComponent(jLabel4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rolActivo))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -328,16 +328,10 @@ public class UsuarioRol extends javax.swing.JFrame {
             String met = (String) listaRolesPorApp.getSelectedValue();
             String rolId =met.split("-")[0];
             String nombreRolNuevo = met.split("-")[1];
-            try {
-                AdministracionUsuarios.editarRolUsuario(id ,rolId);
-               JOptionPane.showMessageDialog(null, "Rol asignado con exito", "Exito", 1);
-                cargarApps();
-               rolActivo.setText(nombreRolNuevo);
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(UsuarioRol.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            AdministracionSolicitud.insertarSolicitudCambiarRol(id ,rolId);
+            JOptionPane.showMessageDialog(null, "La solicitud de cambio de rol ha sido realizada", "Exito", 1);
+            cargarApps();
+            rolActivo.setText(nombreRolNuevo);
         } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un rol para Agregar", "Error", 0);
         }
