@@ -35,6 +35,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
      */
     public SolicitudesUser() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.setLocationRelativeTo(null);
         AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(), jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
     }
 
@@ -49,7 +50,6 @@ public class SolicitudesUser extends javax.swing.JFrame {
             }
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -316,7 +316,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
             try {
                 AdministracionSolicitud.no_autorizar(id_solicitud, id_usuario);
                 AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "11", id_usuario, null);
-                AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(), 
+                AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(),
                         jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),
                         jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
 
@@ -330,13 +330,16 @@ public class SolicitudesUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_NO_AutorizarActionPerformed
 
     private void jButton_InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InicioActionPerformed
+        MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton_InicioActionPerformed
 
     private void jButton_AutorizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AutorizarActionPerformed
 
         String nuevo_valor = "";
 
-        nuevo_valor = (String)jTable1.getValueAt(jTable1.getSelectedRow(), 9);
+        nuevo_valor = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 9);
         String estado = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 1);
         String id_sol = getSelectedRowId();
         String id_usuario = (String) jTable1.getValueAt(jTable1.getSelectedRow(), 5);
@@ -347,7 +350,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
                 AdministracionSolicitud.autorizar(id_sol, id_usuario, nuevo_valor);
                 AdministracionAuditoria.agregarAuditoria(Configuracion.usuario, "10", id_usuario, null);
                 AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), "esperando", jTextField_Fecha_Creacion.getText(),
-                        jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(), 
+                        jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),
                         jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
 
             } catch (ClassNotFoundException ex) {
@@ -363,7 +366,7 @@ public class SolicitudesUser extends javax.swing.JFrame {
     private void jButton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuscarActionPerformed
         try {
 
-            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(), 
+            AdministracionSolicitud.cargarTablaSolicitud(jTextField_Id_solicitud.getText(), jTextField_Estado.getText(), jTextField_Fecha_Creacion.getText(),
                     jTextField_Fecha_actualizacion.getText(), jTextField_Tipo_Solicitud.getText(), jTextField_Usuario.getText(), jTextField_Aplicacion.getText(),
                     jTextField_Rol_Solicitado.getText(), jTextField_Usuario_autorizante.getText(), jTable1);
         } catch (SQLException ex) {

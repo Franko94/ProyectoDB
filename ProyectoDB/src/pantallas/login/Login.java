@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import pantallas.usuario.MenuPrincipalUser;
 import pantallas.usuario.MenuPincipalUsuario;
 
 /**
@@ -238,6 +237,7 @@ public class Login extends javax.swing.JFrame {
     private void jButton_RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RegistrarseActionPerformed
         ComprobarPersona cp = new ComprobarPersona();
         cp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton_RegistrarseActionPerformed
 
     private void jButton_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AceptarActionPerformed

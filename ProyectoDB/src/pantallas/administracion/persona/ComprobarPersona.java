@@ -55,7 +55,6 @@ public class ComprobarPersona extends javax.swing.JFrame {
         jTextField_CI = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton_Aceptar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         panTitulo5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnSalir5 = new javax.swing.JButton();
@@ -75,13 +74,6 @@ public class ComprobarPersona extends javax.swing.JFrame {
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_AceptarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Cancelar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -178,11 +170,8 @@ public class ComprobarPersona extends javax.swing.JFrame {
                     .addComponent(jButton_Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createSequentialGroup()
                     .addGap(134, 134, 134)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(89, 89, 89)))))
+                    .addComponent(jLabel1)
+                    .addGap(89, 89, 89)))
             .addComponent(panTitulo5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
@@ -195,9 +184,7 @@ public class ComprobarPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_CI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Aceptar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -242,19 +229,6 @@ public class ComprobarPersona extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            AdministracionPersona admin = new AdministracionPersona();
-            admin.setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(ComprobarPersona.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ComprobarPersona.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnSalir5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalir5MouseClicked
         int confirmacion = JOptionPane.showConfirmDialog(null, "Seguro que desea salir??", "Salir del Sistema", JOptionPane.YES_NO_OPTION);
@@ -339,7 +313,6 @@ public class ComprobarPersona extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JButton btnSalir5;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton_Aceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
